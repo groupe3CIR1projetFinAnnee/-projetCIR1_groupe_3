@@ -83,10 +83,24 @@ CMakeFiles/Projet.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Projet.dir/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/main.c" -o CMakeFiles/Projet.dir/main.c.s
 
+CMakeFiles/Projet.dir/exportLocal.c.o: CMakeFiles/Projet.dir/flags.make
+CMakeFiles/Projet.dir/exportLocal.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.c
+CMakeFiles/Projet.dir/exportLocal.c.o: CMakeFiles/Projet.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Projet.dir/exportLocal.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Projet.dir/exportLocal.c.o -MF CMakeFiles/Projet.dir/exportLocal.c.o.d -o CMakeFiles/Projet.dir/exportLocal.c.o -c "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/exportLocal.c"
+
+CMakeFiles/Projet.dir/exportLocal.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Projet.dir/exportLocal.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/exportLocal.c" > CMakeFiles/Projet.dir/exportLocal.c.i
+
+CMakeFiles/Projet.dir/exportLocal.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Projet.dir/exportLocal.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/exportLocal.c" -o CMakeFiles/Projet.dir/exportLocal.c.s
+
 CMakeFiles/Projet.dir/gigaTree.c.o: CMakeFiles/Projet.dir/flags.make
 CMakeFiles/Projet.dir/gigaTree.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.c
 CMakeFiles/Projet.dir/gigaTree.c.o: CMakeFiles/Projet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Projet.dir/gigaTree.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Projet.dir/gigaTree.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Projet.dir/gigaTree.c.o -MF CMakeFiles/Projet.dir/gigaTree.c.o.d -o CMakeFiles/Projet.dir/gigaTree.c.o -c "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/gigaTree.c"
 
 CMakeFiles/Projet.dir/gigaTree.c.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/Projet.dir/gigaTree.c.s: cmake_force
 CMakeFiles/Projet.dir/person.c.o: CMakeFiles/Projet.dir/flags.make
 CMakeFiles/Projet.dir/person.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.c
 CMakeFiles/Projet.dir/person.c.o: CMakeFiles/Projet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Projet.dir/person.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Projet.dir/person.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Projet.dir/person.c.o -MF CMakeFiles/Projet.dir/person.c.o.d -o CMakeFiles/Projet.dir/person.c.o -c "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.c"
 
 CMakeFiles/Projet.dir/person.c.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/Projet.dir/person.c.s: cmake_force
 CMakeFiles/Projet.dir/regions.c.o: CMakeFiles/Projet.dir/flags.make
 CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.c
 CMakeFiles/Projet.dir/regions.c.o: CMakeFiles/Projet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Projet.dir/regions.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Projet.dir/regions.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Projet.dir/regions.c.o -MF CMakeFiles/Projet.dir/regions.c.o.d -o CMakeFiles/Projet.dir/regions.c.o -c "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/regions.c"
 
 CMakeFiles/Projet.dir/regions.c.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/Projet.dir/regions.c.s: cmake_force
 CMakeFiles/Projet.dir/csvReader.c.o: CMakeFiles/Projet.dir/flags.make
 CMakeFiles/Projet.dir/csvReader.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/csvReader.c
 CMakeFiles/Projet.dir/csvReader.c.o: CMakeFiles/Projet.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Projet.dir/csvReader.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/Projet.dir/csvReader.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Projet.dir/csvReader.c.o -MF CMakeFiles/Projet.dir/csvReader.c.o.d -o CMakeFiles/Projet.dir/csvReader.c.o -c "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/csvReader.c"
 
 CMakeFiles/Projet.dir/csvReader.c.i: cmake_force
@@ -142,6 +156,7 @@ CMakeFiles/Projet.dir/csvReader.c.s: cmake_force
 # Object files for target Projet
 Projet_OBJECTS = \
 "CMakeFiles/Projet.dir/main.c.o" \
+"CMakeFiles/Projet.dir/exportLocal.c.o" \
 "CMakeFiles/Projet.dir/gigaTree.c.o" \
 "CMakeFiles/Projet.dir/person.c.o" \
 "CMakeFiles/Projet.dir/regions.c.o" \
@@ -151,13 +166,14 @@ Projet_OBJECTS = \
 Projet_EXTERNAL_OBJECTS =
 
 Projet: CMakeFiles/Projet.dir/main.c.o
+Projet: CMakeFiles/Projet.dir/exportLocal.c.o
 Projet: CMakeFiles/Projet.dir/gigaTree.c.o
 Projet: CMakeFiles/Projet.dir/person.c.o
 Projet: CMakeFiles/Projet.dir/regions.c.o
 Projet: CMakeFiles/Projet.dir/csvReader.c.o
 Projet: CMakeFiles/Projet.dir/build.make
 Projet: CMakeFiles/Projet.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable Projet"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable Projet"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Projet.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

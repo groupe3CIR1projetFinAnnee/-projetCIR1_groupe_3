@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Projet.dir/csvReader.c.o"
   "CMakeFiles/Projet.dir/csvReader.c.o.d"
+  "CMakeFiles/Projet.dir/exportLocal.c.o"
+  "CMakeFiles/Projet.dir/exportLocal.c.o.d"
   "CMakeFiles/Projet.dir/gigaTree.c.o"
   "CMakeFiles/Projet.dir/gigaTree.c.o.d"
   "CMakeFiles/Projet.dir/main.c.o"

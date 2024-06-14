@@ -153,6 +153,30 @@ csvReader.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/csvReader.c.s
 .PHONY : csvReader.c.s
 
+exportLocal.o: exportLocal.c.o
+.PHONY : exportLocal.o
+
+# target to build an object file
+exportLocal.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/exportLocal.c.o
+.PHONY : exportLocal.c.o
+
+exportLocal.i: exportLocal.c.i
+.PHONY : exportLocal.i
+
+# target to preprocess a source file
+exportLocal.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/exportLocal.c.i
+.PHONY : exportLocal.c.i
+
+exportLocal.s: exportLocal.c.s
+.PHONY : exportLocal.s
+
+# target to generate assembly for a file
+exportLocal.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/exportLocal.c.s
+.PHONY : exportLocal.c.s
+
 gigaTree.o: gigaTree.c.o
 .PHONY : gigaTree.o
 
@@ -261,6 +285,9 @@ help:
 	@echo "... csvReader.o"
 	@echo "... csvReader.i"
 	@echo "... csvReader.s"
+	@echo "... exportLocal.o"
+	@echo "... exportLocal.i"
+	@echo "... exportLocal.s"
 	@echo "... gigaTree.o"
 	@echo "... gigaTree.i"
 	@echo "... gigaTree.s"
