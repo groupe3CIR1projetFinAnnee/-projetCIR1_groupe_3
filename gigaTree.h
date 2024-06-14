@@ -3,8 +3,8 @@
 
 
 struct GigaTree{
-    struct Person**;
-    struct Regions*;
+    struct Person** person;
+    struct Regions* regionsTrie;
     unsigned int birthday[12][31];
     struct Person* youngest;
     struct Person* oldest;
@@ -12,6 +12,8 @@ struct GigaTree{
     unsigned int mostBirths;
     unsigned int numberPersons;
 };
+
+
 
 
 
