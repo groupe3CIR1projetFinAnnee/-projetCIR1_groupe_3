@@ -22,7 +22,7 @@ int main(){
     */
 
     struct GigaTree* gt = readCSV(path);
-    printf("%s",getFirstName((gt->people)[40]));
+    printf("%d",(getBirthday((gt->people)[40]))[0]);
 
     return 0;
 

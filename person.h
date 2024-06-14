@@ -43,5 +43,8 @@ char* getRegion(struct Person* person);
 void deletePerson(struct Person** person);
 
 
+// OThers
+unsigned int* splitBirthday(char* birthday); //Transform the char birthday into an array of 3 elements. Dont forget to free it after use.
+
 
 #endif //PROJET_PERSON_H

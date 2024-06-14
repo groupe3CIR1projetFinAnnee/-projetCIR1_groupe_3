@@ -78,5 +78,4 @@ void deleteGigaTree(struct GigaTree** gigaTree){
 
 
     *gigaTree = NULL;
-
 }
