@@ -32,7 +32,7 @@ unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int 
 
 
 //Suppress
-void deleteGigaTree(struct GigaTree* gigaTree);
+void deleteGigaTree(struct GigaTree** gigaTree);
 
 
 #endif //PROJET_GIGATREE_H
