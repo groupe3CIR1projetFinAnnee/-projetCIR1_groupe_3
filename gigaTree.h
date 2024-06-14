@@ -15,7 +15,7 @@ struct GigaTree{
 
 
 //Creation & setup
-struct GigaTree* create_empty_giga_tree(); //Will only make the malloc for the tree, and leave the parameters empty
+struct GigaTree* createEmptyGigaTree(); //Will only make the malloc for the tree, and leave the parameters empty
 
 void setupGigaTree(struct GigaTree* gigaTree,struct Person** people, struct Region* regionsTrie); //Will edit the tree using the array of people. Will set all anniversary, youngest/oldest, the regions, etc...
 
@@ -30,7 +30,7 @@ char* mostBirths(struct GigaTree* gigaTree); //return the name of the region wit
 
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day); //Get the number of ppl born one day. Will use the array in parameters
 
-
+struct Person* getPersonByIndex(struct GigaTree*, unsigned int index);
 //Suppress
 void deleteGigaTree(struct GigaTree** gigaTree);
 

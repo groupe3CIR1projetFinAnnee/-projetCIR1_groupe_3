@@ -80,5 +80,5 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
 
     fclose(file);
-    printf("%s",people[39]->firstname); //Warning : the array goes from 0 to 39 if the number of ppl is 40 !!
+    //printf("%s",people[39]->firstname); //Warning : the array goes from 0 to 39 if the number of ppl is 40 !!
 }
