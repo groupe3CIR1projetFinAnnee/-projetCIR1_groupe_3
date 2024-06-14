@@ -28,7 +28,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
     for(int i = 0; i < numberOfPerson; i++){ //We are going "number of person" times. This is useful, since a while would end up into an endless loop
         fgets(line, sizeof(line), file);
-        printf("%s",line);
+        //printf("%s",line);
         unsigned int id, padreID, madreID;
         char* birthday = "";
         char* firstname = "";
@@ -69,7 +69,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     break;
             }
 
-            token = strtok(NULL, ",");
+            token = strtok(NULL, ","); //To tell the token to go forward
             comp++;
         }
         people[i] = createPerson(id,firstname,lastname,birthday,padreID,madreID,region); //We create the person and put it in the array
@@ -80,5 +80,5 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
 
     fclose(file);
-    printf("%d",people[0]->madreID);
+    printf("%s",people[39]->firstname); //Warning : the array goes from 0 to 39 if the number of ppl is 40 !!
 }
