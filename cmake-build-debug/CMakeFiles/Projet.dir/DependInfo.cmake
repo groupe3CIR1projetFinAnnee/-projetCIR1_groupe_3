@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/gigaTree.c" "CMakeFiles/Projet.dir/gigaTree.c.o" "gcc" "CMakeFiles/Projet.dir/gigaTree.c.o.d"
   "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/main.c" "CMakeFiles/Projet.dir/main.c.o" "gcc" "CMakeFiles/Projet.dir/main.c.o.d"
+  "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.c" "CMakeFiles/Projet.dir/person.c.o" "gcc" "CMakeFiles/Projet.dir/person.c.o.d"
+  "/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/regions.c" "CMakeFiles/Projet.dir/regions.c.o" "gcc" "CMakeFiles/Projet.dir/regions.c.o.d"
   )
 
 # Targets to which this target links.

@@ -85,6 +85,18 @@
 		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/main.c">
 			<Option target="Projet"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.c">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/regions.c">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/regions.h">
+			<Option target="Projet"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

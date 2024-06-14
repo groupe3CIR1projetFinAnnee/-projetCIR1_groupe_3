@@ -5,4 +5,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(Projet
         main.c
-        gigaTree.c)
+        gigaTree.c
+        person.c
+        person.h
+        regions.c
+        regions.h)

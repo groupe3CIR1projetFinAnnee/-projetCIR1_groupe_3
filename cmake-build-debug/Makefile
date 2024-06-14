@@ -177,6 +177,54 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/main.c.s
 .PHONY : main.c.s
 
+person.o: person.c.o
+.PHONY : person.o
+
+# target to build an object file
+person.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/person.c.o
+.PHONY : person.c.o
+
+person.i: person.c.i
+.PHONY : person.i
+
+# target to preprocess a source file
+person.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/person.c.i
+.PHONY : person.c.i
+
+person.s: person.c.s
+.PHONY : person.s
+
+# target to generate assembly for a file
+person.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/person.c.s
+.PHONY : person.c.s
+
+regions.o: regions.c.o
+.PHONY : regions.o
+
+# target to build an object file
+regions.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/regions.c.o
+.PHONY : regions.c.o
+
+regions.i: regions.c.i
+.PHONY : regions.i
+
+# target to preprocess a source file
+regions.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/regions.c.i
+.PHONY : regions.c.i
+
+regions.s: regions.c.s
+.PHONY : regions.s
+
+# target to generate assembly for a file
+regions.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/regions.c.s
+.PHONY : regions.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +240,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... person.o"
+	@echo "... person.i"
+	@echo "... person.s"
+	@echo "... regions.o"
+	@echo "... regions.i"
+	@echo "... regions.s"
 .PHONY : help
 
 

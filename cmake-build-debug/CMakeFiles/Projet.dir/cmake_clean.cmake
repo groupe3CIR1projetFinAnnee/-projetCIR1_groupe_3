@@ -3,6 +3,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/Projet.dir/gigaTree.c.o.d"
   "CMakeFiles/Projet.dir/main.c.o"
   "CMakeFiles/Projet.dir/main.c.o.d"
+  "CMakeFiles/Projet.dir/person.c.o"
+  "CMakeFiles/Projet.dir/person.c.o.d"
+  "CMakeFiles/Projet.dir/regions.c.o"
+  "CMakeFiles/Projet.dir/regions.c.o.d"
   "Projet"
   "Projet.pdb"
 )
