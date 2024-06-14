@@ -129,6 +129,30 @@ Projet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/build
 .PHONY : Projet/fast
 
+gigaTree.o: gigaTree.c.o
+.PHONY : gigaTree.o
+
+# target to build an object file
+gigaTree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/gigaTree.c.o
+.PHONY : gigaTree.c.o
+
+gigaTree.i: gigaTree.c.i
+.PHONY : gigaTree.i
+
+# target to preprocess a source file
+gigaTree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/gigaTree.c.i
+.PHONY : gigaTree.c.i
+
+gigaTree.s: gigaTree.c.s
+.PHONY : gigaTree.s
+
+# target to generate assembly for a file
+gigaTree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/gigaTree.c.s
+.PHONY : gigaTree.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Projet"
+	@echo "... gigaTree.o"
+	@echo "... gigaTree.i"
+	@echo "... gigaTree.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

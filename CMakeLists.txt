@@ -4,4 +4,5 @@ project(Projet C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(Projet
-        main.c)
+        main.c
+        gigaTree.c)
