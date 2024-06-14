@@ -7,6 +7,9 @@ struct Person{
     unsigned int id;
     char* firstname;
     char* lastname;
+    unsigned int birthDay;
+    unsigned int birthMonth;
+    unsigned int birthYear;
     struct Person* padre;
     struct Person* madre;
 };
@@ -15,7 +18,7 @@ struct Person{
 // Creation & setup
 struct Person* createEmptyPerson(); //Return the "unknown person" with id of 0
 
-struct Person* createPerson(unsigned int id, char* firstname, char* lastname); //Will send recursive create perosn until it found an ID of 0
+struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday); //Will initiate a person, but not his/her parents.
 
 // Suppress
 void deletePerson(struct Person* person);
