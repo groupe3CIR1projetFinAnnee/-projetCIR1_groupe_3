@@ -5,7 +5,7 @@
 #include "csvReader.h"
 
 
-char* path = "./resources/bd_petite.csv";
+char* path = "../resources/bd_petite.csv";
 
 int main(){
     readCSV(path);

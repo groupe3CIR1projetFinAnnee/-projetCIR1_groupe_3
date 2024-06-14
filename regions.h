@@ -19,7 +19,6 @@ void insertRegion(struct Region** trie, char* regionName);
 bool isRegionsEmpty(struct Region* trie);
 unsigned int getBirths(struct Region* trie, char* regionName);
 struct Region* getChild(struct Region* trie, char letter);
-unsigned int numberOfWords(struct Region* trie);
 
 //Suppress
 void deleteNodeTrie(struct Region** trie);
