@@ -31,6 +31,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         people[i] = p; //To change, its temporary
     }
 
+
 /*
     while(character != EOF){
         character = fgetc(file);

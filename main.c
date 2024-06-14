@@ -8,7 +8,12 @@
 char* path = "../resources/bd_petite.csv";
 
 int main(){
-    readCSV(path);
+    char* firstname = "Jean";
+    char* lastname = "Michel";
+    char* birthday = "10/10/2000";
+    unsigned int id = 1;
+    struct Person* p = createPerson(id,firstname,lastname,birthday);
+    //readCSV(path);
     //struct Person* p = createEmptyPerson();
     return 0;
 
