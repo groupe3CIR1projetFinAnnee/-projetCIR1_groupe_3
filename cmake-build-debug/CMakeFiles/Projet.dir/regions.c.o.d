@@ -1,6 +1,8 @@
-CMakeFiles/Projet.dir/main.c.o: \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/main.c \
- /usr/include/stdc-predef.h /usr/include/stdio.h \
+CMakeFiles/Projet.dir/regions.c.o: \
+ /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.c \
+ /usr/include/stdc-predef.h \
+ /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -22,9 +24,4 @@ CMakeFiles/Projet.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
- /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.h \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/csvReader.h
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h
