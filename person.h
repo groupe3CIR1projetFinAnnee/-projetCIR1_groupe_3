@@ -23,6 +23,7 @@ struct Person{
 
 struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday, unsigned int padreID, unsigned int madreID, char* region); //Will initiate a person, but not his/her parents.
 
+
 //Access
 unsigned int getID(struct Person* person);
 

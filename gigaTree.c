@@ -74,6 +74,7 @@ void deleteGigaTree(struct GigaTree** gigaTree){
     free((*gigaTree)->people);
     free((*gigaTree)->mostBirthsRegion);
     free((*gigaTree));
+    free((*gigaTree)->regionsTrie);
     //TODO include deleting the trie (regions)
 
 
