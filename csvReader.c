@@ -23,21 +23,62 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     fgets(line, sizeof(line), file); //get the first element, being the number of person in the list
     int numberOfPerson = atoi(line);
     struct Person** people = malloc(sizeof(struct Person*) * numberOfPerson); //Create the struct person array. The size of this array is the number of ppl * the size of a pointer to an array
-    fgets(line, sizeof(line), file); //I'm jumping the next line, being the "unknow person". We will start with persons
-    //TODO : read and create persons by line. now, i'm working on person.c , so come back later
-    for(int i=0; i < numberOfPerson; i++){
-        struct Person* p = createEmptyPerson();
-        p->birthYear = i+1;
-        people[i] = p; //To change, its temporary
+    fgets(line, sizeof(line), file); //I'm jumping the next line, being the "unknow person". We will start with real persons
+
+
+    for(int i = 0; i < numberOfPerson; i++){ //We are going "number of person" times. This is useful, since a while would end up into an endless loop
+        fgets(line, sizeof(line), file);
+        printf("%s",line);
+        unsigned int id, padreID, madreID;
+        char* birthday = "";
+        char* firstname = "";
+        char* lastname = "";
+        char* region = "";
+        struct Person* padre,madre;
+
+        char* line_copy = strdup(line);
+        char* token = strtok(line_copy, ","); //strtok is going to read the line for us, stoping at ,. This modify the line, so we have to copy it before
+
+        unsigned int comp = 1; //Comp to know were we are
+        while (token != NULL) {
+            switch(comp){
+                case 1:
+                    id = atoi(token);
+                    break;
+                case 2:
+                    padreID = atoi(token);
+                    break;
+                case 3:
+                    madreID = atoi(token);
+                    break;
+                case 4:
+                    lastname = malloc((strlen(token)+1) * sizeof(char));
+                    strcpy(lastname,token); //We copy the name !
+                    break;
+                case 5:
+                    firstname = malloc((strlen(firstname)+1) * sizeof(char));
+                    strcpy(firstname,token);
+                    break;
+                case 6 :
+                    birthday = malloc((strlen(birthday)+1) * sizeof(char));
+                    strcpy(birthday,token);
+                    break;
+                case 7:
+                    region = malloc((strlen(region)+1) * sizeof(char));
+                    strcpy(region,token);
+                    break;
+            }
+
+            token = strtok(NULL, ",");
+            comp++;
+        }
+        people[i] = createPerson(id,firstname,lastname,birthday,padreID,madreID,region); //We create the person and put it in the array
+
+
     }
 
 
-/*
-    while(character != EOF){
-        character = fgetc(file);
-        printf("%c",character);
-    }
-*/
 
     fclose(file);
+    printf("%d",people[0]->madreID);
 }

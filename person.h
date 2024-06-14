@@ -12,13 +12,16 @@ struct Person{
     unsigned int birthYear;
     struct Person* padre;
     struct Person* madre;
+    unsigned int padreID;
+    unsigned int madreID;
+    char* region;
 };
 
 
 // Creation & setup
 struct Person* createEmptyPerson(); //Return the "unknown person" with id of 0
 
-struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday); //Will initiate a person, but not his/her parents.
+struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday, unsigned int padreID, unsigned int madreID, char* region); //Will initiate a person, but not his/her parents.
 
 // Suppress
 void deletePerson(struct Person* person);
