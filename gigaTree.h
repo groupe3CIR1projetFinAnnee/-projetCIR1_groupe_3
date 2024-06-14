@@ -31,5 +31,8 @@ char* mostBirths(struct GigaTree* gigaTree); //return the name of the region wit
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day); //Get the number of ppl born one day. Will use the array in parameters
 
 
+//Suppress
+void deleteGigaTree(struct GigaTree* gigaTree);
+
 
 #endif //PROJET_GIGATREE_H
