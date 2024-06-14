@@ -2,9 +2,11 @@
 #include "gigaTree.h"
 #include "regions.h"
 #include "person.h"
+#include "csvReader.h"
+
 
 int main(){
-    printf("Hello world");
+    readCSV('')
     return 0;
 
 }
