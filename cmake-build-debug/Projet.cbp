@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/csvReader.c">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/csvReader.h">
+			<Option target="Projet"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/gigaTree.c">
 			<Option target="Projet"/>
 		</Unit>

@@ -129,6 +129,30 @@ Projet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/build
 .PHONY : Projet/fast
 
+csvReader.o: csvReader.c.o
+.PHONY : csvReader.o
+
+# target to build an object file
+csvReader.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/csvReader.c.o
+.PHONY : csvReader.c.o
+
+csvReader.i: csvReader.c.i
+.PHONY : csvReader.i
+
+# target to preprocess a source file
+csvReader.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/csvReader.c.i
+.PHONY : csvReader.c.i
+
+csvReader.s: csvReader.c.s
+.PHONY : csvReader.s
+
+# target to generate assembly for a file
+csvReader.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/csvReader.c.s
+.PHONY : csvReader.c.s
+
 gigaTree.o: gigaTree.c.o
 .PHONY : gigaTree.o
 
@@ -234,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Projet"
+	@echo "... csvReader.o"
+	@echo "... csvReader.i"
+	@echo "... csvReader.s"
 	@echo "... gigaTree.o"
 	@echo "... gigaTree.i"
 	@echo "... gigaTree.s"

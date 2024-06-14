@@ -1,1 +1,1 @@
-/usr/bin/cc -g CMakeFiles/Projet.dir/main.c.o CMakeFiles/Projet.dir/gigaTree.c.o CMakeFiles/Projet.dir/person.c.o CMakeFiles/Projet.dir/regions.c.o -o Projet 
+/usr/bin/cc -g CMakeFiles/Projet.dir/main.c.o CMakeFiles/Projet.dir/gigaTree.c.o CMakeFiles/Projet.dir/person.c.o CMakeFiles/Projet.dir/regions.c.o CMakeFiles/Projet.dir/csvReader.c.o -o Projet 

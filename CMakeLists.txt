@@ -7,6 +7,6 @@ add_executable(Projet
         main.c
         gigaTree.c
         person.c
-        person.h
         regions.c
-        regions.h)
+        csvReader.c
+)
