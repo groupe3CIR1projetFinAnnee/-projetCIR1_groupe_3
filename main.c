@@ -5,8 +5,10 @@
 #include "csvReader.h"
 
 
+char* path = "./resources/bd_petite.csv";
+
 int main(){
-    readCSV('')
+    readCSV(path);
     return 0;
 
 }

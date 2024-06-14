@@ -8,8 +8,10 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     FILE* file = NULL;
 
     file = fopen(("%s",filePath), "r+");
+
     if(file == NULL){
-        printf("Error opening the file. Make sure you entered the right path and the extension. \nExample : ./home/folder/file.txt");
+        printf("Error opening the file. Make sure you entered the right path and the extension. \nExample : ./home/folder/file.txt\n");
+        return NULL;
     }
     printf("yaay");
     return 0;
