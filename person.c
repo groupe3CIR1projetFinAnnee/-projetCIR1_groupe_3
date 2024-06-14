@@ -89,3 +89,39 @@ struct Person* createPerson(unsigned int id, char* firstname, char* lastname, ch
     person->padreID = padreID;
     return person;
 }
+
+
+
+unsigned int getID(struct Person* person){
+    return person->id;
+}
+
+char* getFirstName(struct Person* person){
+    return person->firstname;
+}
+char* getLastName(struct Person* person){
+    return person->lastname;
+}
+
+unsigned int* getBirthday(struct Person* person){
+    unsigned int birthday[3] = {person->birthDay,person->birthMonth,person->birthYear};
+    return &birthday;
+}
+
+struct Person* getPadre(struct Person* person){
+    return person->padre;
+}
+struct Person* getMadre(struct Person* person){
+    return person->madre;
+}
+
+unsigned int getPadreID(struct Person* person){
+    return person->padreID;
+}
+unsigned int getMadreID(struct Person* person){
+    return person->madreID;
+}
+
+char* getRegion(struct Person* person){
+    return person->region;
+}
