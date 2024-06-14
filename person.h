@@ -23,6 +23,7 @@ struct Person* createEmptyPerson(); //Return the "unknown person" with id of 0
 
 struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday, unsigned int padreID, unsigned int madreID, char* region); //Will initiate a person, but not his/her parents.
 
+
 // Suppress
 void deletePerson(struct Person* person);
 
