@@ -4,11 +4,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include "gigaTree.h"
+
 
 
 struct GigaTree* readCSV(char* filePath){ //The file path should look like this : ./home/folder/file.txt
     FILE* file = NULL;
     char line[256];
+    struct GigaTree* gigaTree = createEmptyGigaTree();
 
     file = fopen(filePath, "r");
     if(file == NULL){
@@ -74,12 +77,13 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
             comp++;
         }
         people[i] = createPerson(id,firstname,lastname,birthday,padreID,madreID,region); //We create the person and put it in the array
-
-
     }
 
 
 
     fclose(file);
-    printf("%s",people[5]->region); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
+    //printf("%d",people[0]->birthDay); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
+    gigaTree->people = people; //Setting up the array into the tree
+    gigaTree->numberPersons = numberOfPerson; //Remember here !! the unknown person is counted, at the position 0, everytime.
+    return gigaTree;
 }

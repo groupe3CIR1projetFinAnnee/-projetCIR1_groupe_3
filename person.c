@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
+/*
 struct Person* createEmptyPerson(){
     struct Person* person = malloc(sizeof(struct Person));
     if(person == NULL)
@@ -34,7 +34,7 @@ struct Person* createEmptyPerson(){
     return person;
 
 }
-
+*/
 
 struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday, unsigned int padreID, unsigned int madreID, char* region){
     struct Person* person = malloc(sizeof(struct Person));

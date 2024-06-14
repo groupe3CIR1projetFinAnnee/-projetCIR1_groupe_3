@@ -21,8 +21,8 @@ int main(){
     deletePerson(&p);
     */
 
-    readCSV(path);
-    //struct GigaTree* gigaTree = createEmptyGigaTree();
+    struct GigaTree* gt = readCSV(path);
+    printf("%s",getFirstName((gt->people)[40]));
 
     return 0;
 
