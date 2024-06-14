@@ -53,13 +53,30 @@ struct Person* createPerson(unsigned int id, char* firstname, char* lastname, ch
     person->madre = NULL;
     person->padre = NULL; //we set parents here with null. The function calling this function must put the parent itself
     unsigned int day, month, year;
-    char* token = strtok(birthday,"/");
-    printf("%s",token);
+
+    char* birthday_copy = strdup(birthday); // We copy the birthday here to be able to edit it with strtok
+    char* token = strtok(birthday_copy, "/");
+    //1/12/2025
+    unsigned int comp = 1;
+    while (token != NULL) {
+        switch(comp){
+            case 1:
+                day = atoi(token);
+            case 2:
+                month = atoi(token);
+            case 3:
+                year = atoi(token);
+        }
+
+        token = strtok(NULL, "/");
+        comp++;
+    }
+
+    free(birthday_copy);
 
 
     person->birthDay = day;
     person->birthMonth = month;
     person->birthYear = year;
-    printf("%d",person->birthYear);
     return person;
 }
