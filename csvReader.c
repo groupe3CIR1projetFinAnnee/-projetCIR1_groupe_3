@@ -1,11 +1,12 @@
 #include "csvReader.h"
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <stdlib.h>
 
 
 struct GigaTree* readCSV(char* filePath){ //The file path should look like this : ./home/folder/file.txt
     FILE* file = NULL;
+    char line[256];
 
     file = fopen(filePath, "r");
     if(file == NULL){
@@ -14,12 +15,22 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         return NULL;
     }
     printf("Loading the file and setting up the information...\nThis operation can take a while...\n");
-    int cursorCharacter = 0; //Creating the cursor count
-    do{
-        int cursorCharacter = fgetc(file);
-        printf("%c",cursorCharacter);
-    } while (cursorCharacter != EOF);
 
+    //Setting up everything
+    int character;
+    fgets(line, sizeof(line), file); //get the first element, being the number of person in the list
+    int intLine = atoi(line);
+    struct Person** people = malloc(sizeof(struct Person*) * intLine); //Create the struct person array. The size of this array is the number of ppl * the size of a pointer to an array
+    fgets(line, sizeof(line), file); //I'm jumping the next line, being the "unknow person". We will start with persons
+    //TODO : read and create persons by line. now, i'm working on person.c , so come back later
+
+
+/*
+    while(character != EOF){
+        character = fgetc(file);
+        printf("%c",character);
+    }
+*/
 
     fclose(file);
 }
