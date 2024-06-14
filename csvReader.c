@@ -21,9 +21,9 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     //Setting up everything
     int character;
     fgets(line, sizeof(line), file); //get the first element, being the number of person in the list
-    int numberOfPerson = atoi(line);
+    int numberOfPerson = atoi(line) + 1; //we add the unknown person to the start of the array
     struct Person** people = malloc(sizeof(struct Person*) * numberOfPerson); //Create the struct person array. The size of this array is the number of ppl * the size of a pointer to an array
-    fgets(line, sizeof(line), file); //I'm jumping the next line, being the "unknow person". We will start with real persons
+    //fgets(line, sizeof(line), file);
 
 
     for(int i = 0; i < numberOfPerson; i++){ //We are going "number of person" times. This is useful, since a while would end up into an endless loop
@@ -65,6 +65,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     break;
                 case 7:
                     region = malloc((strlen(region)+1) * sizeof(char));
+                    strtok(token,"\n");
                     strcpy(region,token);
                     break;
             }
@@ -80,5 +81,5 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
 
     fclose(file);
-    //printf("%s",people[39]->firstname); //Warning : the array goes from 0 to 39 if the number of ppl is 40 !!
+    printf("%s",people[5]->region); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
 }

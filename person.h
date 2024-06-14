@@ -40,7 +40,7 @@ unsigned int getMadreID(struct Person* person);
 char* getRegion(struct Person* person);
 
 // Suppress
-void deletePerson(struct Person* person);
+void deletePerson(struct Person** person);
 
 
 

@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "gigaTree.h"
 #include "regions.h"
 #include "person.h"
 #include "csvReader.h"
 
 
-char* path = "../resources/bd_petite.csv";
+char* path = "../db_temp/bd_petite.csv";
 
 int main(){
     /*
@@ -16,13 +17,12 @@ int main(){
     unsigned int id = 1;
     struct Person* p = createPerson(id,firstname,lastname,birthday,0,0,region);
     printf("%s %s %d %d %d %d %s",p->firstname, p->lastname,p->id, p->birthDay, p->birthMonth, p->birthYear,p->region);
-    unsigned int* truc = getBirthday(p);
+    //unsigned int* truc = getBirthday(p);
+    deletePerson(&p);
     */
 
-
-
-    //readCSV(path);
-    struct GigaTree* gigaTree = createEmptyGigaTree();
+    readCSV(path);
+    //struct GigaTree* gigaTree = createEmptyGigaTree();
 
     return 0;
 

@@ -11,6 +11,7 @@ struct Person* createEmptyPerson(){
 
     person->firstname  = malloc(sizeof(char) *(1+1));
     person->lastname = malloc(sizeof(char) *(1+1));
+    person->region = malloc(sizeof(char) *(1+1));
 
     if(person->firstname == NULL || person->lastname == NULL){
         free(person->firstname);
@@ -105,6 +106,9 @@ char* getLastName(struct Person* person){
 
 unsigned int* getBirthday(struct Person* person){
     unsigned int* birthday = malloc(sizeof(unsigned int) * 3); //3 int to save
+    if(birthday == NULL){
+        return NULL;
+    }
     birthday[0] = person->birthDay;
     birthday[1] = person->birthMonth;
     birthday[2] = person->birthYear;
@@ -127,4 +131,12 @@ unsigned int getMadreID(struct Person* person){
 
 char* getRegion(struct Person* person){
     return person->region;
+}
+
+void deletePerson(struct Person** person){
+    free((*person)->firstname);
+    free((*person)->lastname);
+    free((*person)->region);
+    free(*person);
+    *person = NULL;
 }
