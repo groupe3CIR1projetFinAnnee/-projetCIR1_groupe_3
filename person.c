@@ -122,4 +122,6 @@ unsigned int getMadreID(struct Person* person){
     return person->madreID;
 }
 
-char* getRegion(struct Person* person);
+char* getRegion(struct Person* person){
+    return person->region;
+}
