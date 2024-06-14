@@ -19,6 +19,7 @@ struct GigaTree* createEmptyGigaTree(); //Will only make the malloc for the tree
 
 void setupGigaTree(struct GigaTree* gigaTree,struct Person** people, struct Region* regionsTrie); //Will edit the tree using the array of people. Will set all anniversary, youngest/oldest, the regions, etc...
 
+
 // Access & requests
 struct Person* getYoungest(struct GigaTree* gigaTree);
 

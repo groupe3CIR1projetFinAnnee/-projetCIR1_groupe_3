@@ -104,8 +104,11 @@ char* getLastName(struct Person* person){
 }
 
 unsigned int* getBirthday(struct Person* person){
-    unsigned int birthday[3] = {person->birthDay,person->birthMonth,person->birthYear};
-    return &birthday;
+    unsigned int* birthday = malloc(sizeof(unsigned int) * 3); //3 int to save
+    birthday[0] = person->birthDay;
+    birthday[1] = person->birthMonth;
+    birthday[2] = person->birthYear;
+    return birthday;
 }
 
 struct Person* getPadre(struct Person* person){
