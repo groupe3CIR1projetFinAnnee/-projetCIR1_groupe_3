@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include "exportLocal.h"
 #include "gigaTree.h"
@@ -50,12 +52,11 @@ int exportLocalSite(struct GigaTree* gigaTree) {
     };
 
     // Create directories
-    struct stat st = {0};
-    if (stat("../export", &st) == -1) {
-        mkdir("../export", 0777);
+    if (createDir("../export")) {
+        return 1;
     }
-    if (stat("../export/img", &st) == -1) {
-        mkdir("../export/img", 0777);
+    if (createDir("../export/img")) {
+        return 1;
     }
 
     char* sourcePerson = "../index.html";
@@ -90,6 +91,22 @@ int exportLocalSite(struct GigaTree* gigaTree) {
 //     }
 //     free(destPerson);
 
+    return 0;
+}
+
+int createDir(const char* folder) {
+    struct stat st;
+    int error;
+    error = mkdir(folder, 0777);
+    if (error) {
+        stat(folder, &st);
+        if (!S_ISDIR(st.st_mode)) {      // If error is not caused by already existing folder
+#ifdef DEBUG
+            printf("Error: cannot create a folder.\n");
+#endif
+            return 1;   // Abort function with error
+        }
+    }
     return 0;
 }
 

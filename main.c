@@ -22,10 +22,8 @@ int main(){
     */
 
 
-    struct GigaTree* gt = readCSV(path);
-
-    
-
+    // struct GigaTree* gt = readCSV(path);
+    struct GigaTree* gt = createEmptyGigaTree();
     
     // printf("%s\n", getFirstName(gt->youngest));
     // printf("%s\n", getFirstName(gt->oldest));
@@ -35,9 +33,9 @@ int main(){
     
     //deletePerson(&p);
 
-    exportLocalSite(gigaTree);
+    exportLocalSite(gt);
 
-    deleteGigaTree(&gt);
+    // deleteGigaTree(&gt);
     return 0;
 
 }

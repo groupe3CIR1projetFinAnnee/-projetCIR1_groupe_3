@@ -8,6 +8,8 @@
 
 int exportLocalSite(struct GigaTree* gigaTree);
 
+int createDir(const char* folder);
+
 // Copy input file to output, and replaces each <template> with appropriate value
 int completeFile(char* input_filename, char* output_filename, struct GigaTree* gigatree, struct Person* person);
 
