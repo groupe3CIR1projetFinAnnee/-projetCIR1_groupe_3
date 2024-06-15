@@ -79,33 +79,33 @@ int exportLocalSite(struct GigaTree* gigaTree) {
     }
 
     // TODO: uncomment and test when GigaTree is ready
-    // Prepare variables
-    struct Person* person;
-    // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
-    unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
-    char* destPerson = malloc(destPersonMaxSize*sizeof(char));
-    if (destPerson == NULL) {
-#ifdef DEBUG
-        printf("Allocation error.\n");
-#endif
-        return 1;
-    }
+//     // Prepare variables
+//     struct Person* person;
+//     // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
+//     unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
+//     char* destPerson = malloc(destPersonMaxSize*sizeof(char));
+//     if (destPerson == NULL) {
+// #ifdef DEBUG
+//         printf("Allocation error.\n");
+// #endif
+//         return 1;
+//     }
 
-    // Copy person files
-    for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
-        person = getPersonByIndex(gigaTree, i);
+//     // Copy person files
+//     for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
+//         person = getPersonByIndex(gigaTree, i);
 
-        // Write dest filename to destPerson
-        snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
-        // printf("%s", destPerson);    // TODO : delete
+//         // Write dest filename to destPerson
+//         snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
+//         // printf("%s", destPerson);    // TODO : delete
 
-        error = completeFile(sourcePerson, destPerson, gigaTree, person);
-        if (error) {
-            free(destPerson);
-            return 1;
-        }
-    }
-    free(destPerson);
+//         error = completeFile(sourcePerson, destPerson, gigaTree, person);
+//         if (error) {
+//             free(destPerson);
+//             return 1;
+//         }
+//     }
+//     free(destPerson);
 
     return 0;
 }
@@ -146,7 +146,7 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
     FILE* input = fopen(inputFilename, "r");       // Open input
     if (input == NULL) {
 #ifdef DEBUG
-        printf("Error occured whilst trying to open file.\n");
+        printf("Error occured whilst trying to open file %s.\n", inputFilename);
 #endif
         return 1;
     }
@@ -154,7 +154,7 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
     FILE* output = fopen(outputFilename, "w");     // Open output
     if (output == NULL) {
 #ifdef DEBUG
-        printf("Error occured whilst trying to create file.\n");
+        printf("Error occured whilst trying to create file %s.\n", outputFilename);
 #endif
         fclose(input);
         return 1;
@@ -185,7 +185,7 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
         //replacedInfo = getValueOf(parsedInfos, numberInfos, person, gigatree, &mustDeleteReplacedInfo);   // TODO: uncomment
         if (replacedInfo == NULL) {     // Error in given parameters
             free(info);
-            free(parsedInfos);
+            deleteArrayStrings(&parsedInfos, numberInfos);
             return 1;
         }
         replacedInfo = "ERROR";     // TODO: delete
@@ -198,7 +198,7 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
             //free(replacedInfo);   // TODO: uncomment
             replacedInfo = NULL;
         }
-        free(parsedInfos);
+        deleteArrayStrings(&parsedInfos, numberInfos);
         parsedInfos = NULL;
         free(info);
         info = NULL;
@@ -451,4 +451,24 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
 //     }
 
     return "ERREUR";
+}
+
+
+/**
+ * Delete the given array of strings
+ * @param arrayStrings The array of strings to delete
+ * @param lenArray Size of the array
+ */
+void deleteArrayStrings(char*** arrayStrings, unsigned int lenArray) {
+    if (*arrayStrings != NULL) {
+        for (unsigned int i=0; i<lenArray; i++) {
+            if ((*arrayStrings)[i] != NULL) {
+                free((*arrayStrings)[i]);
+                (*arrayStrings)[i] = NULL;
+            }
+        }
+
+        free(*arrayStrings);
+        *arrayStrings = NULL;
+    }
 }

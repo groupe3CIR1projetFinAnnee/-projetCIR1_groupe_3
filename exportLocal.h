@@ -66,4 +66,11 @@ char** parseInfo(char* info, char separator, unsigned int* parsedLength);
  */
 char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* person, struct GigaTree* gigatree, bool* mustDelete);
 
+/**
+ * Delete the given array of strings
+ * @param arrayStrings The array of strings to delete
+ * @param lenArray Size of the array
+ */
+void deleteArrayStrings(char*** arrayStrings, unsigned int lenArray);
+
 #endif // _EXPORTLOCAL_H
