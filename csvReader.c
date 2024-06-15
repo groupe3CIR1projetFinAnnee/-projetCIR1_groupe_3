@@ -68,6 +68,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     birthday = malloc((strlen(birthday)+1) * sizeof(char));
                     younger = isYoungest(gigaTree->youngest,token);
                     older = isOldest(gigaTree->oldest,token);
+                    addBirthday(token,gigaTree); //Launch the function that add the birthday to the gigaTree array
                     strcpy(birthday,token);
                     break;
                 case 7:
@@ -97,6 +98,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     //printf("%d",people[0]->birthDay); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
     gigaTree->people = people; //Setting up the array into the tree
     gigaTree->numberPersons = numberOfPerson; //Remember here !! the unknown person is counted, at the position 0, everytime.
+    addParents(gigaTree); //the final boss
     return gigaTree;
 }
 
@@ -127,4 +129,34 @@ bool isOldest(struct Person* oldest, char* birthday){
     free(oldestBirthday);
     free(personBirthday);
     return result;
+}
+
+
+void addBirthday(char* birthday, struct GigaTree* gigaTree){
+    unsigned int* birth = splitBirthday(birthday);
+    if(birth[0] != 0) {
+        (gigaTree->birthday[birth[1] - 1][birth[0] - 1])++; //we add one to this birthday, in the bithday array. Dont forget that the array is going from 0 to 11 and 0 to 30
+    }
+    free(birth);
+}
+
+void addParents(struct GigaTree* gigaTree){ //the final boss
+    struct Person** people = getPeople(gigaTree);
+    unsigned int size = numberPersons(gigaTree);
+    for(unsigned int i = 1; i < size; i++){ // i here start to one to skip the unkown person.
+        struct Person* child = people[i];
+        unsigned int done = 0;
+        for(unsigned int y = 0; y < size; y ++){ // We are not skipping the unknown here since it can be someone parent.
+            if(getID(people[y]) == getMadreID(child)){
+                setMadre(child,people[y]);
+                done++;
+            }
+            if(getID(people[y]) == getPadreID(child)){
+                setPadre(child,people[y]);
+                done++;
+            }
+            if(done == 2)
+                y = size; //cut the for if we found both parents
+        }
+    }
 }

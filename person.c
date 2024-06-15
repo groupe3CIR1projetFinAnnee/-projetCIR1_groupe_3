@@ -40,7 +40,7 @@ struct Person* createPerson(unsigned int id, char* firstname, char* lastname, ch
     struct Person* person = malloc(sizeof(struct Person));
     if(person == NULL)
         return NULL;
-
+    person->id = id;
     person->firstname = malloc((strlen(firstname)+1) * sizeof(char)); //We take the space to set up names
     person->lastname = malloc((strlen(lastname)+1) * sizeof(char));
     person->region = malloc((strlen(region)+1) * sizeof(char));
@@ -109,8 +109,28 @@ unsigned int getMadreID(struct Person* person){
     return person->madreID;
 }
 
+void setPadre(struct Person* person, struct Person* padre){
+    person->padre = padre;
+    if(getID(padre) != 0)
+        person->padre->sex = 1; //We set the dad sex to 1 (= male) only if the padre is not the unknonw
+}
+
+void setMadre(struct Person* person, struct Person* madre){
+    person->madre = madre;
+    if(getID(madre) != 0)
+        person->madre->sex = 0; //We set the mom sex to 0 (= female) only if its not the unknown person
+}
+
 char* getRegion(struct Person* person){
     return person->region;
+}
+
+bool getSex(struct Person* person){
+    return person->sex;
+}
+
+void setSex(struct Person* person, bool sex){
+    person->sex = sex;
 }
 
 void deletePerson(struct Person** person){

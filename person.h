@@ -3,6 +3,8 @@
 #ifndef PROJET_PERSON_H
 #define PROJET_PERSON_H
 
+#include <stdbool.h>
+
 struct Person{
     unsigned int id;
     char* firstname;
@@ -15,6 +17,7 @@ struct Person{
     unsigned int padreID;
     unsigned int madreID;
     char* region;
+    bool sex; //0 if female and 1 if male. Will be initied when another function will calculate the parents
 };
 
 
@@ -35,10 +38,18 @@ unsigned int* getBirthday(struct Person* person); //Will return the birthday in 
 struct Person* getPadre(struct Person* person);
 struct Person* getMadre(struct Person* person);
 
+void setPadre(struct Person* person, struct Person* padre); //set the padre for a person. WARNING : WILL ALSO EDIT THE SEX OF THE DAD TO PUT A 1
+void setMadre(struct Person* person, struct Person* madre); //set the madre for a person. WARNING : WILL ALSO EDIT THE SEX OF THE MOM TO PUT A 0
+
+
 unsigned int getPadreID(struct Person* person);
 unsigned int getMadreID(struct Person* person);
 
 char* getRegion(struct Person* person);
+
+bool getSex(struct Person* person);
+void setSex(struct Person* person, bool sex); //Reminder : 0 = female and 1 = male
+
 
 // Suppress
 void deletePerson(struct Person** person);

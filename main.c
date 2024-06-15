@@ -22,11 +22,12 @@ int main(){
 
 
     struct GigaTree* gt = readCSV(path);
-    printf("%s\n", getFirstName(gt->youngest));
-    printf("%s\n", getFirstName(gt->oldest));
-    //printf("%d",(getBirthday((gt->people)[40]))[0]);
-    //printf("%b", isYoungest(p,"2/10/2000"));
-
+    printf("%d\n",gt->numberPersons);
+    printf("The youngest is : %s\n", getFirstName(getYoungest(gt)));
+    printf("His/her mother is : %s\nHer sex must be 0 : %d\n", getFirstName(getMadre(getYoungest(gt))), getSex(getMadre(gt->youngest)));
+    printf("The mother father is : %s\nHir sex must be 1 if not unknown : %d\n", getFirstName(getPadre(getMadre(getYoungest(gt)))), getSex(getMadre(gt->youngest)));
+    printf("The oldest is : %s\n", getFirstName(getOldest(gt)));
+    printf("His/her father is : %s\nHis sex may be 0 if unknown : %d\n", getFirstName(getPadre(getOldest(gt))), getSex(getPadre(gt->oldest)));
 
 
     //deletePerson(&p);
@@ -34,4 +35,4 @@ int main(){
     return 0;
 
 }
->>>>>>> Stashed changes
+

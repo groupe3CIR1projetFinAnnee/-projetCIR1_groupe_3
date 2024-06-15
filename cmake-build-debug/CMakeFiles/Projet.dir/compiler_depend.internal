@@ -124,6 +124,17 @@ CMakeFiles/Projet.dir/exportLocal.c.o
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h
  /usr/include/strings.h
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
+ /usr/include/x86_64-linux-gnu/sys/stat.h
+ /usr/include/x86_64-linux-gnu/bits/stat.h
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h
+ /usr/include/unistd.h
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+ /usr/include/x86_64-linux-gnu/bits/environments.h
+ /usr/include/x86_64-linux-gnu/bits/confname.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
  /mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/exportLocal.h
  /mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/gigaTree.h
  /mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.h
@@ -252,6 +263,7 @@ CMakeFiles/Projet.dir/person.c.o
  /mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.c
  /usr/include/stdc-predef.h
  /mnt/c/Users/perei/OneDrive/Bureau/Cour ISEN/Projet/person.h
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
  /usr/include/stdlib.h
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h
  /usr/include/features.h

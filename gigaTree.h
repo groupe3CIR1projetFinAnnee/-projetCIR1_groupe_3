@@ -33,7 +33,7 @@ unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int 
 
 struct Person* getPersonByIndex(struct GigaTree* gigaTree, unsigned int index); //Will get the person by the index in the array of person
 
-unsigned int numberPersons(struct GigaTree* gigaTree); //return the total number of person
+unsigned int numberPersons(struct GigaTree* gigaTree); //return the total number of person PLUS ONE !! we counting the "unknow" person. If the db contain 40 person, remember that the struc will have 41 person saved
 
 struct Person** getPeople(struct GigaTree* gigaTree); //Return the full array
 

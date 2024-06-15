@@ -122,6 +122,17 @@ CMakeFiles/Projet.dir/exportLocal.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ 
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/strings.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/x86_64-linux-gnu/sys/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.h
@@ -247,6 +258,7 @@ CMakeFiles/Projet.dir/main.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Pr
 CMakeFiles/Projet.dir/person.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.c \
   /usr/include/stdc-predef.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h \
@@ -336,11 +348,23 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.c:
 
-/mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/main.c:
-
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.c:
 
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
+
+/mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/main.c:
+
+/usr/include/x86_64-linux-gnu/sys/stat.h:
 
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h:
 
@@ -384,6 +408,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/stdio.h:
@@ -422,6 +448,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 
 /usr/include/features-time64.h:
 
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
@@ -441,6 +469,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 /usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
@@ -465,6 +495,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
