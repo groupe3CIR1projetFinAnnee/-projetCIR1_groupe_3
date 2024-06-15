@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+// Directory creation/verification packages
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -12,6 +13,7 @@
 
 #define DEBUG
 
+// Templates definition
 #define LASTNAME_TEMPLATE "lastname"
 #define FORNAME_TEMPLATE "forname"
 #define REGION_TEMPLATE "region"
@@ -25,9 +27,13 @@
 #define MAX_INFO_LEN 64   // Info is the content of a template
 #define NUMBER_FILES 10
 
+/**
+ * Create local site with given data
+ * @param gigaTree Data to use to create local site
+ * @return 1 if an error occured, 0 otherwise
+ */
 int exportLocalSite(struct GigaTree* gigaTree) {
     // Arrays of sources/dest files (except template page of a person)
-    // TODO : path is different on windows / on linux
     char* sources[NUMBER_FILES] = {
         "../ressource/img/dice.png",
         "../ressource/img/logo.png",
@@ -52,6 +58,8 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../export/pages.css",
         "output_test.txt"
     };
+    char* sourcePerson = "../index.html";           // Source template file of a person
+    char* destPersonBase = "../export/persons/";    // Dest directory of persons
 
     // Create directories
     if (createDir("../export")) {
@@ -61,13 +69,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         return 1;
     }
 
-    char* sourcePerson = "../index.html";
-    char* destPersonBase = "../export/persons/";
-    unsigned int lenDestBast = strlen(destPersonBase);
-
-    // TODO : check for errors returned by completeFile
-
-    // Copy all files
+    // Copy all global files
     int error;
     for (unsigned int i=0; i<NUMBER_FILES; i++) {
         error = completeFile(sources[i], dests[i], gigaTree, 0);
@@ -77,33 +79,43 @@ int exportLocalSite(struct GigaTree* gigaTree) {
     }
 
     // TODO: uncomment and test when GigaTree is ready
-//     // Copy person files
-//     struct Person* person;
-//     // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
-//     unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
-//     char* destPerson = malloc(destPersonMaxSize*sizeof(char));
-//     if (destPerson == NULL) {
-// #ifdef DEBUG
-//         printf("Allocation error.\n");
-// #endif
-//         return 1;
-//     }
+    // Prepare variables
+    struct Person* person;
+    // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
+    unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
+    char* destPerson = malloc(destPersonMaxSize*sizeof(char));
+    if (destPerson == NULL) {
+#ifdef DEBUG
+        printf("Allocation error.\n");
+#endif
+        return 1;
+    }
 
-//     for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
-//         person = getPersonByIndex(gigaTree, i);
-//         snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
-//         // printf("%s", destPerson);    // TODO : delete
-//         error = completeFile(sourcePerson, destPerson, gigaTree, i);
-//         if (error) {
-//             free(destPerson);
-//             return 1;
-//         }
-//     }
-//     free(destPerson);
+    // Copy person files
+    for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
+        person = getPersonByIndex(gigaTree, i);
+
+        // Write dest filename to destPerson
+        snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
+        // printf("%s", destPerson);    // TODO : delete
+
+        error = completeFile(sourcePerson, destPerson, gigaTree, person);
+        if (error) {
+            free(destPerson);
+            return 1;
+        }
+    }
+    free(destPerson);
 
     return 0;
 }
 
+
+/**
+ * Create a new directory. Return no error if directory already exists.
+ * @param dirName name or path of directory
+ * @return 1 if an error occured, 0 otherwise
+ */
 int createDir(const char* folder) {
     struct stat st;
     int error;
@@ -120,11 +132,18 @@ int createDir(const char* folder) {
     return 0;
 }
 
-// Copy input file to output, and replaces each <template> with appropriate value
-int completeFile(char* input_filename, char* output_filename, struct GigaTree* gigatree, struct Person* person) {
-    // Open files
 
-    FILE* input = fopen(input_filename, "r");       // Open input
+/**
+ * Copy input file to output. Each template is replaced by appropriate value.
+ * @param inputFilename name of input file
+ * @param outputFilename name of output file
+ * @param gigatree GigaTree containing all families data
+ * @param person The person the file is related to. For global files, any person in gigatree works.
+ * @return 1 if an error occured, 0 otherwise
+ */
+int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gigatree, struct Person* person) {
+    // Open files
+    FILE* input = fopen(inputFilename, "r");       // Open input
     if (input == NULL) {
 #ifdef DEBUG
         printf("Error occured whilst trying to open file.\n");
@@ -132,7 +151,7 @@ int completeFile(char* input_filename, char* output_filename, struct GigaTree* g
         return 1;
     }
 
-    FILE* output = fopen(output_filename, "w");     // Open output
+    FILE* output = fopen(outputFilename, "w");     // Open output
     if (output == NULL) {
 #ifdef DEBUG
         printf("Error occured whilst trying to create file.\n");
@@ -157,13 +176,18 @@ int completeFile(char* input_filename, char* output_filename, struct GigaTree* g
             return 1;
         }
         // Parse info into multiple strings (e.g. "padre:lastname" becomes {"padre", "lastname"})
-        parsedInfos = parseInfo(info, ":", &numberInfos);
+        parsedInfos = parseInfo(info, ':', &numberInfos);
         if (parsedInfos == NULL) {      // Parse error
             free(info);
             return 1;
         }
         // Get final value asked by the template
         //replacedInfo = getValueOf(parsedInfos, numberInfos, person, gigatree, &mustDeleteReplacedInfo);   // TODO: uncomment
+        if (replacedInfo == NULL) {     // Error in given parameters
+            free(info);
+            free(parsedInfos);
+            return 1;
+        }
         replacedInfo = "ERROR";     // TODO: delete
 
         // Add value to output file
@@ -188,23 +212,32 @@ int completeFile(char* input_filename, char* output_filename, struct GigaTree* g
     return 0;   // No error happened
 }
 
-// Copy input to output, until we meet "<template>"" in the file
-// "<template>" is not copied to output
+
+/**
+ * Copy input to output, until the template string is found.
+ * Template string is skipped.
+ * @param input Input file
+ * @param output Output file
+ */
 void copyUntilTemplate(FILE* input, FILE* output) {
+    // Define template string. TEMPLATE must be of size LEN_TEMPLATE+1
     const unsigned int LEN_TEMPLATE = 10;
     const char TEMPLATE[11] = "<template>";
 
     unsigned int i_template = 0;
     char c = fgetc(input);
-
+    // For each character
     while (!feof(input)) {
+        // If the character continues the template string
         if (c == TEMPLATE[i_template]) {
+            // If template string entirely found
             if (i_template == LEN_TEMPLATE-1) {
                 return;
             }
             i_template += 1;
         }
         else {
+            // If there is an uncomplete template string, paste it to output
             if (i_template > 0) {
                 for (unsigned int j=0; j<i_template; j++) {
                     fputc(TEMPLATE[j], output);
@@ -217,13 +250,20 @@ void copyUntilTemplate(FILE* input, FILE* output) {
     }
 }
 
-// Read f until we find end of template string
-// All characters before end of template string are returned in a string
+
+/**
+ * Read file until the end of template string is found.
+ * End of template string is skipped.
+ * @param f The file to read
+ * @return Return string read before end of template
+ */
 char* readUntilEndTemplate(FILE* f) {
+    // Define end template string. ENDTEMPLATE must be of size LEN_ENDTEMPLATE+1
     const unsigned int LEN_ENDTEMPLATE = 11;
     const char ENDTEMPLATE[12] = "</template>";
 
-    char* info = malloc((MAX_INFO_LEN+1)*sizeof(char));     // Info is the content of a template
+    // Info is the content of a template
+    char* info = malloc((MAX_INFO_LEN+1)*sizeof(char));
     if (info == NULL) {
 #ifdef DEBUG
         printf("Allocation error\n");
@@ -234,9 +274,11 @@ char* readUntilEndTemplate(FILE* f) {
     unsigned int i_template = 0;
     unsigned int i_info = 0;
     char c = fgetc(f);
-
+    // For each character
     while (!feof(f) && i_info < MAX_INFO_LEN) {
+        // If the character continues the end template string
         if (c == ENDTEMPLATE[i_template]) {
+            // If end template string entirely found
             if (i_template == LEN_ENDTEMPLATE -1) {
                 info[i_info] = '\0';
                 return info;
@@ -244,6 +286,7 @@ char* readUntilEndTemplate(FILE* f) {
             i_template += 1;
         }
         else {
+            // If there is an uncomplete end template string, paste it to info
             if (i_template > 0) {
                 for (unsigned int j=0; j<i_template; j++) {
                     info[i_info] = ENDTEMPLATE[j];
@@ -256,21 +299,29 @@ char* readUntilEndTemplate(FILE* f) {
         }
         c = fgetc(f);
     }
+
+    // If we reach end of file, or if template content is too long, there probably is an error is the file
 #ifdef DEBUG
     printf("Error occured whilst searching for end of template.\n");
 #endif
+    free(info);
     return NULL;
 }
 
-// Parse info with given separator.
-// Returns an array of strings of size parsedLength
-char** parseInfo(char* rawInfo, char* separator, unsigned int* numberInfos) {
-    unsigned int infoLen = strlen(rawInfo);
 
+/**
+ * Parse info string into multiple substrings, using the given separator
+ * @param[in] info String to parse
+ * @param[in] separator Separates substrings
+ * @param[out] parsedLength Number of substrings returned
+ * @return Return an array of strings, of size parsedLength.
+ */
+char** parseInfo(char* rawInfo, char separator, unsigned int* numberInfos) {
     // Count number of separated infos
+    unsigned int infoLen = strlen(rawInfo);
     unsigned int separatorCount = 0;
     for (unsigned int i=0; i<infoLen; i++) {
-        if (rawInfo[i] == ':') {
+        if (rawInfo[i] == separator) {
             separatorCount += 1;
         }
     }
@@ -285,8 +336,11 @@ char** parseInfo(char* rawInfo, char* separator, unsigned int* numberInfos) {
     }
     *numberInfos = separatorCount +1;
 
-    // Parse info with separator ':'
-    char* token = strtok(rawInfo, ":");
+    // Convert char separator into string
+    char str_sep[2] = {separator, '\0'};
+
+    // Parse info using separator
+    char* token = strtok(rawInfo, str_sep);
     unsigned int iParsed = 0;
     while (token != NULL) {
         // Allocate memory for current info part
@@ -302,27 +356,41 @@ char** parseInfo(char* rawInfo, char* separator, unsigned int* numberInfos) {
             free(parsedInfos);
             return NULL;
         }
+        // Copy substring to current info part
         strcpy(parsedInfos[iParsed], token);
-        token = strtok(NULL, ":");
+
+        token = strtok(NULL, str_sep);      // Get string until next separator
         iParsed += 1;
     }
     return parsedInfos;
 }
 
-// String value corresponding to parsed info.
-// Parsed info must correspond to predifined format
+
+/**
+ * Get the value corresponding to a parsed info using given GigaTree and Person.
+ * @param[in] parsedInfo Array of strings, parsed requested information. For example: {"padre", "forname"} means forname of father
+ * @param[in] numberInfos size of array parsedInfo
+ * @param[in] person Data to use to answer info request
+ * @param[in] gigatree Data to use to answer info request
+ * @param[out] mustDelete whether returned string requires a free() or not
+ * @return Return the value requested in a string. Return NULL if an error occured, and "ERROR" if requested info is unknown
+ */
 char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* person, struct GigaTree* gigatree, bool* mustDelete) {
     if (numberInfos == 0) {
+#ifdef DEBUG
+        printf("An error occured because template information is invalid.\n");
+#endif
         *mustDelete = false;
         return NULL;
     }
+    // Compare parsedInfo[0] to each predifined template and return corresponding information
     // TODO: uncomment
 //     if (strcmp(parsedInfo[0], FATHER_TEMPLATE) == 0) {
 //         return getValueOf(parsedInfo+1, numberInfos-1, getPadre(person), gigatree);
 //     }
 
 //     if (strcmp(parsedInfo[0], MOTHER_TEMPLATE) == 0) {
-//         return getValueOf(parsedInfo-1, numberInfos-1, getMadre(person), gigatree);
+//         return getValueOf(parsedInfo+1, numberInfos-1, getMadre(person), gigatree);
 //     }
 
 //     if (strcmp(parsedInfo[0], LASTNAME_TEMPLATE) == 0) {
