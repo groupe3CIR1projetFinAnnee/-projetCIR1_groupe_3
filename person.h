@@ -19,9 +19,10 @@ struct Person{
 
 
 // Creation & setup
-struct Person* createEmptyPerson(); //Return the "unknown person" with id of 0
+//struct Person* createEmptyPerson(); //Return the "unknown person" with id of 0 //Never used, and useless
 
 struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday, unsigned int padreID, unsigned int madreID, char* region); //Will initiate a person, but not his/her parents.
+
 
 //Access
 unsigned int getID(struct Person* person);
@@ -40,8 +41,11 @@ unsigned int getMadreID(struct Person* person);
 char* getRegion(struct Person* person);
 
 // Suppress
-void deletePerson(struct Person* person);
+void deletePerson(struct Person** person);
 
+
+// OThers
+unsigned int* splitBirthday(char* birthday); //Transform the char birthday into an array of 3 elements. Dont forget to free it after use.
 
 
 #endif //PROJET_PERSON_H

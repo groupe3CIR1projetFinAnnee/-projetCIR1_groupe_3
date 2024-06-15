@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
+/*
 struct Person* createEmptyPerson(){
     struct Person* person = malloc(sizeof(struct Person));
     if(person == NULL)
@@ -11,6 +11,7 @@ struct Person* createEmptyPerson(){
 
     person->firstname  = malloc(sizeof(char) *(1+1));
     person->lastname = malloc(sizeof(char) *(1+1));
+    person->region = malloc(sizeof(char) *(1+1));
 
     if(person->firstname == NULL || person->lastname == NULL){
         free(person->firstname);
@@ -33,7 +34,7 @@ struct Person* createEmptyPerson(){
     return person;
 
 }
-
+*/
 
 struct Person* createPerson(unsigned int id, char* firstname, char* lastname, char* birthday, unsigned int padreID, unsigned int madreID, char* region){
     struct Person* person = malloc(sizeof(struct Person));
@@ -58,33 +59,13 @@ struct Person* createPerson(unsigned int id, char* firstname, char* lastname, ch
     strcpy(person->region,region);
     person->madre = NULL;
     person->padre = NULL; //we set parents here with null. The function calling this function must put the parent itself
-    unsigned int day, month, year;
 
-    char* birthday_copy = strdup(birthday); // We copy the birthday here to be able to edit it with strtok
-    char* token = strtok(birthday_copy, "/");
+    unsigned int* birthdayArray = splitBirthday(birthday);
 
-
-    unsigned int comp = 1; //Comp to know were we are
-    while (token != NULL) {
-        switch(comp){
-            case 1:
-                day = atoi(token);
-            case 2:
-                month = atoi(token);
-            case 3:
-                year = atoi(token);
-        }
-
-        token = strtok(NULL, "/");
-        comp++;
-    }
-
-    free(birthday_copy);
-
-
-    person->birthDay = day;
-    person->birthMonth = month;
-    person->birthYear = year;
+    person->birthDay = birthdayArray[0];
+    person->birthMonth = birthdayArray[1];
+    person->birthYear = birthdayArray[2];
+    free(birthdayArray); //We dont forget to free this temporary array after use
     person->madreID = madreID;
     person->padreID = padreID;
     return person;
@@ -105,6 +86,9 @@ char* getLastName(struct Person* person){
 
 unsigned int* getBirthday(struct Person* person){
     unsigned int* birthday = malloc(sizeof(unsigned int) * 3); //3 int to save
+    if(birthday == NULL){
+        return NULL;
+    }
     birthday[0] = person->birthDay;
     birthday[1] = person->birthMonth;
     birthday[2] = person->birthYear;
@@ -127,4 +111,45 @@ unsigned int getMadreID(struct Person* person){
 
 char* getRegion(struct Person* person){
     return person->region;
+}
+
+void deletePerson(struct Person** person){
+    free((*person)->firstname);
+    free((*person)->lastname);
+    free((*person)->region);
+    free(*person);
+    *person = NULL;
+}
+
+
+unsigned int* splitBirthday(char* birthday){
+
+    char* birthday_copy = strdup(birthday); // We copy the birthday here to be able to edit it with strtok
+    char* token = strtok(birthday_copy, "/");
+
+    unsigned int comp = 1; //Comp to know were we are
+    unsigned int day, month, year;
+    while (token != NULL) {
+        switch(comp){
+            case 1:
+                day = atoi(token);
+            case 2:
+                month = atoi(token);
+            case 3:
+                year = atoi(token);
+        }
+
+        token = strtok(NULL, "/");
+        comp++;
+    }
+
+    free(birthday_copy);
+    unsigned int* birthdayArray = malloc(sizeof(unsigned int) * 3); //3 int to save
+    if(birthdayArray == NULL){
+        return NULL;
+    }
+    birthdayArray[0] = day;
+    birthdayArray[1] = month;
+    birthdayArray[2] = year;
+    return birthdayArray;
 }
