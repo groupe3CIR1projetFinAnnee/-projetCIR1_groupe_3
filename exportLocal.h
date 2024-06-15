@@ -21,9 +21,6 @@ void copyUntilTemplate(FILE* input, FILE* output);
 // All characters before end of template string are returned in a string
 char* readUntilEndTemplate(FILE* f);
 
-// Add string s to file f
-void addStringToFile(FILE* f, char* s);
-
 // Parse info with given separator.
 // Returns an array of strings of size parsedLength
 char** parseInfo(char* info, char* separator, unsigned int* parsedLength);
