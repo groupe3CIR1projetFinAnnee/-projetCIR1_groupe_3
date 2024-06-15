@@ -6,11 +6,10 @@
 #include "gigaTree.h"
 #include "person.h"
 
-// int exportFamilies(struct GigaTree* gigaTree);
-// int exportInfoFiles(struct GigaTree* gigaTree);
+int exportLocalSite(struct GigaTree* gigaTree);
 
 // Copy input file to output, and replaces each <template> with appropriate value
-void completeFile(char* input_filename, char* output_filename, struct GigaTree* gigatree, unsigned int index_person);
+int completeFile(char* input_filename, char* output_filename, struct GigaTree* gigatree, struct Person* person);
 
 // Copy input to output until we find the template string
 // Template string is not copied to output
@@ -27,8 +26,9 @@ void addStringToFile(FILE* f, char* s);
 // Returns an array of strings of size parsedLength
 char** parseInfo(char* info, char* separator, unsigned int* parsedLength);
 
-// String value corresponding to parsed info.
+// Return string value corresponding to parsed info.
 // Parsed info must correspond to predifined format
-char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct GigaTree* gigatree, unsigned int index_person);
+// If must delete is true, returned string must be freed
+char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* person, struct GigaTree* gigatree, bool* mustDelete);
 
 #endif // _EXPORTLOCAL_H

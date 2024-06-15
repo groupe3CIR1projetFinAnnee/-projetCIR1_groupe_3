@@ -3,6 +3,7 @@
 #include "regions.h"
 #include "person.h"
 #include "csvReader.h"
+#include "exportLocal.h"
 
 
 char* path = "../resources/bd_petite.csv";
@@ -19,11 +20,9 @@ int main(){
     unsigned int* truc = getBirthday(p);
     */
 
-
-
     //readCSV(path);
     struct GigaTree* gigaTree = createEmptyGigaTree();
-
+    exportLocalSite(gigaTree);
     return 0;
 
 }
