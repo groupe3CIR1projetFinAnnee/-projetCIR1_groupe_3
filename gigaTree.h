@@ -14,30 +14,84 @@ struct GigaTree{
 };
 
 
-//Creation & setup
-struct GigaTree* createEmptyGigaTree(); //Will only make the malloc for the tree, and leave the parameters empty
+/**
+ * Create a new GigaTree, and allocates memory. Leaves all attributes empty.
+ * Attributes should be set up with the csvReader.
+ * @return The created GigaTree
+ */
+struct GigaTree* createEmptyGigaTree();
 
+// TODO : code en commentaire qui traine.
 //void setupGigaTree(struct GigaTree* gigaTree,struct Person** people, struct Region* regionsTrie); //Will edit the tree using the array of people. Will set all anniversary, youngest/oldest, the regions, etc...
 
 
 // Access & requests
-struct Person* getYoungest(struct GigaTree* gigaTree);//return struct of youngest person
 
-struct Person* getOldest(struct GigaTree* gigaTree); //return struct of oldest person
+/**
+ * Get the youngest person the GigaTree contains. O(1)
+ * @param gigaTree The GigaTree to search in.
+ * @return The youngest person of gigaTree
+ */
+struct Person* getYoungest(struct GigaTree* gigaTree);
 
-unsigned int getNumberOfBirths(struct GigaTree* gigaTree, char* region); //Get number of birth of a region using the trie
+/**
+ * Get the oldest person the GigaTree contains. O(1)
+ * @param gigaTree The GigaTree to search in.
+ * @return The oldest person of gigaTree
+ */
+struct Person* getOldest(struct GigaTree* gigaTree);
 
-char* mostBirthsRegion(struct GigaTree* gigaTree); //return the name of the region with the most births, save in parameters of gigaTree
+/**
+ * Get the number of births in the given specific region of a GigaTree. O(|region|)
+ * @param gigaTree The GigaTree to search in.
+ * @param region Will return number of births in this region.
+ * @return Returns the number of births in the given region.
+ */
+unsigned int getNumberOfBirths(struct GigaTree* gigaTree, char* region);
 
-unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day); //Get the number of ppl born one day. Will use the array in parameters
+/**
+ * Get the region in which the most people were born, O(1)
+ * @param gigaTree The GigaTree to search in.
+ * @return Return the name of the region in which the most people were born.
+ */
+char* mostBirthsRegion(struct GigaTree* gigaTree);
 
-struct Person* getPersonByIndex(struct GigaTree* gigaTree, unsigned int index); //Will get the person by the index in the array of person
+/**
+ * Get the number of people having a specific birthday. O(1)
+ * @param gigaTree The GigaTree to search in.
+ * @param month Birthday month 
+ * @param day Birthday day
+ * @return Returns the number of people born the given day.
+ */
+unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day);
 
-unsigned int numberPersons(struct GigaTree* gigaTree); //return the total number of person PLUS ONE !! we counting the "unknow" person. If the db contain 40 person, remember that the struc will have 41 person saved
+/**
+ * Get a person using the given index. Can be used to loop within all the persons.
+ * @param gigaTree The GigaTree to search in.
+ * @param index Requested index.
+ * @return The person at the given index
+ */
+struct Person* getPersonByIndex(struct GigaTree* gigaTree, unsigned int index);
 
-struct Person** getPeople(struct GigaTree* gigaTree); //Return the full array
+/**
+ * Get the total number of person within the given GigaTree, including the "unknown" person.
+ * @param gigaTree The GigaTree to search in.
+ * @return Number of person in gigaTree. /!\ Includes the "unknown" person.
+ */
+unsigned int numberPersons(struct GigaTree* gigaTree);
 
-//Suppress
+/**
+ * Get the array containing people within the given GigaTree.
+ * /!\ The array is not copied. Any changes to this array should be done knowing the way GigaTree works.
+ * @param gigaTree The GigaTree containing requested people.
+ * @return Array of Person
+ */
+struct Person** getPeople(struct GigaTree* gigaTree);
+
+/**
+ * Delete the given GigaTree
+ * @param gigaTree The GigaTree to delete
+ */
 void deleteGigaTree(struct GigaTree** gigaTree);
 
 
