@@ -108,7 +108,6 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         free(line_copy);
     }
 
-
     fclose(file);
     //printf("%d",people[0]->birthDay); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
     gigaTree->people = people; //Setting up the array into the tree
