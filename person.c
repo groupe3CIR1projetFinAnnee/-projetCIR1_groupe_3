@@ -3,39 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/*
-struct Person* createEmptyPerson(){
-    struct Person* person = malloc(sizeof(struct Person));
-    if(person == NULL)
-        return NULL;
-
-    person->firstname  = malloc(sizeof(char) *(1+1));
-    person->lastname = malloc(sizeof(char) *(1+1));
-    person->region = malloc(sizeof(char) *(1+1));
-
-    if(person->firstname == NULL || person->lastname == NULL){
-        free(person->firstname);
-        free(person->lastname);
-        free(person);
-        return NULL;
-    }
-
-    char* name = "-";
-    strcpy(person->firstname,name); //We put the default name for unknown
-    strcpy(person->lastname,name);
-
-    person->madre = NULL;
-    person->padre = NULL; //The unknown person have no parents
-    person->birthDay = 0;
-    person->birthMonth = 0;
-    person->birthYear = 0;
-    person->madreID = 0;
-    person->padreID = 0;
-    return person;
-
-}
-*/
-
 /**
  * Create a new person, using the given parameters.
  * Parents must be linked outside of this function when every people is created.

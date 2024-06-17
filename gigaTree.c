@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-
+#include "regions.h"
 #include "gigaTree.h"
 #include "person.h"
 
@@ -31,6 +31,7 @@ struct GigaTree* createEmptyGigaTree(){
     //We wont setup mostBirthRegions, since it must be done with a malloc. We will leave it empty here
     gigaTree->mostBirths = 0;
     gigaTree->numberPersons = 0;
+    gigaTree->regionsTrie = createRegions();
 
     return gigaTree;
 }
