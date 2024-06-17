@@ -182,11 +182,17 @@ unsigned int inbreeding(struct GigaTree* gigaTree){
         momSide[5] = getPadre(momSide[2]);
         momSide[6] = getMadre(momSide[2]);
 
+        bool doBreak = 0;
         for(unsigned int personD = 0; personD < ancestorNumber; personD++){
             for(unsigned int personM = 0; personM < ancestorNumber; personM++) {
-                if ((getID(dadSide[personD]) != 0) && (getID(dadSide[personD]) == getID(momSide[personM])))
+                if ((dadSide[personD] != NULL) && (momSide[personM] != NULL) && (getID(dadSide[personD]) != 0) && (getID(dadSide[personD]) == getID(momSide[personM]))) {
                     inbreedingCount++;
+                    doBreak = 1;
+                }
+
             }
+            if(doBreak == 1)
+                break;
         }
 
 

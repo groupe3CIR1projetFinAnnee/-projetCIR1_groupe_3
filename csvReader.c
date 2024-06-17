@@ -158,8 +158,13 @@ void addBirthday(char* birthday, struct GigaTree* gigaTree){
 void addParents(struct GigaTree* gigaTree){ //the final boss
     struct Person** people = getPeople(gigaTree);
     unsigned int size = numberPersons(gigaTree);
+
+    struct Person* child = people[0]; //null person . I'll need to set his parent to himself
+    setMadre(child,people[0]);
+    setPadre(child,people[0]);
+
     for(unsigned int i = 1; i < size; i++){ // i here start to one to skip the unkown person.
-        struct Person* child = people[i];
+        child = people[i];
         unsigned int done = 0;
         for(unsigned int y = 0; y < size; y ++){ // We are not skipping the unknown here since it can be someone parent.
             if(getID(people[y]) == getMadreID(child)){

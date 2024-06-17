@@ -104,6 +104,7 @@ unsigned int* getBirthday(struct Person* person){
  */
 struct Person* getPadre(struct Person* person){
     return person->padre;
+
 }
 
 /**
@@ -112,7 +113,7 @@ struct Person* getPadre(struct Person* person){
  * @return Mother of the given person
  */
 struct Person* getMadre(struct Person* person){
-    return person->madre;
+        return person->madre;
 }
 
 /**
