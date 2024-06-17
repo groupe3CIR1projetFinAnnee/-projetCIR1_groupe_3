@@ -11,7 +11,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     FILE* file = NULL;
     char line[256];
     struct GigaTree* gigaTree = createEmptyGigaTree();
-    gigaTree->regionsTrie = createRegions();
+    gigaTree->regionsTrie = createEmptyRegions();
 
     file = fopen(filePath, "r");
     if(file == NULL){
@@ -81,8 +81,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     strtok(token, "\n");
                     strcpy(region, newToken);
 
-                    //TODO : insert into region
-                    //insertRegionTrie(gigaTree,newToken);
+                    addBirth(getRegionsTrie(gigaTree), newToken);
                     break;
             }
 
@@ -168,13 +167,3 @@ void addParents(struct GigaTree* gigaTree){ //the final boss
         }
     }
 }
-
-
-void insertRegionTrie(struct GigaTree* gigaTree, char* regionName){
-    insertRegion(&(gigaTree->regionsTrie),regionName);
-    struct Region* region = findRegion(gigaTree->regionsTrie,regionName);
-    if(!isRegionEmpty(region)) {
-        region->births++; //if we called this function, its because someone is born here
-    }
-}
-

@@ -109,6 +109,15 @@ unsigned int numberPersons(struct GigaTree* gigaTree){
 }
 
 /**
+ * Get GigaTree regions trie
+ * @param gigaTree A GigaTree
+ * @return retions trie of the GigaTrie
+ */
+struct Region* getRegionTrie(struct GigaTree* gigaTree) {
+    return gigaTree->regionsTrie;
+}
+
+/**
  * Get the array containing people within the given GigaTree.
  * /!\ The array is not copied. Any changes to this array should be done knowing the way GigaTree works.
  * @param gigaTree The GigaTree containing requested people.

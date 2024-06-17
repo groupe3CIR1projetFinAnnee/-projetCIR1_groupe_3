@@ -1,10 +1,10 @@
-#ifndef PROJET_REGIONS_H
-#define PROJET_REGIONS_H
-#define LETTER_IN_ALPHABET 27
-#define MAX_REGION_LENGTH
 #include <stdbool.h>
 #include <stdio.h>
-#include "gigaTree.h"
+
+#ifndef PROJET_REGIONS_H
+#define PROJET_REGIONS_H
+#define LETTER_IN_ALPHABET 53
+#define MAX_REGION_LENGTH
 
 struct Region{
     struct Region* regions[LETTER_IN_ALPHABET];
@@ -14,21 +14,25 @@ struct Region{
 
 
 // Creation & setup
-struct Region* createEmptyRegions();
-struct Region* createRegions();
+struct Region* createEmptyRegion();
+struct Region* createRegion();
 
 // Access
 void insertRegion(struct Region** regions, char* regionName); //WARNING : NO CAPS ALLOWED !!
-unsigned int getBirths(struct GigaTree* gigaTree, char* regionName); //Recupere l'anniversaire du région a partir du gigaTree
-struct Region* getChild(struct Region* regions, char letter);
-bool isRegionEmpty(struct Region* regions);
-struct Region* findRegion(struct Region* region, char* regionName);
+unsigned int getBirths(struct Region* regionsTrie, char* regionName); //Recupere l'anniversaire du région a partir du gigaTree
+struct Region* getChild(struct Region* regionsTrie, char letter);
+bool isRegionsEmpty(struct Region* regionsTrie);
+struct Region* findRegion(struct Region* regionsTrie, char* regionName);
+bool regionExists(struct Region* regionsTrie, char* regionName);
+void addBirth(struct Region* regionsTrie, char* regionName);
 
+/**
+ * Convert c to an index to use with struct Region -> regions
+ */
+unsigned int charToTrieIndex(char c);
 
 //Suppress
-void deleteRegions(struct Region** regions);
-
-
+void deleteRegions(struct Region** regionsTrie);
 
 
 #endif //PROJET_REGIONS_H
