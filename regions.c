@@ -30,10 +30,10 @@ struct Region* createEmptyRegion(){
 
 
 void insertRegion(struct Region** regions, char* regionName) {
-    struct Region* r = *regions;
-    if (isRegionEmpty(r)) {
-        r = createRegion();
+    if (isRegionEmpty(*regions)) {
+        *regions = createRegion();
     }
+    struct Region* r = *regions;
     if (regionName[0] == '\0') {    // End of the region name
         r->isRegion = true;
     }
@@ -123,11 +123,11 @@ bool regionExists(struct Region* regionsTrie, char* regionName) {
     return region->isRegion;
 }
 
-void addBirth(struct Region* regionsTrie, char* regionName) {
-    if (! regionExists(regionsTrie, regionName)) {
-        insertRegion(&regionsTrie, regionName);
+void addBirth(struct Region** regionsTrie, char* regionName) {
+    if (! regionExists(*regionsTrie, regionName)) {
+        insertRegion(regionsTrie, regionName);
     }
-    struct Region* region = findRegion(regionsTrie, regionName);
+    struct Region* region = findRegion(*regionsTrie, regionName);
     if (isRegionEmpty(region)) {
         region = createRegion();
         region->isRegion = true;

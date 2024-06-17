@@ -157,7 +157,7 @@ void queryMenu(struct GigaTree* gigatree) {
             printf("3- Get number of people born in a region\n");
             printf("4- Get the region with highest number of births\n");
             printf("5- Get the number of people born on a given day\n");
-            printf("6- Exit");
+            printf("6- Exit\n");
             printf("__________________________\n");
             printf("Your choice: ");
             c = getc(stdin);
@@ -195,13 +195,20 @@ void queryMenu(struct GigaTree* gigatree) {
     }
 }
 
-// Print the number of people in a given region
+// Print the number of people born in a given region
 void printPeopleRegion(struct GigaTree* gigatree) {
+    char regionName[MAX_REGION_LENGTH];
     printf("\nGet number of people born in a region\n");
     printf("__________________________\n");
     printf("Enter region name: ");
-    // fgets(, MAX_FILENAME_LENGTH, stdin);
-    // TODO
+    fgets(regionName, MAX_REGION_LENGTH, stdin);
+    regionName[strlen(regionName)-1] = '\0';    // Delete end-line character
+    if (regionExists(getRegionTrie(gigatree), regionName)) {
+        printf("%d people were born in %s.\n", getBirths(getRegionTrie(gigatree), regionName), regionName);
+    }
+    else {
+        printf("Unknown region.\n");
+    }
 }
 
 // Print the number of people born on the given day

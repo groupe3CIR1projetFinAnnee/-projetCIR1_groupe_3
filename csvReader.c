@@ -41,8 +41,8 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         char* token = strtok(line_copy, ","); //strtok is going to read the line for us, stoping at ,. This modify the line, so we have to copy it before
         char* newToken;
 
-
         unsigned int comp = 1; //Comp to know were we are
+        unsigned int regionBirths;
         bool younger;
         bool older;
         while (token != NULL) {
@@ -80,7 +80,16 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     strtok(token, "\n");
                     strcpy(region, newToken);
 
-                    addBirth(getRegionTrie(gigaTree), newToken);
+                    addBirth(&(gigaTree->regionsTrie), newToken);
+                    regionBirths = getBirths(getRegionTrie(gigaTree), newToken);
+                    if (regionBirths > gigaTree->mostBirths) {
+                        gigaTree->mostBirths = regionBirths;
+                        if (gigaTree->mostBirthsRegion != NULL) {
+                            free(gigaTree->mostBirthsRegion);
+                        }
+                        gigaTree->mostBirthsRegion = malloc((strlen(newToken)+1)*sizeof(char));   // TODO check if NULL
+                        strcpy(gigaTree->mostBirthsRegion, newToken);
+                    }
                     break;
             }
 
