@@ -6,8 +6,6 @@
 #include <string.h>
 #include "gigaTree.h"
 
-
-
 struct GigaTree* readCSV(char* filePath){ //The file path should look like this : ./home/folder/file.txt
     FILE* file = NULL;
     char line[256];
@@ -15,8 +13,10 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
     file = fopen(filePath, "r");
     if(file == NULL){
+#ifdef DEBUG
         perror("Error opening the file"); //perror allow us to show the error after the text !
         printf("Tips :\n-Check if your path is right\n-Don't forget to put the extension\n-Example : ./folder/file.csv\n");
+#endif
         return NULL;
     }
     printf("Loading the file and setting up the information...\nThis operation can take a while...\n");
@@ -26,12 +26,9 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     fgets(line, sizeof(line), file); //get the first element, being the number of person in the list
     int numberOfPerson = atoi(line) + 1; //we add the unknown person to the start of the array
     struct Person** people = malloc(sizeof(struct Person*) * numberOfPerson); //Create the struct person array. The size of this array is the number of ppl * the size of a pointer to an array
-    //fgets(line, sizeof(line), file);
-
 
     for(int i = 0; i < numberOfPerson; i++){ //We are going "number of person" times. This is useful, since a while would end up into an endless loop
         fgets(line, sizeof(line), file);
-        //printf("%s",line);
         unsigned int id, padreID, madreID;
         char* birthday = "";
         char* firstname = "";

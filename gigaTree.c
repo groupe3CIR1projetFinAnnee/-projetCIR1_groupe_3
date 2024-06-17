@@ -85,7 +85,7 @@ char* mostBirthsRegion(struct GigaTree* gigaTree){
  * @return Returns the number of people born the given day.
  */
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day){
-    return gigaTree->birthday[month][day];
+    return gigaTree->birthday[month-1][day-1];
 }
 
 /**

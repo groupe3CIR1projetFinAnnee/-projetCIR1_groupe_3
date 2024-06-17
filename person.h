@@ -67,9 +67,9 @@ char* getLastName(struct Person* person);
 
 // TODO: we can simplify return type from unsigned int* to unsigned int[3]
 /**
- * Get the birth date of the given person
+ * Get the birth date of the given person.
  * @param person A person
- * @return Birth date of the given person in an array. Format: [DD,MM,YYYY]
+ * @return Birth date of the given person in an array. Miust be freed. Format: [DD,MM,YYYY]
  */
 unsigned int* getBirthday(struct Person* person);
 
