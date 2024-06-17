@@ -496,7 +496,21 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         return str_numberPeople;
     }
     if (strcmp(parsedInfo[0], NUM_MEN_TEMPLATE) == 0) {
-        return "NON IMPLÉMENTÉ";
+
+        char buffer[200];     // Number of people is probably lower than 200 characters
+        snprintf(buffer, 200, "%d", numberMale(gigatree));
+
+        unsigned int buffer_len = strlen(buffer);
+        char* numberMale = malloc(sizeof(char) * (buffer_len+1));
+        if (numberMale == NULL) {
+        #ifdef DEBUG
+            printf("Allocation error.\n");
+        #endif
+            return "ERROR";
+        }
+        *mustDelete = true;
+        strcpy(numberMale, buffer);
+        return numberMale;
     }
     if (strcmp(parsedInfo[0], NUM_WOMEN_TEMPLATE) == 0) {
         return "NON IMPLÉMENTÉ";

@@ -92,6 +92,10 @@ struct Person** getPeople(struct GigaTree* gigaTree);
  * Delete the given GigaTree
  * @param gigaTree The GigaTree to delete
  */
+
+unsigned int numberMale(struct GigaTree* gigaTree);
+unsigned int numberFemale(struct GigaTree* gigaTree);
+
 void deleteGigaTree(struct GigaTree** gigaTree);
 
 
