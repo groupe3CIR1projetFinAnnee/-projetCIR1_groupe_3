@@ -103,6 +103,8 @@ struct Person** getPeople(struct GigaTree* gigaTree);
 unsigned int numberMale(struct GigaTree* gigaTree);
 unsigned int numberFemale(struct GigaTree* gigaTree);
 
+unsigned int inbreeding(struct GigaTree* gigaTree);
+
 void deleteGigaTree(struct GigaTree** gigaTree);
 
 

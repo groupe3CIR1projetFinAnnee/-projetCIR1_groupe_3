@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    padding: 1%; 
+    background-color: #E8E8E8;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo > a > img {
+    width: 50%; 
+    max-width:50%; 
+    margin-top: 1em; 
+}
+
+.dice > img {
+    width: 80%; 
+    max-width: 80%; 
+    filter: brightness(0); 
+}
+
+.slider {
+    width: 11%;
+    max-width: 11%; 
+    background-color: #666666; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.4em solid #4B4B4B;
+    border-radius: 3rem;
+    
+}
+
+.slider > img {
+    width: 70%; 
+    height: auto;
+    max-width: 100%; 
+}
+
+.sun {
+    background-color: rgba(224, 224, 224, 1);
+    border-radius: 50%;
+    transition: 0.8s;
+    filter: drop-shadow(3px 3px 3px #242424);
+}
+
+.moon{
+    background-color: rgba(102, 102, 102, 0);
+    border-radius: 50%;
+    transition: 0.8s;
+    filter: drop-shadow(3px 3px 3px #242424);
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    padding: 2%;
+}
+
+.informations{
+    display: grid;
+    justify-content: center;
+    background:#E0E0E0;
+    padding: 1em 0.1em 1em 1em;
+    width: 75%;
+    border-radius: 30px;
+    line-height: 4.8em;
+    position: relative;
+    left: 10%;
+}
+
+.informations > span{
+    font-size: 1.3em;
+}   
+
+.tree{
+    display: grid;
+    justify-content: center;
+}
+.tree >img {
+    width: 23em;
+    height: auto;
+    border-radius: 30px;
+}
