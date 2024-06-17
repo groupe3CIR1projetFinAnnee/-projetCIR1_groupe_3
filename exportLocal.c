@@ -44,7 +44,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../resource/img/logo.png",
         "../resource/img/moon.png",
         "../resource/img/neuil.png",
-        "../resource/img/woman.png",
+        "../resource/img/woman.jpg",
         "../resource/img/man.png",
         "../resource/img/sun.png",
         "../resource/img/tree.jpg",
@@ -58,7 +58,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../export/img/logo.png",
         "../export/img/moon.png",
         "../export/img/neuil.png",
-        "../export/img/woman.png",
+        "../export/img/woman.jpg",
         "../export/img/man.png",
         "../export/img/sun.png",
         "../export/img/tree.jpg",
@@ -67,7 +67,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../export/pages.css",
         "../export/infos.css"
     };
-    char* sourcePerson = "../template.html";           // Source template file of a person
+    char* sourcePerson = "../resource/template.html";           // Source template file of a person
     char* destPersonBase = "../export/persons/";    // Dest directory of persons
 
     // Create directories
@@ -75,6 +75,9 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         return 1;
     }
     if (createDir("../export/img")) {
+        return 1;
+    }
+    if (createDir("../export/persons")) {
         return 1;
     }
 
@@ -88,33 +91,33 @@ int exportLocalSite(struct GigaTree* gigaTree) {
     }
 
     // TODO: uncomment and test when GigaTree is ready
-//     // Prepare variables
-//     struct Person* person;
-//     // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
-//     unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
-//     char* destPerson = malloc(destPersonMaxSize*sizeof(char));
-//     if (destPerson == NULL) {
-// #ifdef DEBUG
-//         printf("Allocation error.\n");
-// #endif
-//         return 1;
-//     }
+    // Prepare variables
+    struct Person* person;
+    // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
+    unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
+    char* destPerson = malloc(destPersonMaxSize*sizeof(char));
+    if (destPerson == NULL) {
+#ifdef DEBUG
+        printf("Allocation error.\n");
+#endif
+        return 1;
+    }
 
-//     // Copy person files
-//     for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
-//         person = getPersonByIndex(gigaTree, i);
+    // Copy person files
+    for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
+        person = getPersonByIndex(gigaTree, i);
 
-//         // Write dest filename to destPerson
-//         snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
-//         // printf("%s", destPerson);    // TODO : delete
+        // Write dest filename to destPerson
+        snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
+        // printf("%s", destPerson);    // TODO : delete
 
-//         error = completeFile(sourcePerson, destPerson, gigaTree, person);
-//         if (error) {
-//             free(destPerson);
-//             return 1;
-//         }
-//     }
-//     free(destPerson);
+        error = completeFile(sourcePerson, destPerson, gigaTree, person);
+        if (error) {
+            free(destPerson);
+            return 1;
+        }
+    }
+    free(destPerson);
 
     return 0;
 }
@@ -402,12 +405,18 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (person == NULL) {
             return "ERROR";
         }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
+        }
         return getValueOf(parsedInfo+1, numberInfos-1, getPadre(person), gigatree, mustDelete);
     }
 
     if (strcmp(parsedInfo[0], MOTHER_TEMPLATE) == 0) {
         if (person == NULL) {
             return "ERROR";
+        }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
         }
         return getValueOf(parsedInfo+1, numberInfos-1, getMadre(person), gigatree, mustDelete);
     }
@@ -416,12 +425,18 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (person == NULL) {
             return "ERROR";
         }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
+        }
         return getLastName(person);
     }
 
     if (strcmp(parsedInfo[0], FORNAME_TEMPLATE) == 0) {
         if (person == NULL) {
             return "ERROR";
+        }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
         }
         return getFirstName(person);
     }
@@ -430,12 +445,18 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (person == NULL) {
             return "ERROR";
         }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
+        }
         return getRegion(person);
     }
 
     if (strcmp(parsedInfo[0], BIRTH_DAY_TEMPLATE) == 0) {
         if (person == NULL) {
             return "ERROR";
+        }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
         }
 
         char* birthDay = malloc(sizeof(char)*3);       // A birth day is composed of 1 or 2 numbers
@@ -444,6 +465,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             printf("Allocation error.\n");
 #endif
             return "ERROR";
+        }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
         }
         *mustDelete = true;
         sprintf(birthDay, "%d", getBirthday(person)[0]);
@@ -454,6 +478,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (person == NULL) {
             return "ERROR";
         }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
+        }
 
         char* birthMonth = malloc(sizeof(char)*3);     // A birth month is composed of 1 or 2 numbers
         if (birthMonth == NULL) {
@@ -461,6 +488,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             printf("Allocation error.\n");
 #endif
             return "ERROR";
+        }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
         }
         *mustDelete = true;
         sprintf(birthMonth, "%d", getBirthday(person)[1]);
@@ -470,6 +500,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
     if (strcmp(parsedInfo[0], BIRTH_YEAR_TEMPLATE) == 0) {
         if (person == NULL) {
             return "ERROR";
+        }
+        if (getID(person) == 0) {       // Default person
+            return "unknown";
         }
 
         char* birthYear = malloc(sizeof(char)*7);     // A birth month is composed of 1-6 numbers
