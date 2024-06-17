@@ -1,6 +1,7 @@
 #ifndef PROJET_REGIONS_H
 #define PROJET_REGIONS_H
 #define LETTER_IN_ALPHABET 27
+#define MAX_REGION_LENGTH
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -10,18 +11,21 @@ struct Region{
     unsigned int births;
 };
 
+
 // Creation & setup
 struct Region* createEmptyRegions();
 struct Region* createRegions();
 
 // Access
-void insertRegion(struct Region** trie, char* regionName);
-bool isRegionsEmpty(struct Region* trie);
-unsigned int getBirths(struct Region* trie, char* regionName);
-struct Region* getChild(struct Region* trie, char letter);
+void insertRegion(struct Region** regions, char* regionName);
+unsigned int getBirths(struct Region* regions, char* regionName);
+struct Region* getChild(struct Region* regions, char letter);
+bool isRegionEmpty(struct Region* regions);
+struct Region* findRegion(struct Region* region, char* regionName);
+
 
 //Suppress
-void deleteNodeTrie(struct Region** trie);
+void deleteRegions(struct Region** regions);
 
 
 

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "gigaTree.h"
+#include "regions.h"
 
 struct GigaTree* readCSV(char* filePath){ //The file path should look like this : ./home/folder/file.txt
     FILE* file = NULL;
@@ -72,6 +73,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     region = malloc((strlen(region)+1) * sizeof(char));
                     strtok(token,"\n");
                     strcpy(region,token);
+                    //insertRegionTrie(gigaTree,token);
                     break;
             }
 
@@ -156,4 +158,11 @@ void addParents(struct GigaTree* gigaTree){ //the final boss
                 y = size; //cut the for if we found both parents
         }
     }
+}
+
+
+void insertRegionTrie(struct GigaTree* gigaTree, char* regionName){
+    insertRegion(&(gigaTree->regionsTrie),regionName);
+    struct Region* region = findRegion(gigaTree->regionsTrie,regionName);
+    region->births++; //if we called this function, its because someone is born here
 }

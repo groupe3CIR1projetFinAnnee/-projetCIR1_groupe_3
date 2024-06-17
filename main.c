@@ -32,6 +32,9 @@ int main(){
 
     printf("THE MYSTICAL TREE PROJECT.\n");
     csvMenu();
+
+    //deletePerson(&p);
+    deleteGigaTree(&gt);
     return 0;
 }
 

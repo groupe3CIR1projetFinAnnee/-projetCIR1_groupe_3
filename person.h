@@ -17,11 +17,12 @@ struct Person{
     unsigned int padreID;
     unsigned int madreID;
     char* region;
-    bool sex; //0 if female and 1 if male. Will be initied when another function will calculate the parents
+    int sex; //0 if female and 1 if male. Will be initied when another function will calculate the parents
 };
 
 #define MALE 1
 #define FEMALE 0
+#define UNKNOWN (-1)
 
 // Creation & setup
 // TODO: delete useless commented code
@@ -131,7 +132,7 @@ char* getRegion(struct Person* person);
  * @param person A person
  * @return gender of the given person
  */
-bool getSex(struct Person* person);
+int getSex(struct Person* person);
 
 // TODO change bool to int, or use an enum
 /**
@@ -139,7 +140,7 @@ bool getSex(struct Person* person);
  * @param person A person
  * @param sex New gender of the person. Use MALE and FEMALE
  */
-void setSex(struct Person* person, bool sex);
+void setSex(struct Person* person, int sex);
 
 
 // Deletion
