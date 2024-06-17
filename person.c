@@ -80,6 +80,7 @@ struct Person* createPerson(unsigned int id, char* firstname, char* lastname, ch
     free(birthdayArray); //We dont forget to free this temporary array after use
     person->madreID = madreID;
     person->padreID = padreID;
+    person->sex = UNKNOWN;
     return person;
 }
 
@@ -204,7 +205,7 @@ char* getRegion(struct Person* person){
  * @param person A person
  * @return gender of the given person
  */
-bool getSex(struct Person* person){
+int getSex(struct Person* person){
     return person->sex;
 }
 
@@ -213,7 +214,7 @@ bool getSex(struct Person* person){
  * @param person A person
  * @param sex New gender of the person. Use MALE and FEMALE
  */
-void setSex(struct Person* person, bool sex){
+void setSex(struct Person* person, int sex){
     person->sex = sex;
 }
 

@@ -25,7 +25,7 @@ int main(){
     printf("Il y a %d entrée, en comptant la personne nulle.\n",gt->numberPersons);
     printf("The youngest is : %s\n", getFirstName(getYoungest(gt)));
     printf("His/her father is : %s\nHis sex must be 1 : %d\n", getFirstName(getPadre(getYoungest(gt))), getSex(getPadre(getYoungest(gt))));
-    printf("The mother father is : %s\nHis sex must be 1 if not unknown : %d\n", getFirstName(getPadre(getMadre(getYoungest(gt)))), getSex(getMadre(getYoungest(gt))));
+    printf("The mother father is : %s\nHis sex must be 1 if not unknown : %d\n", getFirstName(getPadre(getMadre(getYoungest(gt)))), getSex(getPadre(getMadre(getYoungest(gt)))));
     printf("The oldest is : %s\n", getFirstName(getOldest(gt)));
     printf("His/her father is : %s\nHis sex may be 0 if unknown : %d\n", getFirstName(getPadre(getOldest(gt))), getSex(getPadre(getOldest(gt))));
 
