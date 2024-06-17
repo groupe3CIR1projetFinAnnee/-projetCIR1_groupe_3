@@ -30,7 +30,7 @@
 
 // There is a max of info length because info is a predifined string
 #define MAX_INFO_LEN 64   // Info is the content of a template
-#define NUMBER_FILES 12
+#define NUMBER_FILES 13
 
 /**
  * Create local site with given data
@@ -51,7 +51,8 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../resource/pages.js",
         "../resource/infos.js",
         "../resource/pages.css",
-        "../resource/infos.css"
+        "../resource/infos.css",
+        "../resource/infos.html"
     };
     char* dests[NUMBER_FILES] = {
         "../export/img/dice.png",
@@ -62,10 +63,11 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../export/img/man.png",
         "../export/img/sun.png",
         "../export/img/tree.jpg",
-        "../export/exports.js",
+        "../export/pages.js",
         "../export/infos.js",
         "../export/pages.css",
-        "../export/infos.css"
+        "../export/infos.css",
+        "../export/infos.html"
     };
     char* sourcePerson = "../resource/template.html";           // Source template file of a person
     char* destPersonBase = "../export/persons/";    // Dest directory of persons
@@ -540,42 +542,63 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
     if (strcmp(parsedInfo[0], NUM_MEN_TEMPLATE) == 0) {
 
         char buffer[200];     // Number of people is probably lower than 200 characters
-        snprintf(buffer, 200, "%d", numberMale(gigatree));
+        unsigned int numMales = numberMale(gigatree);
+        unsigned numFemales = numberFemale(gigatree);
+        unsigned int maleRate = (unsigned int) (100* ((double)numMales) / (numMales+numFemales));
+        snprintf(buffer, 200, "%d", maleRate);
 
         unsigned int buffer_len = strlen(buffer);
-        char* numberMale = malloc(sizeof(char) * (buffer_len+1));
-        if (numberMale == NULL) {
+        char* str_numberMale = malloc(sizeof(char) * (buffer_len+1));
+        if (str_numberMale == NULL) {
         #ifdef DEBUG
             printf("Allocation error.\n");
         #endif
             return "ERROR";
         }
         *mustDelete = true;
-        strcpy(numberMale, buffer);
-        return numberMale;
+        strcpy(str_numberMale, buffer);
+        return str_numberMale;
     }
     if (strcmp(parsedInfo[0], NUM_WOMEN_TEMPLATE) == 0) {
 
         char buffer[200];     // Number of people is probably lower than 200 characters
-        snprintf(buffer, 200, "%d", numberFemale(gigatree));
+        unsigned int numMales = numberMale(gigatree);
+        unsigned numFemales = numberFemale(gigatree);
+        unsigned int femaleRate = (unsigned int) (100* ((double)numFemales) / (numMales+numFemales));
+        snprintf(buffer, 200, "%d", femaleRate);
 
         unsigned int buffer_len = strlen(buffer);
-        char* numberFemale = malloc(sizeof(char) * (buffer_len+1));
-        if (numberFemale == NULL) {
+        char* str_numberFemale = malloc(sizeof(char) * (buffer_len+1));
+        if (str_numberFemale == NULL) {
         #ifdef DEBUG
             printf("Allocation error.\n");
         #endif
             return "ERROR";
         }
         *mustDelete = true;
-        strcpy(numberFemale, buffer);
-        return numberFemale;
+        strcpy(str_numberFemale, buffer);
+        return str_numberFemale;
     }
     if (strcmp(parsedInfo[0], NUM_FAMILIES_TEMPLATE) == 0) {
         return "NON IMPLÉMENTÉ";
     }
     if (strcmp(parsedInfo[0], INBREEDING_TEMPLATE) == 0) {
-        return "NON IMPLÉMENTÉ";
+        
+        char buffer[200];     // Number of people is probably lower than 200 characters
+        unsigned int inbreedingRate = (unsigned int) ((double)inbreeding(gigatree) / numberPersons(gigatree));
+        snprintf(buffer, 200, "%d", inbreedingRate);
+
+        unsigned int buffer_len = strlen(buffer);
+        char* str_inbreedingRate = malloc(sizeof(char) * (buffer_len+1));
+        if (str_inbreedingRate == NULL) {
+        #ifdef DEBUG
+            printf("Allocation error.\n");
+        #endif
+            return "ERROR";
+        }
+        *mustDelete = true;
+        strcpy(str_inbreedingRate, buffer);
+        return str_inbreedingRate;
     }
 
     return "ERREUR";

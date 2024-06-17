@@ -18,7 +18,7 @@ header {
     justify-content: space-between;
 }
 
-.logo > img {
+.logo > a > img {
     width: 50%; 
     max-width:50%; 
     margin-top: 1em; 
@@ -50,8 +50,17 @@ header {
 }
 
 .sun {
-    background-color: #E0E0E0;
+    background-color: rgba(224, 224, 224, 1);
     border-radius: 50%;
+    transition: 0.8s;
+    filter: drop-shadow(3px 3px 3px #242424);
+}
+
+.moon{
+    background-color: rgba(102, 102, 102, 0);
+    border-radius: 50%;
+    transition: 0.8s;
+    filter: drop-shadow(3px 3px 3px #242424);
 }
 
 .container {
