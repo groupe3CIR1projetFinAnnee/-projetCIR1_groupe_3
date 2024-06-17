@@ -11,7 +11,6 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     FILE* file = NULL;
     char line[256];
     struct GigaTree* gigaTree = createEmptyGigaTree();
-    gigaTree->regionsTrie = createEmptyRegions();
 
     file = fopen(filePath, "r");
     if(file == NULL){
@@ -81,7 +80,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     strtok(token, "\n");
                     strcpy(region, newToken);
 
-                    addBirth(getRegionsTrie(gigaTree), newToken);
+                    addBirth(getRegionTrie(gigaTree), newToken);
                     break;
             }
 

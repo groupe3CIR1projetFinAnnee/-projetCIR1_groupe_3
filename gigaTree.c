@@ -32,7 +32,7 @@ struct GigaTree* createEmptyGigaTree(){
     //We wont setup mostBirthRegions, since it must be done with a malloc. We will leave it empty here
     gigaTree->mostBirths = 0;
     gigaTree->numberPersons = 0;
-    gigaTree->regionsTrie = createRegions();
+    gigaTree->regionsTrie = createEmptyRegion();
 
     return gigaTree;
 }

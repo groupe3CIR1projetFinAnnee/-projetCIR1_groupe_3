@@ -31,10 +31,12 @@ struct Region* createEmptyRegion(){
 
 void insertRegion(struct Region** regions, char* regionName) {
     struct Region* r = *regions;
+    if (isRegionEmpty(r)) {
+        r = createRegion();
+    }
     if (regionName[0] == '\0') {    // End of the region name
         r->isRegion = true;
     }
-
     else {
         unsigned int index = charToTrieIndex(regionName[0]);
         if (index == LETTER_IN_ALPHABET) {      // If outside of range
@@ -126,5 +128,10 @@ void addBirth(struct Region* regionsTrie, char* regionName) {
         insertRegion(&regionsTrie, regionName);
     }
     struct Region* region = findRegion(regionsTrie, regionName);
+    if (isRegionEmpty(region)) {
+        region = createRegion();
+        region->isRegion = true;
+        region->births = 0;
+    }
     region->births += 1;
 }
