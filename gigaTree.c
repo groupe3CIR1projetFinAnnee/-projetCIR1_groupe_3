@@ -184,7 +184,7 @@ unsigned int inbreeding(struct GigaTree* gigaTree){
 
         for(unsigned int personD = 0; personD < ancestorNumber; personD++){
             for(unsigned int personM = 0; personM < ancestorNumber; personM++) {
-                if (getID(dadSide[personD]) == getID(momSide[personM]))
+                if ((getID(dadSide[personD]) != 0) && (getID(dadSide[personD]) == getID(momSide[personM])))
                     inbreedingCount++;
             }
         }
