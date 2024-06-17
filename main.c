@@ -181,8 +181,13 @@ void queryMenu(struct GigaTree* gigatree) {
                 break;
 
             case '4':
-                printf("The region %s has the highest number of births.\n", mostBirthsRegion(gigatree));
-                printf("%s\n", gigatree->mostBirthsRegion);
+                if (gigatree->mostBirthsRegion == NULL) {
+                    printf("Error happened while fetching for region containing most births.\n");
+                }
+                else {
+                    printf("The following region has the most births:\n");
+                    printf("%s\n", mostBirthsRegion(gigatree));
+                }
                 break;
 
             case '5':
