@@ -53,3 +53,7 @@ slider.addEventListener('click', function() {
         themeChange(currentTheme);
     }
 });
+
+function goToPage(newPage) {
+    window.location.href = newPage;
+}

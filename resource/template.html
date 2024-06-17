@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../pages.css">
         <script src="../pages.js" defer></script>
-        <title>index</title>
+        <title><template>forname</template> <template>lastname</template></title>
     </head>
     <header id="header">
         <div class="logo">
@@ -30,7 +30,7 @@
                     <span class="date">Naissance : <template>birth_day</template>/<template>birth_month</template>/<template>birth_year</template></span>
                 </div>
 
-                <div class="mama">
+                <div class="mama" onclick="goToPage('<template>madre:id</template>.html')">
                     <img src="../img/<template>madre:gender</template>.png" alt="photo" class="photo-mam">
                     <div class="text-mam">
                         <span class="nom-mam"><template>madre:lastname</template></span>
@@ -38,7 +38,7 @@
                     </div>
                     <span class="region-mam">Région : <template>madre:region</template></span>
                 </div>
-                <div class="papa">
+                <div class="papa" onclick="goToPage('<template>padre:id</template>.html')">
                     <img src="../img/<template>padre:gender</template>.png" alt="photo" class="photo-pap">
                     <div class="text-pap">
                         <span class="nom-pap"><template>padre:lastname</template></span>
@@ -47,22 +47,22 @@
                     <span class="region-pap">Région : <template>padre:region</template></span>
                 </div>
 
-                <div class="gp-papa1">
+                <div class="gp-papa1" onclick="goToPage('<template>padre:madre:id</template>.html')">
                     <img src="../img/<template>padre:madre:gender</template>.png" alt="photo" class="photo-gpap1">
                     <span class="nom-gpap1"><template>padre:madre:lastname</template></span>
                     <span class="prenom-gpap1"><template>padre:madre:forname</template></span>
                 </div>
-                <div class="gp-mama1">
+                <div class="gp-mama1" onclick="goToPage('<template>madre:madre:id</template>.html')">
                     <img src="../img/<template>madre:madre:gender</template>.png" alt="photo" class="photo-gmam1">
                     <span class="nom-gmam1"><template>madre:madre:lastname</template></span>
                     <span class="prenom-gmam1"><template>madre:madre:forname</template></span>
                 </div>
-                <div class="gp-papa2">
+                <div class="gp-papa2" onclick="goToPage('<template>padre:padre:id</template>.html')">
                     <img src="../img/<template>padre:padre:gender</template>.png" alt="photo" class="photo-gpap2">
                     <span class="nom-gpap2"><template>padre:padre:lastname</template></span>
                     <span class="prenom-gpap2"><template>padre:padre:forname</template></span>
                 </div>
-                <div class="gp-mama2">
+                <div class="gp-mama2" onclick="goToPage('<template>madre:padre:id</template>.html')">
                     <img src="../img/<template>madre:padre:gender</template>.png" alt="photo" class="photo-gmam2">
                     <span class="nom-gmam2"><template>madre:padre:lastname</template></span>
                     <span class="prenom-gmam2"><template>madre:padre:forname</template></span>

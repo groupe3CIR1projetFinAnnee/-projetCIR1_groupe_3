@@ -501,6 +501,14 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         }
     }
 
+    if (strcmp(parsedInfo[0], ID_TEMPLATE) == 0) {
+        if (person == NULL) {
+            return "ERREUR";
+        }
+        unsigned int id = getID(person);
+        return uintToString(id, 255, mustDelete);   // Id has probably less than 255 characters
+    }
+
     if (strcmp(parsedInfo[0], NUM_PEOPLE_TEMPLATE) == 0) {
         if (gigatree == NULL) {
             return "ERREUR";
