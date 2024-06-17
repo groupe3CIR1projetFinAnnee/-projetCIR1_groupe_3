@@ -3,7 +3,7 @@
 
 
 struct GigaTree{
-    struct Person** people; //Array of struct Person of every persons in the csv file. Will be init. later
+    struct Person** people;     //Array of struct Person of every persons in the csv file. Empty person is at position 0.
     struct Region* regionsTrie; //Trie of regions. Will be init later
     unsigned int birthday[12][31]; //Array of 12/31 for birthdays
     struct Person* youngest;
@@ -11,6 +11,7 @@ struct GigaTree{
     char* mostBirthsRegion; //name of the regions with the most birthdays
     unsigned int mostBirths; //may be removed since we can just search in the trie // Is the number of birth in the previous region
     unsigned int numberPersons; //Total number of ppl in the csv
+    unsigned int numFamilies;
 };
 
 
@@ -104,6 +105,23 @@ unsigned int numberMale(struct GigaTree* gigaTree);
 unsigned int numberFemale(struct GigaTree* gigaTree);
 
 unsigned int inbreeding(struct GigaTree* gigaTree);
+
+/**
+ * Get number of dinstinct families in the given GigaTree
+ * @param gigaTree A GigaTree
+ * @return Number of dinstinct families in the given GigaTree
+ */
+unsigned int numberFamilies(struct GigaTree* gigaTree);
+
+/**
+ * Calculate number of dinstinct families in the given GigaTree.
+ * Used to initialize gigaTree->numFamilies
+ * @param gigaTree A GigaTree
+ * @return Number of dinstinct families in the given GigaTree
+ */
+unsigned int calculateNumberFamilies(struct GigaTree* gigaTree);
+
+
 
 void deleteGigaTree(struct GigaTree** gigaTree);
 

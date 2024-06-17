@@ -188,6 +188,65 @@ void setSex(struct Person* person, int sex){
 
 
 /**
+ * Get oldest ancestor of the given person
+ * @param person A person
+ * @return the oldest ancestor of the given person
+ */
+struct Person* getOldestParent(struct Person* person) {
+    struct Person* padre = getPadre(person);
+    struct Person* madre = getMadre(person);
+
+    // If one parent is unknown, recursive only for the other parent
+    if (getID(padre) == 0) {
+        if (getID(madre) == 0) {
+            return person;
+        }
+        else {
+            return getOldestParent(madre);
+        }
+    }
+    if (getID(madre) == 0) {
+        return getOldestParent(padre);
+    }
+    
+    // Compare age between oldest padre side and madre side
+    return compareOldest(getOldestParent(padre), getOldestParent(madre));
+}
+
+/**
+ * Get oldest person between two people
+ * @param person1 A person
+ * @param person2 Another person
+ * @return Return the oldest person between the two given
+ */
+struct Person* compareOldest(struct Person* person1, struct Person* person2) {
+    // Compare year
+    if (person1->birthYear > person2->birthYear) {
+        return person2;
+    }
+    if (person1->birthYear < person2->birthYear) {
+        return person1;
+    }
+
+    // Compare month
+    if (person1->birthMonth > person2->birthMonth) {
+        return person2;
+    }
+    if (person1->birthMonth < person2->birthMonth) {
+        return person1;
+    }
+
+    // Compare day
+    if (person1->birthDay > person2->birthDay) {
+        return person2;
+    }
+    if (person1->birthDay > person2->birthDay) {
+        return person1;
+    }
+    return person1; // default
+}
+
+/**
  * Delete the given person
  * @param person The person to delete
  */

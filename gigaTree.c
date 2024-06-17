@@ -34,6 +34,7 @@ struct GigaTree* createEmptyGigaTree(){
     gigaTree->mostBirths = 0;
     gigaTree->numberPersons = 0;
     gigaTree->regionsTrie = createEmptyRegion();
+    gigaTree->numFamilies = 0;
 
     return gigaTree;
 }
@@ -202,6 +203,52 @@ unsigned int inbreeding(struct GigaTree* gigaTree){
         free(momSide);
     }
     return inbreedingCount;
+}
+
+/**
+ * Get number of dinstinct families in the given GigaTree
+ * @param gigaTree A GigaTree
+ * @return Number of dinstinct families in the given GigaTree
+ */
+unsigned int numberFamilies(struct GigaTree* gigaTree) {
+    return gigaTree->numFamilies;
+}
+
+
+/**
+ * Calculate number of dinstinct families in the given GigaTree.
+ * Used to initialize gigaTree->numFamilies
+ * @param gigaTree A GigaTree
+ * @return Number of dinstinct families in the given GigaTree
+ */
+unsigned int calculateNumberFamilies(struct GigaTree* gigaTree) {
+    unsigned int numPersons = numberPersons(gigaTree) -1;
+    struct Person** oldests = malloc(numPersons-1 * sizeof(struct Person*));
+    if (oldests == NULL) {
+#ifdef DEBUG
+        printf("Allocation error.\n");
+#endif
+        return 0;
+    }
+    bool unique;
+    unsigned int numFamilies = 0;
+    for (unsigned int i=1; i<numPersons; i++) { // For each person (skip empty person)
+        oldests[i] = getOldestParent(getPersonByIndex(gigaTree, i));
+
+        // Check if oldest is unique in oldests array
+        unique = true;
+        for (unsigned int j=1; j<i; j++) {
+            if (oldests[j] == oldests[i]) {
+                unique = false;
+                break;
+            }
+        }
+        if (unique) {
+            numFamilies += 1;
+        }
+    }
+    free(oldests);
+    return numFamilies;
 }
 
 

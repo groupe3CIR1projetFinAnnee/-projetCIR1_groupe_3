@@ -134,6 +134,21 @@ char* getRegion(struct Person* person);
  */
 int getSex(struct Person* person);
 
+/**
+ * Get oldest ancestor of the given person
+ * @param person A person
+ * @return the oldest ancestor of the given person
+ */
+struct Person* getOldestParent(struct Person* person);
+
+/**
+ * Get oldest person between two people
+ * @param person1 A person
+ * @param person2 Another person
+ * @return Return the oldest person between the two given
+ */
+struct Person* compareOldest(struct Person* person1, struct Person* person2);
+
 // TODO change bool to int, or use an enum
 /**
  * Set gender of the given person

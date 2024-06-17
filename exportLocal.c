@@ -580,10 +580,23 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         return str_numberFemale;
     }
     if (strcmp(parsedInfo[0], NUM_FAMILIES_TEMPLATE) == 0) {
-        return "NON IMPLÉMENTÉ";
+        char buffer[200];     // Number of people is probably lower than 200 characters
+        unsigned int numFamilies = numberFamilies(gigatree);
+        snprintf(buffer, 200, "%d", numFamilies);
+
+        unsigned int buffer_len = strlen(buffer);
+        char* str_numberFamilies = malloc(sizeof(char) * (buffer_len+1));
+        if (str_numberFamilies == NULL) {
+        #ifdef DEBUG
+            printf("Allocation error.\n");
+        #endif
+            return "ERROR";
+        }
+        *mustDelete = true;
+        strcpy(str_numberFamilies, buffer);
+        return str_numberFamilies;
     }
     if (strcmp(parsedInfo[0], INBREEDING_TEMPLATE) == 0) {
-        
         char buffer[200];     // Number of people is probably lower than 200 characters
         unsigned int inbreedingRate = (unsigned int) ((double)inbreeding(gigatree) / numberPersons(gigatree));
         snprintf(buffer, 200, "%d", inbreedingRate);
