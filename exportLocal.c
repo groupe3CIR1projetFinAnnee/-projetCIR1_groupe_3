@@ -14,6 +14,7 @@
 #define DEBUG
 
 // Templates definition
+#define ID_TEMPLATE "id"
 #define LASTNAME_TEMPLATE "lastname"
 #define FORNAME_TEMPLATE "forname"
 #define REGION_TEMPLATE "region"
@@ -391,7 +392,7 @@ char** parseInfo(char* rawInfo, char separator, unsigned int* numberInfos) {
  * @param[in] person Data to use to answer info request
  * @param[in] gigatree Data to use to answer info request
  * @param[out] mustDelete whether returned string requires a free() or not
- * @return Return the value requested in a string. Return NULL if an error occured, and "ERROR" if requested info is unknown
+ * @return Return the value requested in a string. Return NULL if an error occured, and "ERREUR" if requested info is unknown
  */
 char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* person, struct GigaTree* gigatree, bool* mustDelete) {
     *mustDelete = false;
@@ -405,7 +406,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
     // Compare parsedInfo[0] to each predifined template and return corresponding information
     if (strcmp(parsedInfo[0], FATHER_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
             return "unknown";
@@ -415,7 +416,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
 
     if (strcmp(parsedInfo[0], MOTHER_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
             return "unknown";
@@ -425,7 +426,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
 
     if (strcmp(parsedInfo[0], LASTNAME_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
             return "unknown";
@@ -435,7 +436,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
 
     if (strcmp(parsedInfo[0], FORNAME_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
             return "unknown";
@@ -445,7 +446,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
 
     if (strcmp(parsedInfo[0], REGION_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
             return "unknown";
@@ -455,168 +456,119 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
 
     if (strcmp(parsedInfo[0], BIRTH_DAY_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
-            return "unknown";
+            return "00";
         }
-
-        char* birthDay = malloc(sizeof(char)*3);       // A birth day is composed of 1 or 2 numbers
-        if (birthDay == NULL) {
-#ifdef DEBUG
-            printf("Allocation error.\n");
-#endif
-            return "ERROR";
-        }
-        if (getID(person) == 0) {       // Default person
-            return "unknown";
-        }
-        *mustDelete = true;
-        sprintf(birthDay, "%d", getBirthday(person)[0]);
-        return birthDay;
+        unsigned int birthDay = getBirthday(person)[0];
+        return uintToString(birthDay, 16, mustDelete);      // A birth day is composed of 1 or 2 numbers
     }
 
     if (strcmp(parsedInfo[0], BIRTH_MONTH_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
-            return "unknown";
+            return "00";
         }
-
-        char* birthMonth = malloc(sizeof(char)*3);     // A birth month is composed of 1 or 2 numbers
-        if (birthMonth == NULL) {
-#ifdef DEBUG
-            printf("Allocation error.\n");
-#endif
-            return "ERROR";
-        }
-        if (getID(person) == 0) {       // Default person
-            return "unknown";
-        }
-        *mustDelete = true;
-        sprintf(birthMonth, "%d", getBirthday(person)[1]);
-        return birthMonth;
+        unsigned int birthMonth = getBirthday(person)[1];
+        return uintToString(birthMonth, 16, mustDelete);    // A birth month is composed of 1 or 2 numbers
     }
 
     if (strcmp(parsedInfo[0], BIRTH_YEAR_TEMPLATE) == 0) {
         if (person == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
-            return "unknown";
+            return "0000";
         }
-
-        char* birthYear = malloc(sizeof(char)*7);     // A birth month is composed of 1-6 numbers
-        if (birthYear == NULL) {
-#ifdef DEBUG
-            printf("Allocation error.\n");
-#endif
-            return "ERROR";
-        }
-        *mustDelete = true;
-        snprintf(birthYear, 7, "%d", getBirthday(person)[2]);
-        return birthYear;
+        unsigned int birthYear = getBirthday(person)[2];
+        return uintToString(birthYear, 16, mustDelete);     // A birth year is composed of 1-6 numbers
     }
 
     if (strcmp(parsedInfo[0], NUM_PEOPLE_TEMPLATE) == 0) {
         if (gigatree == NULL) {
-            return "ERROR";
+            return "ERREUR";
         }
-
-        char buffer[200];     // Number of people is probably lower than 200 characters
-        snprintf(buffer, 200, "%d", numberPersons(gigatree));
-
-        unsigned int buffer_len = strlen(buffer);
-        char* str_numberPeople = malloc(sizeof(char) * (buffer_len+1));
-        if (str_numberPeople == NULL) {
-#ifdef DEBUG
-            printf("Allocation error.\n");
-#endif
-            return "ERROR";
-        }
-        *mustDelete = true;
-        strcpy(str_numberPeople, buffer);
-        return str_numberPeople;
+        unsigned int numPeople = numberPersons(gigatree);
+        return uintToString(numPeople, 200, mustDelete);        // Number of people is probably lower than 200 characters
     }
     if (strcmp(parsedInfo[0], NUM_MEN_TEMPLATE) == 0) {
+        if (gigatree == NULL) {
+            return "ERREUR";
+        }
 
-        char buffer[200];     // Number of people is probably lower than 200 characters
         unsigned int numMales = numberMale(gigatree);
         unsigned numFemales = numberFemale(gigatree);
         unsigned int maleRate = (unsigned int) (100* ((double)numMales) / (numMales+numFemales));
-        snprintf(buffer, 200, "%d", maleRate);
-
-        unsigned int buffer_len = strlen(buffer);
-        char* str_numberMale = malloc(sizeof(char) * (buffer_len+1));
-        if (str_numberMale == NULL) {
-        #ifdef DEBUG
-            printf("Allocation error.\n");
-        #endif
-            return "ERROR";
-        }
-        *mustDelete = true;
-        strcpy(str_numberMale, buffer);
-        return str_numberMale;
+        return uintToString(maleRate, 200, mustDelete); // Rate of men is probably lower than 200 characters
     }
-    if (strcmp(parsedInfo[0], NUM_WOMEN_TEMPLATE) == 0) {
 
-        char buffer[200];     // Number of people is probably lower than 200 characters
+    if (strcmp(parsedInfo[0], NUM_WOMEN_TEMPLATE) == 0) {
+        if (gigatree == NULL) {
+            return "ERREUR";
+        }
+
         unsigned int numMales = numberMale(gigatree);
         unsigned numFemales = numberFemale(gigatree);
         unsigned int femaleRate = (unsigned int) (100* ((double)numFemales) / (numMales+numFemales));
-        snprintf(buffer, 200, "%d", femaleRate);
-
-        unsigned int buffer_len = strlen(buffer);
-        char* str_numberFemale = malloc(sizeof(char) * (buffer_len+1));
-        if (str_numberFemale == NULL) {
-        #ifdef DEBUG
-            printf("Allocation error.\n");
-        #endif
-            return "ERROR";
-        }
-        *mustDelete = true;
-        strcpy(str_numberFemale, buffer);
-        return str_numberFemale;
+        return uintToString(femaleRate, 200, mustDelete);     // Rate of women is probably lower than 200 characters
     }
+
     if (strcmp(parsedInfo[0], NUM_FAMILIES_TEMPLATE) == 0) {
-        char buffer[200];     // Number of people is probably lower than 200 characters
+        if (gigatree == NULL) {
+            return "ERREUR";
+        }
+
         unsigned int numFamilies = numberFamilies(gigatree);
-        snprintf(buffer, 200, "%d", numFamilies);
-
-        unsigned int buffer_len = strlen(buffer);
-        char* str_numberFamilies = malloc(sizeof(char) * (buffer_len+1));
-        if (str_numberFamilies == NULL) {
-        #ifdef DEBUG
-            printf("Allocation error.\n");
-        #endif
-            return "ERROR";
-        }
-        *mustDelete = true;
-        strcpy(str_numberFamilies, buffer);
-        return str_numberFamilies;
+        return uintToString(numFamilies, 200, mustDelete);  // Number of families is probably lower than 200 characters
     }
-    if (strcmp(parsedInfo[0], INBREEDING_TEMPLATE) == 0) {
-        char buffer[200];     // Number of people is probably lower than 200 characters
-        unsigned int inbreedingRate = (unsigned int) ((double)inbreeding(gigatree) / numberPersons(gigatree));
-        snprintf(buffer, 200, "%d", inbreedingRate);
 
-        unsigned int buffer_len = strlen(buffer);
-        char* str_inbreedingRate = malloc(sizeof(char) * (buffer_len+1));
-        if (str_inbreedingRate == NULL) {
-        #ifdef DEBUG
-            printf("Allocation error.\n");
-        #endif
-            return "ERROR";
+    if (strcmp(parsedInfo[0], INBREEDING_TEMPLATE) == 0) {
+        if (gigatree == NULL) {
+            return "ERREUR";
         }
-        *mustDelete = true;
-        strcpy(str_inbreedingRate, buffer);
-        return str_inbreedingRate;
+        unsigned int inbreedingRate = (unsigned int) ((double)inbreeding(gigatree) / numberPersons(gigatree));
+        return uintToString(inbreedingRate, 200, mustDelete);   // Inbreeding rate is probably lower than 200 characters
     }
 
     return "ERREUR";
 }
 
+
+/**
+ * Convert an unsigned int to a string
+ * @param uint The unsigned int to convert
+ * @param max_char Max length of output string
+ * @param[out] mustDelete Set to true if return variable if allocated in stack, false otherwise
+ * @return String containing the uint
+ */
+char* uintToString(unsigned int uint, unsigned int max_char, bool* mustDelete) {
+    *mustDelete = false;
+    char* buffer = malloc(max_char *sizeof(char));
+    if (buffer == NULL) {
+#ifdef DEBUG
+        printf("Allocation error.\n");
+#endif
+        return "ERREUR";
+    }
+    snprintf(buffer, 200, "%d", uint);
+
+    unsigned int buffer_len = strlen(buffer);
+    char* outputString = malloc(sizeof(char) * (buffer_len+1));
+    if (outputString == NULL) {
+    #ifdef DEBUG
+        printf("Allocation error.\n");
+    #endif
+        free(buffer);
+        return "ERREUR";
+    }
+    strcpy(outputString, buffer);
+    free(buffer);
+    *mustDelete = true;
+    return outputString;
+}
 
 /**
  * Delete the given array of strings

@@ -67,6 +67,15 @@ char** parseInfo(char* info, char separator, unsigned int* parsedLength);
 char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* person, struct GigaTree* gigatree, bool* mustDelete);
 
 /**
+ * Convert an unsigned int to a string
+ * @param uint The unsigned int to convert
+ * @param max_char Max length of output string
+ * @param[out] mustDelete Set to true if return variable if allocated in stack, false otherwise
+ * @return String containing the uint
+ */
+char* uintToString(unsigned int uint, unsigned int max_char, bool* mustDelete);
+
+/**
  * Delete the given array of strings
  * @param arrayStrings The array of strings to delete
  * @param lenArray Size of the array
