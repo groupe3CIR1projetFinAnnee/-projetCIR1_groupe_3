@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-
+#include "ctype.h"
 
 
 struct Region* createRegions(){
@@ -23,13 +23,14 @@ struct Region* createEmptyRegions(){
 }
 
 void insertRegion(struct Region** regions, char* regionName) {
-    struct Region *iter = *regions;
     if (regionName[0] == '\0') { //End of the region name
-        iter->isRegion = true;
-    } else {
-        if ((regionName[0] >= 'a' && regionName[0] <= 'z') || regionName[0] == ' ') {
+        (*regions)->isRegion = true;
+    }
+
+    else {
+        if ((tolower(regionName[0]) >= 'a' && tolower(regionName[0]) <= 'z') || regionName[0] == ' ') {
             // Character is a lowercase letter or a space
-            insertRegion(&(iter->regions[regionName[0] - 'a']), regionName + 1);
+            insertRegion(&((*regions)->regions[tolower(regionName[0]) - 'a']), regionName + 1);
         }
         else
             insertRegion(regions,regionName+1); //Skip char
@@ -58,4 +59,23 @@ struct Region* findRegion(struct Region* regions, char* regionName){
     else {
         return findRegion(regions->regions[regionName[0]-'a'], regionName+1);
     }
+}
+
+
+void deleteRegions(struct Region** regions){
+    if (!isRegionEmpty(*regions)) {
+        for (unsigned int i=0; i<LETTER_IN_ALPHABET; i++) {
+            deleteRegions(&((*regions)->regions[i]));
+        }
+        free(*regions);
+        *regions = NULL;
+    }
+}
+
+unsigned int getBirths(struct GigaTree* gigaTree, char* regionName){
+    struct Region* region = findRegion(gigaTree->regionsTrie,regionName);
+    unsigned int births = 0;
+    if(region != NULL)
+        births = region->births;
+    return births;
 }

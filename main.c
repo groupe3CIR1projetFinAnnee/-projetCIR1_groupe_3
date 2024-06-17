@@ -5,18 +5,9 @@
 #include "regions.h"
 #include "person.h"
 #include "csvReader.h"
-#include "exportLocal.h"
 
-#define MAX_FILENAME_LENGTH 255
 
-char* path = "../db_temp/bd_grande.csv";
-
-void csvMenu();
-void csvNameMenu();
-void mainMenu(struct GigaTree* gigatree);
-void queryMenu(struct GigaTree* gigatree);
-void printPeopleRegion(struct GigaTree* gigatree);   // Print the number of people in a given region
-void printPeopleOnBirthday(struct GigaTree* gigatree);      // Print the number of people born on the given day
+char* path = "../db_temp/mini_db.csv";
 
 int main(){
     /*
@@ -30,8 +21,21 @@ int main(){
     //unsigned int* truc = getBirthday(p);
     */
 
-    printf("THE MYSTICAL TREE PROJECT.\n");
-    csvMenu();
+    struct GigaTree* gt = readCSV(path);
+/*
+    printf("Il y a %d entrée, en comptant la personne nulle.\n",gt->numberPersons);
+    printf("The youngest is : %s\n", getFirstName(getYoungest(gt)));
+    printf("His/her father is : %s\nHis sex must be 1 : %d\n", getFirstName(getPadre(getYoungest(gt))), getSex(getPadre(getYoungest(gt))));
+    printf("The mother father is : %s\nHis sex must be 1 if not unknown : %d\n", getFirstName(getPadre(getMadre(getYoungest(gt)))), getSex(getPadre(getMadre(getYoungest(gt)))));
+    printf("The oldest is : %s\n", getFirstName(getOldest(gt)));
+    printf("His/her father is : %s\nHis sex may be 0 if unknown : %d\n", getFirstName(getPadre(getOldest(gt))), getSex(getPadre(getOldest(gt))));
+
+*/
+    printf("%s\n",gt->oldest->region);
+    printf("The youngest is born in %s", getRegion(getYoungest(gt)));
+
+
+
 
     //deletePerson(&p);
     // deleteGigaTree(&gt);
