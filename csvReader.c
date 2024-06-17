@@ -80,7 +80,9 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     region = malloc((strlen(token)+1) * sizeof(char));
                     strtok(token, "\n");
                     strcpy(region, token);
-                    insertRegionTrie(gigaTree,newToken);
+
+                    //TODO : insert into region
+                    //insertRegionTrie(gigaTree,newToken);
                     break;
             }
 
