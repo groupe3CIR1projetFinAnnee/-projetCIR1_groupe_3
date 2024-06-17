@@ -32,7 +32,7 @@ struct GigaTree* createEmptyGigaTree(){
     //We wont setup mostBirthRegions, since it must be done with a malloc. We will leave it empty here
     gigaTree->mostBirths = 0;
     gigaTree->numberPersons = 0;
-    gigaTree->regionsTrie = createRegions();
+    gigaTree->regionsTrie = createEmptyRegion();
 
     return gigaTree;
 }
@@ -154,6 +154,7 @@ unsigned int numberFemale(struct GigaTree* gigaTree){
 unsigned int inbreeding(struct GigaTree* gigaTree){
     return 0;
 }
+
 
 /**
  * Delete the given GigaTree

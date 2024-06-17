@@ -21,7 +21,7 @@ struct Region* createRegion();
 void insertRegion(struct Region** regions, char* regionName); //WARNING : NO CAPS ALLOWED !!
 unsigned int getBirths(struct Region* regionsTrie, char* regionName); //Recupere l'anniversaire du région a partir du gigaTree
 struct Region* getChild(struct Region* regionsTrie, char letter);
-bool isRegionsEmpty(struct Region* regionsTrie);
+bool isRegionEmpty(struct Region* regionsTrie);
 struct Region* findRegion(struct Region* regionsTrie, char* regionName);
 bool regionExists(struct Region* regionsTrie, char* regionName);
 void addBirth(struct Region* regionsTrie, char* regionName);
