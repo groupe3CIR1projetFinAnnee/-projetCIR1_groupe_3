@@ -128,7 +128,12 @@ int exportLocalSite(struct GigaTree* gigaTree) {
 int createDir(const char* folder) {
     struct stat st;
     int error;
+#ifdef __unix__
+    error = mkdir(folder, 0777);
+#elif defined(_WIN32) || defined(WIN32)
     error = mkdir(folder);
+#endif
+
     if (error) {
         stat(folder, &st);
         if (!S_ISDIR(st.st_mode)) {      // If error is not caused by already existing folder

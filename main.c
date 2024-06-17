@@ -19,9 +19,7 @@ void printPeopleOnBirthday(struct GigaTree* gigatree);
 
 
 int main(){
-    //csvMenu();
-    struct GigaTree* gt = readCSV(path);
-    printf("%d", inbreeding(gt));
+    csvMenu();
 }
 
 
@@ -184,6 +182,7 @@ void queryMenu(struct GigaTree* gigatree) {
 
             case '4':
                 printf("The region %s has the highest number of births.\n", mostBirthsRegion(gigatree));
+                printf("%s\n", gigatree->mostBirthsRegion);
                 break;
 
             case '5':
