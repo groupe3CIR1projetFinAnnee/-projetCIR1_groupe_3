@@ -27,6 +27,7 @@ struct GigaTree* createEmptyGigaTree(){
     gigaTree->regionsTrie = NULL;
     gigaTree->oldest = NULL;
     gigaTree->youngest = NULL;
+    gigaTree->mostBirthsRegion = NULL;
 
 
     //We wont setup mostBirthRegions, since it must be done with a malloc. We will leave it empty here
@@ -152,7 +153,47 @@ unsigned int numberFemale(struct GigaTree* gigaTree){
 
 
 unsigned int inbreeding(struct GigaTree* gigaTree){
-    return 0;
+    unsigned int ancestorNumber = 7;
+    struct Person** people = getPeople(gigaTree);
+    unsigned int numberPeople = numberPersons(gigaTree);
+    unsigned int inbreedingCount = 0; //hope it stays here...
+
+    for(int i = 1; i < numberPeople; i++){
+        struct Person** dadSide = malloc(sizeof(struct Person*) * ancestorNumber);
+        struct Person** momSide = malloc(sizeof(struct Person*) * ancestorNumber);
+        if(dadSide == NULL){
+            printf("Malloc error : dad side");
+            return 0;
+        }
+
+        dadSide[0] = getPadre(people[i]);
+        dadSide[1] = getPadre(dadSide[0]);
+        dadSide[2] = getMadre(dadSide[0]);
+        dadSide[3] = getPadre(dadSide[1]);
+        dadSide[4] = getMadre(dadSide[1]);
+        dadSide[5] = getPadre(dadSide[2]);
+        dadSide[6] = getMadre(dadSide[2]);
+
+        momSide[0] = getMadre(people[i]);
+        momSide[1] = getPadre(momSide[0]);
+        momSide[2] = getMadre(momSide[0]);
+        momSide[3] = getPadre(momSide[1]);
+        momSide[4] = getMadre(momSide[1]);
+        momSide[5] = getPadre(momSide[2]);
+        momSide[6] = getMadre(momSide[2]);
+
+        for(unsigned int personD = 0; personD < ancestorNumber; personD++){
+            for(unsigned int personM = 0; personM < ancestorNumber; personM++) {
+                if (getID(dadSide[personD]) == getID(momSide[personM]))
+                    inbreedingCount++;
+            }
+        }
+
+
+        free(dadSide);
+        free(momSide);
+    }
+    return inbreedingCount;
 }
 
 
@@ -167,7 +208,8 @@ void deleteGigaTree(struct GigaTree** gigaTree){
         deletePerson(&pers[i]); //free every person
     }
     free((*gigaTree)->people);
-    free((*gigaTree)->mostBirthsRegion);
+    if((*gigaTree)->mostBirthsRegion != NULL)
+        free((*gigaTree)->mostBirthsRegion);
     deleteRegions(&((*gigaTree)->regionsTrie));
     free((*gigaTree));
 
