@@ -19,7 +19,9 @@ void printPeopleOnBirthday(struct GigaTree* gigatree);
 
 
 int main(){
-    csvMenu();
+    //csvMenu();
+    struct GigaTree* gt = readCSV(path);
+    printf("%d", inbreeding(gt));
 }
 
 
@@ -230,7 +232,4 @@ void printPeopleOnBirthday(struct GigaTree* gigatree) {
         printf("Invalid format.\n");
     }
 }
-
-
-
 
