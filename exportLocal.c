@@ -23,14 +23,14 @@
 #define FATHER_TEMPLATE "padre"
 #define MOTHER_TEMPLATE "madre"
 #define NUM_PEOPLE_TEMPLATE "number_people"
-#define NUM_MEN_TEMPLATE "number_men"
-#define NUM_WOMEN_TEMPLATE "number_women"
+#define NUM_MEN_TEMPLATE "rate_men"
+#define NUM_WOMEN_TEMPLATE "rate_women"
 #define NUM_FAMILIES_TEMPLATE "number_families"
-#define INBREEDING_TEMPLATE "inbreeding"
+#define INBREEDING_TEMPLATE "rate_inbreeding"
 
 // There is a max of info length because info is a predifined string
 #define MAX_INFO_LEN 64   // Info is the content of a template
-#define NUMBER_FILES 10
+#define NUMBER_FILES 12
 
 /**
  * Create local site with given data
@@ -40,30 +40,34 @@
 int exportLocalSite(struct GigaTree* gigaTree) {
     // Arrays of sources/dest files (except template page of a person)
     char* sources[NUMBER_FILES] = {
-        "../ressource/img/dice.png",
-        "../ressource/img/logo.png",
-        "../ressource/img/moon.png",
-        "../ressource/img/neuil.jpg",
-        "../ressource/img/sun.png",
-        "../ressource/img/tree.jpg",
-        "../ressource/exports.js",
-        "../ressource/index.js",
-        "../ressource/pages.css",
-        "test.txt"
+        "../resource/img/dice.png",
+        "../resource/img/logo.png",
+        "../resource/img/moon.png",
+        "../resource/img/neuil.png",
+        "../resource/img/woman.png",
+        "../resource/img/man.png",
+        "../resource/img/sun.png",
+        "../resource/img/tree.jpg",
+        "../resource/pages.js",
+        "../resource/infos.js",
+        "../resource/pages.css",
+        "../resource/infos.css"
     };
     char* dests[NUMBER_FILES] = {
         "../export/img/dice.png",
         "../export/img/logo.png",
         "../export/img/moon.png",
-        "../export/img/neuil.jpg",
+        "../export/img/neuil.png",
+        "../export/img/woman.png",
+        "../export/img/man.png",
         "../export/img/sun.png",
         "../export/img/tree.jpg",
         "../export/exports.js",
-        "../export/index.js",
+        "../export/infos.js",
         "../export/pages.css",
-        "output_test.txt"
+        "../export/infos.css"
     };
-    char* sourcePerson = "../index.html";           // Source template file of a person
+    char* sourcePerson = "../template.html";           // Source template file of a person
     char* destPersonBase = "../export/persons/";    // Dest directory of persons
 
     // Create directories
@@ -124,7 +128,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
 int createDir(const char* folder) {
     struct stat st;
     int error;
-    error = mkdir(folder, 0777);
+    error = mkdir(folder);
     if (error) {
         stat(folder, &st);
         if (!S_ISDIR(st.st_mode)) {      // If error is not caused by already existing folder
