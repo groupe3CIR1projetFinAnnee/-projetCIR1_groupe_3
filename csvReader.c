@@ -108,6 +108,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         free(line_copy);
     }
 
+
     fclose(file);
     //printf("%d",people[0]->birthDay); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
     gigaTree->people = people; //Setting up the array into the tree
@@ -124,8 +125,8 @@ bool isYoungest(struct Person* youngest, char* birthday){
     unsigned int* youngestBirthday = getBirthday(youngest);
     unsigned int* personBirthday = splitBirthday(birthday);
     bool result = (youngestBirthday[2] < personBirthday[2]) ||
-            (youngestBirthday[2] == personBirthday[2] && youngestBirthday[1] < personBirthday[1]) ||
-            (youngestBirthday[2] == personBirthday[2] && youngestBirthday[1] == personBirthday[1] && youngestBirthday[0] < personBirthday[0]);
+                  (youngestBirthday[2] == personBirthday[2] && youngestBirthday[1] < personBirthday[1]) ||
+                  (youngestBirthday[2] == personBirthday[2] && youngestBirthday[1] == personBirthday[1] && youngestBirthday[0] < personBirthday[0]);
     free(youngestBirthday);
     free(personBirthday);
     return result;
@@ -138,8 +139,8 @@ bool isOldest(struct Person* oldest, char* birthday){
     unsigned int* oldestBirthday = getBirthday(oldest);
     unsigned int* personBirthday = splitBirthday(birthday);
     bool result = (oldestBirthday[2] > personBirthday[2]) ||
-           (oldestBirthday[2] == personBirthday[2] && oldestBirthday[1] > personBirthday[1]) ||
-           (oldestBirthday[2] == personBirthday[2] && oldestBirthday[1] == personBirthday[1] && oldestBirthday[0] > personBirthday[0]);
+                  (oldestBirthday[2] == personBirthday[2] && oldestBirthday[1] > personBirthday[1]) ||
+                  (oldestBirthday[2] == personBirthday[2] && oldestBirthday[1] == personBirthday[1] && oldestBirthday[0] > personBirthday[0]);
     free(oldestBirthday);
     free(personBirthday);
     return result;
