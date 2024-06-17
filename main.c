@@ -34,7 +34,7 @@ int main(){
     csvMenu();
 
     //deletePerson(&p);
-    deleteGigaTree(&gt);
+    // deleteGigaTree(&gt);
     return 0;
 }
 
@@ -114,7 +114,7 @@ void mainMenu(struct GigaTree* gigatree) {
             printf("1- Show global informations\n");
             printf("2- Export to local site\n");
             printf("3- Query informations\n");
-            printf("4- Exit");
+            printf("4- Exit\n");
             printf("__________________________\n");
             printf("Your choice: ");
             c = getc(stdin);
