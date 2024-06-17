@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include "regions.h"
 #include "gigaTree.h"
 #include "person.h"
@@ -126,6 +127,29 @@ struct Region* getRegionTrie(struct GigaTree* gigaTree) {
 struct Person** getPeople(struct GigaTree* gigaTree){
     return gigaTree->people;
 }
+
+unsigned int numberMale(struct GigaTree* gigaTree){
+    unsigned int count = 0;
+    unsigned int numberPerson = numberPersons(gigaTree);
+    for(unsigned int index = 0; index < numberPerson; index++){
+        struct Person* person = getPersonByIndex(gigaTree,index);
+        if(getSex(person) == 1) //1 is for male
+            count++;
+    }
+    return count;
+}
+
+unsigned int numberFemale(struct GigaTree* gigaTree){
+    unsigned int count = 0;
+    unsigned int numberPerson = numberPersons(gigaTree);
+    for(unsigned int index = 0; index < numberPerson; index++){
+        struct Person* person = getPersonByIndex(gigaTree,index);
+        if(getSex(person) == 0) //0 is for female
+            count++;
+    }
+    return count;
+}
+
 
 /**
  * Delete the given GigaTree
