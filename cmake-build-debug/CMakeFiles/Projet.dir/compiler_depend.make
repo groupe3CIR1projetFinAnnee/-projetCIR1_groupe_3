@@ -251,6 +251,10 @@ CMakeFiles/Projet.dir/main.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Pr
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
@@ -346,6 +350,7 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -377,7 +382,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
   /usr/include/string.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h
+  /usr/include/strings.h \
+  /usr/include/ctype.h
 
 
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.c:
@@ -419,6 +425,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/ctype.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 

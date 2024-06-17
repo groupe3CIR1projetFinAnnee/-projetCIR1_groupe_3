@@ -4,6 +4,7 @@
 #define MAX_REGION_LENGTH
 #include <stdbool.h>
 #include <stdio.h>
+#include "gigaTree.h"
 
 struct Region{
     struct Region* regions[LETTER_IN_ALPHABET];
@@ -17,8 +18,8 @@ struct Region* createEmptyRegions();
 struct Region* createRegions();
 
 // Access
-void insertRegion(struct Region** regions, char* regionName);
-unsigned int getBirths(struct Region* regions, char* regionName);
+void insertRegion(struct Region** regions, char* regionName); //WARNING : NO CAPS ALLOWED !!
+unsigned int getBirths(struct GigaTree* gigaTree, char* regionName); //Recupere l'anniversaire du région a partir du gigaTree
 struct Region* getChild(struct Region* regions, char letter);
 bool isRegionEmpty(struct Region* regions);
 struct Region* findRegion(struct Region* region, char* regionName);

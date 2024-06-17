@@ -11,6 +11,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     FILE* file = NULL;
     char line[256];
     struct GigaTree* gigaTree = createEmptyGigaTree();
+    gigaTree->regionsTrie = createRegions();
 
     file = fopen(filePath, "r");
     if(file == NULL){
@@ -23,7 +24,6 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
     printf("Loading the file and setting up the information...\nThis operation can take a while...\n");
 
     //Setting up everything
-    int character;
     fgets(line, sizeof(line), file); //get the first element, being the number of person in the list
     int numberOfPerson = atoi(line) + 1; //we add the unknown person to the start of the array
     struct Person** people = malloc(sizeof(struct Person*) * numberOfPerson); //Create the struct person array. The size of this array is the number of ppl * the size of a pointer to an array
@@ -38,7 +38,10 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         struct Person* padre,madre;
 
         char* line_copy = strdup(line);
+        line_copy = strtok(line_copy,"\r");
         char* token = strtok(line_copy, ","); //strtok is going to read the line for us, stoping at ,. This modify the line, so we have to copy it before
+        char* newToken;
+
 
         unsigned int comp = 1; //Comp to know were we are
         bool younger;
@@ -70,10 +73,14 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     strcpy(birthday,token);
                     break;
                 case 7:
-                    region = malloc((strlen(region)+1) * sizeof(char));
-                    strtok(token,"\n");
-                    strcpy(region,token);
-                    //insertRegionTrie(gigaTree,token);
+                    newToken = strtok(strdup(line), ",");
+                    for(int w = 1; w < 7; w++)
+                        newToken = strtok(NULL,",");
+                    newToken = strtok(newToken,"\n");
+                    region = malloc((strlen(token)+1) * sizeof(char));
+                    strtok(token, "\n");
+                    strcpy(region, token);
+                    insertRegionTrie(gigaTree,newToken);
                     break;
             }
 
@@ -164,5 +171,8 @@ void addParents(struct GigaTree* gigaTree){ //the final boss
 void insertRegionTrie(struct GigaTree* gigaTree, char* regionName){
     insertRegion(&(gigaTree->regionsTrie),regionName);
     struct Region* region = findRegion(gigaTree->regionsTrie,regionName);
-    region->births++; //if we called this function, its because someone is born here
+    if(!isRegionEmpty(region)) {
+        region->births++; //if we called this function, its because someone is born here
+    }
 }
+
