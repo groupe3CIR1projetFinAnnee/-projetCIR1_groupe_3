@@ -21,6 +21,7 @@
 #define BIRTH_DAY_TEMPLATE "birth_day"
 #define BIRTH_MONTH_TEMPLATE "birth_month"
 #define BIRTH_YEAR_TEMPLATE "birth_year"
+#define GENDER_TEMPLATE "gender"
 #define FATHER_TEMPLATE "padre"
 #define MOTHER_TEMPLATE "madre"
 #define NUM_PEOPLE_TEMPLATE "number_people"
@@ -28,6 +29,10 @@
 #define NUM_WOMEN_TEMPLATE "rate_women"
 #define NUM_FAMILIES_TEMPLATE "number_families"
 #define INBREEDING_TEMPLATE "rate_inbreeding"
+
+#define MAN_STR "man"
+#define WOMAN_STR "woman"
+#define UNKNOWN_STR "unknown"
 
 // There is a max of info length because info is a predifined string
 #define MAX_INFO_LEN 64   // Info is the content of a template
@@ -44,8 +49,8 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../resource/img/dice.png",
         "../resource/img/logo.png",
         "../resource/img/moon.png",
-        "../resource/img/neuil.png",
-        "../resource/img/woman.jpg",
+        "../resource/img/unknown.png",
+        "../resource/img/woman.png",
         "../resource/img/man.png",
         "../resource/img/sun.png",
         "../resource/img/tree.jpg",
@@ -59,8 +64,8 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../export/img/dice.png",
         "../export/img/logo.png",
         "../export/img/moon.png",
-        "../export/img/neuil.png",
-        "../export/img/woman.jpg",
+        "../export/img/unknown.png",
+        "../export/img/woman.png",
         "../export/img/man.png",
         "../export/img/sun.png",
         "../export/img/tree.jpg",
@@ -408,18 +413,12 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (person == NULL) {
             return "ERREUR";
         }
-        if (getID(person) == 0) {       // Default person
-            return "unknown";
-        }
         return getValueOf(parsedInfo+1, numberInfos-1, getPadre(person), gigatree, mustDelete);
     }
 
     if (strcmp(parsedInfo[0], MOTHER_TEMPLATE) == 0) {
         if (person == NULL) {
             return "ERREUR";
-        }
-        if (getID(person) == 0) {       // Default person
-            return "unknown";
         }
         return getValueOf(parsedInfo+1, numberInfos-1, getMadre(person), gigatree, mustDelete);
     }
@@ -429,7 +428,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
-            return "unknown";
+            return "inconnu";
         }
         return getLastName(person);
     }
@@ -439,7 +438,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
-            return "unknown";
+            return "inconnu";
         }
         return getFirstName(person);
     }
@@ -449,7 +448,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             return "ERREUR";
         }
         if (getID(person) == 0) {       // Default person
-            return "unknown";
+            return "inconnue";
         }
         return getRegion(person);
     }
@@ -485,6 +484,21 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         }
         unsigned int birthYear = getBirthday(person)[2];
         return uintToString(birthYear, 16, mustDelete);     // A birth year is composed of 1-6 numbers
+    }
+
+    if (strcmp(parsedInfo[0], GENDER_TEMPLATE) == 0) {
+        if (person == NULL) {
+            return "ERREUR";
+        }
+        int gender = getSex(person);
+        switch (gender) {
+            case MALE:
+                return MAN_STR;
+            case FEMALE:
+                return WOMAN_STR;
+            default:
+                return UNKNOWN_STR;
+        }
     }
 
     if (strcmp(parsedInfo[0], NUM_PEOPLE_TEMPLATE) == 0) {
