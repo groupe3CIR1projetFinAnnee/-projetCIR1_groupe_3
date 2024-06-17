@@ -110,8 +110,9 @@ void mainMenu(struct GigaTree* gigatree) {
             case '1':
                 printf("Global informations on the tree:\n");
                 printf("__________________________\n");
-                printf("%d people\n", numberPersons(gigatree));
+                printf("%d people (base people, unknown, count here)\n", numberPersons(gigatree));
                 printf("%d male, %d female & %d unknown\n", numberMale(gigatree), numberFemale(gigatree), numberPersons(gigatree)-numberFemale(gigatree)-numberMale(gigatree));
+                printf("%d inbreed people. Wonderful, isn't it ?", inbreeding(gigatree));
                 // TODO
                 break;
 

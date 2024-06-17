@@ -161,8 +161,10 @@ unsigned int inbreeding(struct GigaTree* gigaTree){
     for(int i = 1; i < numberPeople; i++){
         struct Person** dadSide = malloc(sizeof(struct Person*) * ancestorNumber);
         struct Person** momSide = malloc(sizeof(struct Person*) * ancestorNumber);
-        if(dadSide == NULL){
-            printf("Malloc error : dad side");
+        if (dadSide == NULL || momSide == NULL) {
+            printf("Malloc error : %s side", dadSide == NULL ? "dad" : "mom");
+            free(dadSide);
+            free(momSide);
             return 0;
         }
 
