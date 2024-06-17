@@ -81,6 +81,13 @@ struct Person* getPersonByIndex(struct GigaTree* gigaTree, unsigned int index);
 unsigned int numberPersons(struct GigaTree* gigaTree);
 
 /**
+ * Get GigaTree regions trie
+ * @param gigaTree A GigaTree
+ * @return retions trie of the GigaTrie
+ */
+struct Region* getRegionTrie(struct GigaTree* gigaTree);
+
+/**
  * Get the array containing people within the given GigaTree.
  * /!\ The array is not copied. Any changes to this array should be done knowing the way GigaTree works.
  * @param gigaTree The GigaTree containing requested people.
@@ -92,6 +99,12 @@ struct Person** getPeople(struct GigaTree* gigaTree);
  * Delete the given GigaTree
  * @param gigaTree The GigaTree to delete
  */
+
+unsigned int numberMale(struct GigaTree* gigaTree);
+unsigned int numberFemale(struct GigaTree* gigaTree);
+
+unsigned int inbreeding(struct GigaTree* gigaTree);
+
 void deleteGigaTree(struct GigaTree** gigaTree);
 
 

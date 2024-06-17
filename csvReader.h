@@ -13,6 +13,4 @@ void addBirthday(char* birthday, struct GigaTree* gigaTree); //Will add the birt
 
 void addParents(struct GigaTree* gigaTree); //Will link every parents and their child, using the ID.
 
-
-
 #endif //PROJET_CSVREADER_H

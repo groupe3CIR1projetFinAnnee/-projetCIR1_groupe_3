@@ -54,4 +54,5 @@ CMakeFiles/Projet.dir/csvReader.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/strings.h \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h
+ /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.h \
+ /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.h

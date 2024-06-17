@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-
+#include <string.h>
+#include "regions.h"
 #include "gigaTree.h"
 #include "person.h"
 
@@ -31,6 +32,7 @@ struct GigaTree* createEmptyGigaTree(){
     //We wont setup mostBirthRegions, since it must be done with a malloc. We will leave it empty here
     gigaTree->mostBirths = 0;
     gigaTree->numberPersons = 0;
+    gigaTree->regionsTrie = createRegions();
 
     return gigaTree;
 }
@@ -85,7 +87,7 @@ char* mostBirthsRegion(struct GigaTree* gigaTree){
  * @return Returns the number of people born the given day.
  */
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day){
-    return gigaTree->birthday[month][day];
+    return gigaTree->birthday[month-1][day-1];
 }
 
 /**
@@ -108,6 +110,15 @@ unsigned int numberPersons(struct GigaTree* gigaTree){
 }
 
 /**
+ * Get GigaTree regions trie
+ * @param gigaTree A GigaTree
+ * @return retions trie of the GigaTrie
+ */
+struct Region* getRegionTrie(struct GigaTree* gigaTree) {
+    return gigaTree->regionsTrie;
+}
+
+/**
  * Get the array containing people within the given GigaTree.
  * /!\ The array is not copied. Any changes to this array should be done knowing the way GigaTree works.
  * @param gigaTree The GigaTree containing requested people.
@@ -115,6 +126,33 @@ unsigned int numberPersons(struct GigaTree* gigaTree){
  */
 struct Person** getPeople(struct GigaTree* gigaTree){
     return gigaTree->people;
+}
+
+unsigned int numberMale(struct GigaTree* gigaTree){
+    unsigned int count = 0;
+    unsigned int numberPerson = numberPersons(gigaTree);
+    for(unsigned int index = 0; index < numberPerson; index++){
+        struct Person* person = getPersonByIndex(gigaTree,index);
+        if(getSex(person) == 1) //1 is for male
+            count++;
+    }
+    return count;
+}
+
+unsigned int numberFemale(struct GigaTree* gigaTree){
+    unsigned int count = 0;
+    unsigned int numberPerson = numberPersons(gigaTree);
+    for(unsigned int index = 0; index < numberPerson; index++){
+        struct Person* person = getPersonByIndex(gigaTree,index);
+        if(getSex(person) == 0) //0 is for female
+            count++;
+    }
+    return count;
+}
+
+
+unsigned int inbreeding(struct GigaTree* gigaTree){
+    return 0;
 }
 
 /**
@@ -129,9 +167,8 @@ void deleteGigaTree(struct GigaTree** gigaTree){
     }
     free((*gigaTree)->people);
     free((*gigaTree)->mostBirthsRegion);
+    deleteRegions(&((*gigaTree)->regionsTrie));
     free((*gigaTree));
-    //TODO include deleting the trie (regions)
-
 
     *gigaTree = NULL;
 }

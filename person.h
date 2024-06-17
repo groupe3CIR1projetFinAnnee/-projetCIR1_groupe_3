@@ -17,11 +17,12 @@ struct Person{
     unsigned int padreID;
     unsigned int madreID;
     char* region;
-    bool sex; //0 if female and 1 if male. Will be initied when another function will calculate the parents
+    int sex; //0 if female and 1 if male. Will be initied when another function will calculate the parents
 };
 
 #define MALE 1
 #define FEMALE 0
+#define UNKNOWN (-1)
 
 // Creation & setup
 // TODO: delete useless commented code
@@ -67,9 +68,9 @@ char* getLastName(struct Person* person);
 
 // TODO: we can simplify return type from unsigned int* to unsigned int[3]
 /**
- * Get the birth date of the given person
+ * Get the birth date of the given person.
  * @param person A person
- * @return Birth date of the given person in an array. Format: [DD,MM,YYYY]
+ * @return Birth date of the given person in an array. Miust be freed. Format: [DD,MM,YYYY]
  */
 unsigned int* getBirthday(struct Person* person);
 
@@ -131,7 +132,7 @@ char* getRegion(struct Person* person);
  * @param person A person
  * @return gender of the given person
  */
-bool getSex(struct Person* person);
+int getSex(struct Person* person);
 
 // TODO change bool to int, or use an enum
 /**
@@ -139,7 +140,7 @@ bool getSex(struct Person* person);
  * @param person A person
  * @param sex New gender of the person. Use MALE and FEMALE
  */
-void setSex(struct Person* person, bool sex);
+void setSex(struct Person* person, int sex);
 
 
 // Deletion
