@@ -155,6 +155,7 @@ unsigned int inbreeding(struct GigaTree* gigaTree){
     return 0;
 }
 
+
 /**
  * Delete the given GigaTree
  * @param gigaTree The GigaTree to delete
