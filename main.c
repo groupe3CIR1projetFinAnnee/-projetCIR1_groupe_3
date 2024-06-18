@@ -14,10 +14,10 @@ char* path = "../db_temp/mini_db.csv";
 void csvMenu();
 void csvNameMenu();
 void askCalculateFamilies(struct GigaTree* gigaTree);
-void mainMenu(struct GigaTree* gigatree);
-void queryMenu(struct GigaTree* gigatree);
-void printPeopleRegion(struct GigaTree* gigatree);
-void printPeopleOnBirthday(struct GigaTree* gigatree);
+void mainMenu(struct GigaTree* gigaTree);
+void queryMenu(struct GigaTree* gigaTree);
+void printPeopleRegion(struct GigaTree* gigaTree);
+void printPeopleOnBirthday(struct GigaTree* gigaTree);
 
 
 int main(){
@@ -84,17 +84,17 @@ void csvNameMenu() {
 
     clock_t t;
     t = clock();
-    struct GigaTree* gigatree = readCSV(csvFilename);
+    struct GigaTree* gigaTree = readCSV(csvFilename);
     t = clock() - t;
     double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
 
 
-    if (gigatree == NULL) {
+    if (gigaTree == NULL) {
         printf("Invalid file name.\n");
     }
     else {
         printf("File loaded in %.2f seconds!\n",time_taken);
-        askCalculateFamilies(gigatree);
+        askCalculateFamilies(gigaTree);
     }
 }
 
@@ -121,7 +121,7 @@ void askCalculateFamilies(struct GigaTree* gigaTree) {
     mainMenu(gigaTree);
 }
 
-void mainMenu(struct GigaTree* gigatree) {
+void mainMenu(struct GigaTree* gigaTree) {
     bool exit = false;
     char skip[200];     // Buffer to skip some characters
 
@@ -150,14 +150,14 @@ void mainMenu(struct GigaTree* gigatree) {
             case '1':
                 printf("Global informations on the tree:\n");
                 printf("__________________________\n");
-                printf("%d people (base people, unknown, count here)\n", numberPersons(gigatree));
-                printf("%d male, %d female & %d unknown\n", numberMale(gigatree), numberFemale(gigatree), numberPersons(gigatree)-numberFemale(gigatree)-numberMale(gigatree));
-                printf("%d dinstinct families\n", numberFamilies(gigatree)-1);
-                printf("%d inbreed people. Wonderful, isn't it ?", inbreeding(gigatree));
+                printf("%d people (base people, unknown, count here)\n", numberPersons(gigaTree));
+                printf("%d male, %d female & %d unknown\n", numberMale(gigaTree), numberFemale(gigaTree), numberPersons(gigaTree)-numberFemale(gigaTree)-numberMale(gigaTree));
+                printf("%d dinstinct families\n", numberFamilies(gigaTree)-1);
+                printf("%d inbreed people. Wonderful, isn't it ?", inbreeding(gigaTree));
                 break;
 
             case '2':
-                error = exportLocalSite(gigatree);
+                error = exportLocalSite(gigaTree);
                 if (error == 0) {
                     printf("Local site exported successfully!\n");
                 }
@@ -167,7 +167,7 @@ void mainMenu(struct GigaTree* gigatree) {
                 break;
 
             case '3':
-                queryMenu(gigatree);
+                queryMenu(gigaTree);
                 break;
 
             default:
@@ -175,10 +175,10 @@ void mainMenu(struct GigaTree* gigatree) {
                 break;
         }
     }
-    deleteGigaTree(&gigatree);
+    deleteGigaTree(&gigaTree);
 }
 
-void queryMenu(struct GigaTree* gigatree) {
+void queryMenu(struct GigaTree* gigaTree) {
     bool exit = false;
     char skip[200];     // Buffer to skip some characters
 
@@ -208,31 +208,31 @@ void queryMenu(struct GigaTree* gigatree) {
         struct Person* person;
         switch (c) {
             case '1':
-                person = getOldest(gigatree);
+                person = getOldest(gigaTree);
                 printf("The first person born in the tree is %s %s\n", getFirstName(person), getLastName(person));
                 break;
 
             case '2':
-                person = getYoungest(gigatree);
+                person = getYoungest(gigaTree);
                 printf("The last person born in the tree is %s %s\n", getFirstName(person), getLastName(person));
                 break;
 
             case '3':
-                printPeopleRegion(gigatree);
+                printPeopleRegion(gigaTree);
                 break;
 
             case '4':
-                if (gigatree->mostBirthsRegion == NULL) {
+                if (mostBirthsRegion(gigaTree) == NULL) {
                     printf("Error happened while fetching for region containing most births.\n");
                 }
                 else {
                     printf("The following region has the most births:\n");
-                    printf("%s\n", mostBirthsRegion(gigatree));
+                    printf("%s\n", mostBirthsRegion(gigaTree));
                 }
                 break;
 
             case '5':
-                printPeopleOnBirthday(gigatree);
+                printPeopleOnBirthday(gigaTree);
                 break;
 
             default:
@@ -243,15 +243,15 @@ void queryMenu(struct GigaTree* gigatree) {
 }
 
 // Print the number of people born in a given region
-void printPeopleRegion(struct GigaTree* gigatree) {
+void printPeopleRegion(struct GigaTree* gigaTree) {
     char regionName[MAX_REGION_LENGTH];
     printf("\nGet number of people born in a region\n");
     printf("__________________________\n");
     printf("Enter region name: ");
     fgets(regionName, MAX_REGION_LENGTH, stdin);
     regionName[strlen(regionName)-1] = '\0';    // Delete end-line character
-    if (regionExists(getRegionTrie(gigatree), regionName)) {
-        printf("%d people were born in %s.\n", getBirths(getRegionTrie(gigatree), regionName), regionName);
+    if (regionExists(getRegionTrie(gigaTree), regionName)) {
+        printf("%d people were born in %s.\n", getBirths(getRegionTrie(gigaTree), regionName), regionName);
     }
     else {
         printf("Unknown region.\n");
@@ -259,7 +259,7 @@ void printPeopleRegion(struct GigaTree* gigatree) {
 }
 
 // Print the number of people born on the given day
-void printPeopleOnBirthday(struct GigaTree* gigatree) {
+void printPeopleOnBirthday(struct GigaTree* gigaTree) {
     char buffer[200];
     printf("\nGet number of people born on a given day\n");
     printf("__________________________\n");
@@ -274,7 +274,7 @@ void printPeopleOnBirthday(struct GigaTree* gigatree) {
         int day = atoi(str_day);
         int month = atoi(str_month);
         if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
-            printf("%d people were born on %s/%s\n", births(gigatree, month, day), str_day, str_month);
+            printf("%d people were born on %s/%s\n", births(gigaTree, month, day), str_day, str_month);
         }
         else {
             printf("Invalid format.\n");
