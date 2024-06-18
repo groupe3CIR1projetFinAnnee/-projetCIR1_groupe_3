@@ -119,7 +119,7 @@ function main() {
     let member = document.getElementById('member');
     let papa = document.getElementById('papa')
     let gmama=document.getElementById('gmama')
-    let gmamabis = getElementById('gmamabis')
+    let gmamabis = document.getElementById('gmamabis')
 
     let canvas1 = createCanvas();
     let context1 = canvas.getContext('2d');
