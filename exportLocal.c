@@ -29,6 +29,7 @@
 #define NUM_WOMEN_TEMPLATE "rate_women"
 #define NUM_FAMILIES_TEMPLATE "number_families"
 #define INBREEDING_TEMPLATE "rate_inbreeding"
+#define ID_ARRAY_TEMPLATE "array_ids"
 
 #define MAN_STR "man"
 #define WOMAN_STR "woman"
@@ -534,6 +535,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         unsigned int numPeople = numberPersons(gigatree);
         return uintToString(numPeople, 200, mustDelete);        // Number of people is probably lower than 200 characters
     }
+
     if (strcmp(parsedInfo[0], NUM_MEN_TEMPLATE) == 0) {
         if (gigatree == NULL) {
             return "ERREUR";
@@ -571,6 +573,61 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         }
         unsigned int inbreedingRate = (unsigned int) ((double)inbreeding(gigatree) / numberPersons(gigatree));
         return uintToString(inbreedingRate, 200, mustDelete);   // Inbreeding rate is probably lower than 200 characters
+    }
+
+    if (strcmp(parsedInfo[0], ID_ARRAY_TEMPLATE) == 0) {
+        if (gigatree == NULL) {
+            return "ERREUR";
+        }
+        // return JS formated array of every person id
+
+        // Find how much memory is needed
+        unsigned int numPeople = numberPersons(gigatree);
+        if (numPeople == 0) {
+            return "[]";
+        }
+        unsigned int jsArray_len = 1;
+        unsigned int id;
+        bool delID;
+        char* id_str;
+        for (unsigned int i=0; i<numPeople; i++) {
+            id = getID(getPersonByIndex(gigatree, i));
+            delID = false;
+            id_str = uintToString(id, 200, &delID);
+            jsArray_len += strlen(id_str) +1;
+            if (delID) {
+                free(id_str);
+            }
+        }
+
+        // Allocate memory
+        char* jsArray = malloc((jsArray_len+1)*sizeof(char));
+        if (jsArray == NULL) {
+#ifdef DEBUG
+            printf("Allocation error.\n");
+#endif
+            return "ERREUR";
+        }
+
+        // Write JS array
+        unsigned int jsArray_index = 1;
+        jsArray[0] = '[';
+        for (unsigned int i=0; i<numPeople; i++) {
+            id = getID(getPersonByIndex(gigatree, i));
+            delID = false;
+            id_str = uintToString(id, 200, &delID);
+            strcpy(jsArray +jsArray_index, id_str);
+            jsArray_index += strlen(id_str) +1;
+
+            if (delID) {
+                free(id_str);
+            }
+        }
+        jsArray[jsArray_index-1] = ']';
+        jsArray[jsArray_index] = '\0';
+
+        *mustDelete = true;
+        return jsArray;
     }
 
     return "ERREUR";

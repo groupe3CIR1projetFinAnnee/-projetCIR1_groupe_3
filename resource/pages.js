@@ -1,4 +1,5 @@
 const NUMBER_PEOPLE = <template>number_people</template>
+const ID_ARRAY = <template>array_ids</template>
 
 function themeChange(currentTheme){ //0 par défaut, 0 -> theme clair et 1 -> theme sombre
     let bdheader = document.getElementById("header");
