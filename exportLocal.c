@@ -100,8 +100,8 @@ int exportLocalSite(struct GigaTree* gigaTree) {
 
     // Prepare variables
     struct Person* person;
-    // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
-    unsigned int destPersonMaxSize = strlen(destPersonBase) + 64;
+    // Supposing id is at most 200 characters : (if id has more characters, there probably is a problem)
+    unsigned int destPersonMaxSize = strlen(destPersonBase) + 206;
     char* destPerson = malloc(destPersonMaxSize*sizeof(char));
     if (destPerson == NULL) {
 #ifdef DEBUG
@@ -109,14 +109,22 @@ int exportLocalSite(struct GigaTree* gigaTree) {
 #endif
         return 1;
     }
+    unsigned int id;
+    char* id_str;
+    bool mustDelete;
 
     // Copy person files
     for (unsigned int i=0; i<numberPersons(gigaTree); i++) {
         person = getPersonByIndex(gigaTree, i);
+        unsigned int id = getID(person);
+        mustDelete = false;
+        id_str = uintToString(id, 200, &mustDelete);
 
         // Write dest filename to destPerson
-        snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
-
+        snprintf(destPerson, destPersonMaxSize, "%s%s.html", destPersonBase, id_str);
+        if (mustDelete) {
+            free(id_str);
+        }
         error = completeFile(sourcePerson, destPerson, gigaTree, person);
         if (error) {
             free(destPerson);
@@ -173,7 +181,7 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
 #endif
         return 1;
     }
-
+    
     FILE* output = fopen(outputFilename, "w");     // Open output
     if (output == NULL) {
 #ifdef DEBUG
@@ -196,12 +204,16 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
         // Skip input file until end of template. Template content is stored into info
         info = readUntilEndTemplate(input);
         if (info == NULL) {     // Error: end of template unreachable
+            fclose(input);
+            fclose(output);
             return 1;
         }
         // Parse info into multiple strings (e.g. "padre:lastname" becomes {"padre", "lastname"})
         parsedInfos = parseInfo(info, ':', &numberInfos);
         if (parsedInfos == NULL) {      // Parse error
             free(info);
+            fclose(input);
+            fclose(output);
             return 1;
         }
         // Get final value asked by the template
@@ -209,6 +221,8 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
         if (replacedInfo == NULL) {     // Error in given parameters
             free(info);
             deleteArrayStrings(&parsedInfos, numberInfos);
+            fclose(input);
+            fclose(output);
             return 1;
         }
 

@@ -309,7 +309,7 @@ void setMostBirths(struct GigaTree* gigaTree, unsigned int births){
  */
 unsigned int calculateNumberFamilies(struct GigaTree* gigaTree) {
     unsigned int numPersons = numberPersons(gigaTree) -1;
-    struct Person** oldests = malloc((numPersons-1) * sizeof(struct Person*));
+    struct Person** oldests = malloc((numPersons) * sizeof(struct Person*));
     if (oldests == NULL) {
 #ifdef DEBUG
         printf("Allocation error.\n");
@@ -318,7 +318,7 @@ unsigned int calculateNumberFamilies(struct GigaTree* gigaTree) {
     }
     bool unique;
     unsigned int numFamilies = 0;
-    for (unsigned int i=1; i<numPersons; i++) { // For each person (skip empty person)
+    for (unsigned int i=0; i<numPersons; i++) { // For each person (skip empty person)
         oldests[i] = getOldestParent(getPersonByIndex(gigaTree, i));
 
         // Check if oldest is unique in oldests array
