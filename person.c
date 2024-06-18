@@ -81,7 +81,7 @@ char* getLastName(struct Person* person){
 
 
 /**
- * Get the birth date of the given person
+ * Get the birth date of the given person. WARNING : FREE AFTER USE
  * @param person A person
  * @return Birth date of the given person in an array. Format: [DD,MM,YYYY]
  */
