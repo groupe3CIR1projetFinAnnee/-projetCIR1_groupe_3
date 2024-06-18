@@ -58,14 +58,20 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     break;
                 case 4:
                     lastname = malloc((strlen(token)+1) * sizeof(char));
+                    if(lastname == NULL)
+                        return NULL;
                     strcpy(lastname,token); //We copy the name !
                     break;
                 case 5:
                     firstname = malloc((strlen(firstname)+1) * sizeof(char));
+                    if(firstname == NULL)
+                        return NULL;
                     strcpy(firstname,token);
                     break;
                 case 6 :
                     birthday = malloc((strlen(birthday)+1) * sizeof(char));
+                    if(birthday == NULL)
+                        return NULL;
                     younger = isYoungest(gigaTree->youngest,token);
                     older = isOldest(gigaTree->oldest,token);
                     addBirthday(token,gigaTree); //Launch the function that add the birthday to the gigaTree array
@@ -77,6 +83,8 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                         newToken = strtok(NULL,",");
                     newToken = strtok(newToken,"\n");
                     region = malloc((strlen(newToken)+1) * sizeof(char));
+                    if(region == NULL)
+                        return NULL;
                     strtok(token, "\n");
                     strcpy(region, newToken);
 
@@ -88,6 +96,8 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                             free(gigaTree->mostBirthsRegion);
                         }
                         gigaTree->mostBirthsRegion = malloc((strlen(newToken)+1)*sizeof(char));   // TODO check if NULL
+                        if(gigaTree->mostBirthsRegion == NULL)
+                            return NULL;
                         strcpy(gigaTree->mostBirthsRegion, newToken);
                     }
                     break;
