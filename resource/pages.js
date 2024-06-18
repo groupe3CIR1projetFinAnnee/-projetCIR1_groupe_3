@@ -122,13 +122,13 @@ function main() {
     let gmamabis = document.getElementById('gmamabis')
 
     let canvas1 = createCanvas();
-    let context1 = canvas.getContext('2d');
+    let context1 = canvas1.getContext('2d');
     let canvas2 = createCanvas();
-    let context2 = canvas.getContext('2d');
+    let context2 = canvas2.getContext('2d');
     let canvas3 = createCanvas();
-    let context3 = canvas.getContext('2d');
+    let context3 = canvas3.getContext('2d');
     let canvas4 = createCanvas();
-    let context4 = canvas.getContext('2d');
+    let context4 = canvas4.getContext('2d');
     
     positionArrow(mama, member, context1, canvas1);
     window.addEventListener('resize', () => positionArrow(mama, member, context1, canvas1));
@@ -138,6 +138,7 @@ function main() {
     window.addEventListener('resize', () => positionArrow(gmama, mama, context3, canvas3));
     positionArrow(gmamabis, papa, context4, canvas4);
     window.addEventListener('resize', () => positionArrow(gmamabis, papa, context4, canvas4));
+    
 }
 
 main();
