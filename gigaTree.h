@@ -1,6 +1,6 @@
 #ifndef PROJET_GIGATREE_H
 #define PROJET_GIGATREE_H
-
+#include <stdbool.h>
 
 struct GigaTree{
     struct Person** people;     //Array of struct Person of every persons in the csv file. Empty person is at position 0.
@@ -69,11 +69,20 @@ void setOldest(struct GigaTree* gigaTree,struct Person* oldest);
 char* mostBirthsRegion(struct GigaTree* gigaTree);
 
 /**
- * Set the region for you. will NOT make the malloc
+ * COpy the region name into the gigatree region slot. Will make the malloc and check if valid. If not, will return false;
+ * @param gigaTree The GigaTree to get from
+ * @param region Name of the region
+ */
+bool copyMostBirthsRegion(struct GigaTree* gigaTree, char* region);
+
+
+/**
+ * Set the region for you. will NOT make the malloc. Also, do not copy the str. Use copyMostBirthsRegion for this
  * @param gigaTree The GigaTree to get from
  * @param region Name of the region
  */
 void setMostBirthsRegion(struct GigaTree* gigaTree, char* region);
+
 
 /**
  * Get the number of people having a specific birthday. O(1)
@@ -83,6 +92,14 @@ void setMostBirthsRegion(struct GigaTree* gigaTree, char* region);
  * @return Returns the number of people born the given day.
  */
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day);
+
+/**
+ * Add one to the give birthday
+ * @param gigaTree The GigaTree to add in
+ * @param month Birthday month
+ * @param day Birthday day
+ */
+void addBirths(struct GigaTree* gigaTree, unsigned int month, unsigned int day);
 
 /**
  * Set the most number of births in a region. Can be used to initiate the tree

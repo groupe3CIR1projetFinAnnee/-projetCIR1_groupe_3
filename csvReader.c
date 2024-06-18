@@ -87,16 +87,13 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                         return NULL;
                     strtok(token, "\n");
                     strcpy(region, newToken);
-
                     addBirth(&(gigaTree->regionsTrie), newToken);
                     regionBirths = getBirths(getRegionTrie(gigaTree), newToken);
                     if (regionBirths > mostBirths(gigaTree)) {
                         setMostBirths(gigaTree,regionBirths); //will update the number of birth of the max region
-                        setMostBirthsRegion(gigaTree,malloc((strlen(newToken)+1)*sizeof(char)));
-                        if (mostBirthsRegion(gigaTree) == NULL) {
+                        bool successMalloc = copyMostBirthsRegion(gigaTree,newToken); //Will copy the region into the tree
+                        if(!successMalloc)
                             return NULL;
-                        }
-                        strcpy(gigaTree->mostBirthsRegion, newToken);
                     }
                     break;
             }
@@ -128,7 +125,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
 
 bool isYoungest(struct Person* youngest, char* birthday){
-    if(youngest == NULL || youngest->birthDay == 0){ //The first time, youngest will be null & can be the null person
+    if(youngest == NULL || getID(youngest) == 0){ //The first time, youngest will be null & can be the null person
         return true;
     }
     unsigned int* youngestBirthday = getBirthday(youngest);
@@ -142,7 +139,7 @@ bool isYoungest(struct Person* youngest, char* birthday){
 }
 
 bool isOldest(struct Person* oldest, char* birthday){
-    if(oldest == NULL || oldest->birthDay == 0){ //the first time, oldest will be null & can be the null person
+    if(oldest == NULL || getID(oldest) == 0){ //the first time, oldest will be null & can be the null person
         return true;
     }
     unsigned int* oldestBirthday = getBirthday(oldest);
@@ -159,7 +156,7 @@ bool isOldest(struct Person* oldest, char* birthday){
 void addBirthday(char* birthday, struct GigaTree* gigaTree){
     unsigned int* birth = splitBirthday(birthday);
     if(birth[0] != 0) {
-        (gigaTree->birthday[birth[1] - 1][birth[0] - 1])++; //we add one to this birthday, in the bithday array. Dont forget that the array is going from 0 to 11 and 0 to 30
+        addBirths(gigaTree,birth[1],birth[0]); //we add one to this birthday, in the bithday array. Dont forget that the array is going from 0 to 11 and 0 to 30
     }
     free(birth);
 }
