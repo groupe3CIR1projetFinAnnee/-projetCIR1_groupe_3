@@ -1,4 +1,4 @@
-const NUMBER_PEOPLE = <template>number_people</template>
+const ID_ARRAY = <template>array_ids</template>
 
 function themeChange(currentTheme){ //0 par défaut, 0 -> theme clair et 1 -> theme sombre
     let bdheader = document.getElementById("header")
@@ -55,6 +55,6 @@ slider.addEventListener('click', function() {
 
 function goToRandomPage() {
     // Get random person id
-    let page_id = Math.floor(Math.random() * (NUMBER_PEOPLE));
-    window.location.href = page_id + ".html";
+    let page_number = Math.floor(Math.random() * (ID_ARRAY.length));
+    window.location.href = "persons/" + ID_ARRAY[page_number] + ".html";
 }

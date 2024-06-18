@@ -618,14 +618,13 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             id_str = uintToString(id, 200, &delID);
             strcpy(jsArray +jsArray_index, id_str);
             jsArray_index += strlen(id_str) +1;
-
+            jsArray[jsArray_index-1] = ',';
             if (delID) {
                 free(id_str);
             }
         }
         jsArray[jsArray_index-1] = ']';
         jsArray[jsArray_index] = '\0';
-
         *mustDelete = true;
         return jsArray;
     }
