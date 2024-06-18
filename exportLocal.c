@@ -547,7 +547,7 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
             return "ERREUR";
         }
 
-        unsigned int numFamilies = numberFamilies(gigatree);
+        unsigned int numFamilies = numberFamilies(gigatree)-1;
         return uintToString(numFamilies, 200, mustDelete);  // Number of families is probably lower than 200 characters
     }
 
