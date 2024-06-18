@@ -131,6 +131,16 @@ unsigned int numberPersons(struct GigaTree* gigaTree){
 }
 
 /**
+ * Set the total number of person within the given GigaTree, including the "unknown" person.
+ * @param gigaTree The GigaTree to put in.
+ * @param persons The number of persons.
+ */
+void setNumberPersons(struct GigaTree* gigaTree, unsigned int persons){
+    gigaTree->numberPersons = persons;
+}
+
+
+/**
  * Get GigaTree regions trie
  * @param gigaTree A GigaTree
  * @return retions trie of the GigaTrie
