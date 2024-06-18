@@ -110,9 +110,9 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
         free(birthday);
         free(region);
         if(younger == true)
-            gigaTree->youngest = people[i];
+            setYoungest(gigaTree,people[i]);
         if(older == true)
-            gigaTree->oldest = people[i];
+            setOldest(gigaTree,people[i]);
         free(line_copy);
     }
 

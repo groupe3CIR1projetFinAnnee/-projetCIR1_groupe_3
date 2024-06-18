@@ -36,6 +36,14 @@ struct GigaTree* createEmptyGigaTree();
 struct Person* getYoungest(struct GigaTree* gigaTree);
 
 /**
+ * Set the youngest person the GigaTree will contains.
+ * @param gigaTree The GigaTree to put in.
+ * @param youngest From the struct Person* the new youngest
+ */
+void setYoungest(struct GigaTree* gigaTree,struct Person* youngest);
+
+
+/**
  * Get the oldest person the GigaTree contains. O(1)
  * @param gigaTree The GigaTree to search in.
  * @return The oldest person of gigaTree
@@ -43,12 +51,12 @@ struct Person* getYoungest(struct GigaTree* gigaTree);
 struct Person* getOldest(struct GigaTree* gigaTree);
 
 /**
- * Get the number of births in the given specific region of a GigaTree. O(|region|)
- * @param gigaTree The GigaTree to search in.
- * @param region Will return number of births in this region.
- * @return Returns the number of births in the given region.
+ * Set the oldest person the GigaTree will contains.
+ * @param gigaTree The GigaTree to put in.
+ * @param oldest From the struct Person* the new oldest
  */
-unsigned int getNumberOfBirths(struct GigaTree* gigaTree, char* region);
+void setOldest(struct GigaTree* gigaTree,struct Person* oldest);
+
 
 /**
  * Get the region in which the most people were born, O(1)
