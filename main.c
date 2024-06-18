@@ -6,6 +6,7 @@
 #include "person.h"
 #include "csvReader.h"
 #include "exportLocal.h"
+#include <time.h>
 #define MAX_FILENAME_LENGTH 255
 
 char* path = "../db_temp/mini_db.csv";
@@ -81,13 +82,18 @@ void csvNameMenu() {
     csvFilename[path_len-1] = '\0';       // Remove end-line character
     path_len -= 2;
 
+    clock_t t;
+    t = clock();
     struct GigaTree* gigatree = readCSV(csvFilename);
+    t = clock() - t;
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+
 
     if (gigatree == NULL) {
         printf("Invalid file name.\n");
     }
     else {
-        printf("File loaded!\n");
+        printf("File loaded in %.2f seconds!\n",time_taken);
         askCalculateFamilies(gigatree);
     }
 }

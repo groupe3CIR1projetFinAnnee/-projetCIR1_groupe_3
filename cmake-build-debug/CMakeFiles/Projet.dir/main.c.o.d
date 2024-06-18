@@ -56,4 +56,7 @@ CMakeFiles/Projet.dir/main.c.o: \
  /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.h \
  /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.h \
  /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/csvReader.h \
- /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.h
+ /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.h \
+ /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h
