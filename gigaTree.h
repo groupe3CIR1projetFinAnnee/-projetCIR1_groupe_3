@@ -67,11 +67,17 @@ char* mostBirthsRegion(struct GigaTree* gigaTree);
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day);
 
 /**
- * Get the most number of births in a region. Can be used to initiate the tree
+ * Set the most number of births in a region. Can be used to initiate the tree
  * @param gigaTree The GigaTree to get from
  * @param births The number of births
  */
 void setMostBirths(struct GigaTree* gigaTree, unsigned int births);
+
+/**
+ * Free the most birth region
+ * @param gigaTree The GigaTree to get from
+ */
+void freeMostBirthRegion(struct GigaTree* gigaTree);
 
 /**
  * Get the most number of births in a region. Can be used to initiate the tree
