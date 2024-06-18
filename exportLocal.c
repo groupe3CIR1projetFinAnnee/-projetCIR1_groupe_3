@@ -98,7 +98,6 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         }
     }
 
-    // TODO: uncomment and test when GigaTree is ready
     // Prepare variables
     struct Person* person;
     // Supposing id is at most 58 characters : (if id has more characters, there probably is a problem)
@@ -117,7 +116,6 @@ int exportLocalSite(struct GigaTree* gigaTree) {
 
         // Write dest filename to destPerson
         snprintf(destPerson, destPersonMaxSize, "%s%d.html", destPersonBase, getID(person));
-        // printf("%s", destPerson);    // TODO : delete
 
         error = completeFile(sourcePerson, destPerson, gigaTree, person);
         if (error) {
@@ -219,7 +217,7 @@ int completeFile(char* inputFilename, char* outputFilename, struct GigaTree* gig
 
         // Free allocated variables
         if (mustDeleteReplacedInfo) {
-            //free(replacedInfo);   // TODO: uncomment
+            free(replacedInfo);
             replacedInfo = NULL;
         }
         deleteArrayStrings(&parsedInfos, numberInfos);
@@ -460,7 +458,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (getID(person) == 0) {       // Default person
             return "00";
         }
-        unsigned int birthDay = getBirthday(person)[0];
+        unsigned int* birth = getBirthday(person);
+        unsigned int birthDay = birth[0];
+        free(birth);
         return uintToString(birthDay, 16, mustDelete);      // A birth day is composed of 1 or 2 numbers
     }
 
@@ -471,7 +471,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (getID(person) == 0) {       // Default person
             return "00";
         }
-        unsigned int birthMonth = getBirthday(person)[1];
+        unsigned int* birth = getBirthday(person);
+        unsigned int birthMonth = birth[1];
+        free(birth);
         return uintToString(birthMonth, 16, mustDelete);    // A birth month is composed of 1 or 2 numbers
     }
 
@@ -482,7 +484,9 @@ char* getValueOf(char** parsedInfo, unsigned int numberInfos, struct Person* per
         if (getID(person) == 0) {       // Default person
             return "0000";
         }
-        unsigned int birthYear = getBirthday(person)[2];
+        unsigned int* birth = getBirthday(person);
+        unsigned int birthYear = birth[2];
+        free(birth);
         return uintToString(birthYear, 16, mustDelete);     // A birth year is composed of 1-6 numbers
     }
 
