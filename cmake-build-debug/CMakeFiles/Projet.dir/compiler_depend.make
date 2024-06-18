@@ -264,7 +264,11 @@ CMakeFiles/Projet.dir/main.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Pr
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.h \
   /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/csvReader.h \
-  /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.h
+  /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/exportLocal.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h
 
 CMakeFiles/Projet.dir/person.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/person.c \
   /usr/include/stdc-predef.h \
@@ -390,7 +394,13 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
   /usr/include/ctype.h
 
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/regions.c:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/time.h:
 
 /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN/Projet/gigaTree.c:
 
@@ -467,6 +477,8 @@ CMakeFiles/Projet.dir/regions.c.o: /mnt/c/Users/perei/OneDrive/Bureau/Cour\ ISEN
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
