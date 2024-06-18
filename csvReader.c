@@ -92,8 +92,8 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     regionBirths = getBirths(getRegionTrie(gigaTree), newToken);
                     if (regionBirths > mostBirths(gigaTree)) {
                         setMostBirths(gigaTree,regionBirths);
-                        if (gigaTree->mostBirthsRegion != NULL) {
-                            free(gigaTree->mostBirthsRegion);
+                        if (mostBirthsRegion(gigaTree) != NULL) {
+                            freeMostBirthRegion(gigaTree);
                         }
                         gigaTree->mostBirthsRegion = malloc((strlen(newToken)+1)*sizeof(char));   // TODO check if NULL
                         if(gigaTree->mostBirthsRegion == NULL)
