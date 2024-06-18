@@ -281,7 +281,7 @@ void setMostBirths(struct GigaTree* gigaTree, unsigned int births){
  */
 unsigned int calculateNumberFamilies(struct GigaTree* gigaTree) {
     unsigned int numPersons = numberPersons(gigaTree) -1;
-    struct Person** oldests = malloc(numPersons-1 * sizeof(struct Person*));
+    struct Person** oldests = malloc((numPersons-1) * sizeof(struct Person*));
     if (oldests == NULL) {
 #ifdef DEBUG
         printf("Allocation error.\n");
