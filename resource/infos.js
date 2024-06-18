@@ -1,3 +1,5 @@
+const NUMBER_PEOPLE = <template>number_people</template>
+
 function themeChange(currentTheme){ //0 par défaut, 0 -> theme clair et 1 -> theme sombre
     let bdheader = document.getElementById("header")
     let dice = document.getElementById('dice').firstElementChild;
@@ -50,3 +52,9 @@ slider.addEventListener('click', function() {
         themeChange(currentTheme);
     }
 });
+
+function goToRandomPage() {
+    // Get random person id
+    let page_id = Math.floor(Math.random() * (NUMBER_PEOPLE));
+    window.location.href = page_id + ".html";
+}
