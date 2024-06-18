@@ -214,6 +214,24 @@ unsigned int numberFamilies(struct GigaTree* gigaTree) {
     return gigaTree->numFamilies;
 }
 
+/**
+ * Get the most number of births in a region. Can be used to initiate the tree
+ * @param gigaTree The GigaTree to get from
+ * @return The number of births as an u.int
+ */
+unsigned int mostBirths(struct GigaTree* gigaTree){
+    return gigaTree->mostBirths;
+}
+
+/**
+ * Get the most number of births in a region. Can be used to initiate the tree
+ * @param gigaTree The GigaTree to get from
+ * @param births The number of births
+ */
+void setMostBirths(struct GigaTree* gigaTree, unsigned int births){
+    gigaTree->mostBirths = births;
+}
+
 
 /**
  * Calculate number of dinstinct families in the given GigaTree.
@@ -270,3 +288,5 @@ void deleteGigaTree(struct GigaTree** gigaTree){
 
     *gigaTree = NULL;
 }
+
+

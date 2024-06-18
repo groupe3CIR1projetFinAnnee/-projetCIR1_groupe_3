@@ -63,17 +63,17 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                     strcpy(lastname,token); //We copy the name !
                     break;
                 case 5:
-                    firstname = malloc((strlen(firstname)+1) * sizeof(char));
+                    firstname = malloc((strlen(token)+1) * sizeof(char));
                     if(firstname == NULL)
                         return NULL;
                     strcpy(firstname,token);
                     break;
                 case 6 :
-                    birthday = malloc((strlen(birthday)+1) * sizeof(char));
+                    birthday = malloc((strlen(token)+1) * sizeof(char));
                     if(birthday == NULL)
                         return NULL;
-                    younger = isYoungest(gigaTree->youngest,token);
-                    older = isOldest(gigaTree->oldest,token);
+                    younger = isYoungest(getYoungest(gigaTree),token);
+                    older = isOldest(getOldest(gigaTree),token);
                     addBirthday(token,gigaTree); //Launch the function that add the birthday to the gigaTree array
                     strcpy(birthday,token);
                     break;
@@ -90,8 +90,8 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
                     addBirth(&(gigaTree->regionsTrie), newToken);
                     regionBirths = getBirths(getRegionTrie(gigaTree), newToken);
-                    if (regionBirths > gigaTree->mostBirths) {
-                        gigaTree->mostBirths = regionBirths;
+                    if (regionBirths > mostBirths(gigaTree)) {
+                        setMostBirths(gigaTree,regionBirths);
                         if (gigaTree->mostBirthsRegion != NULL) {
                             free(gigaTree->mostBirthsRegion);
                         }
