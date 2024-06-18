@@ -65,3 +65,79 @@ function goToRandomPage() {
     let page_id = Math.floor(Math.random() * (ID_ARRAY.length));
     window.location.href = ID_ARRAY[page_id] + ".html";
 }
+
+function createCanvas() {
+    let canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    document.body.appendChild(canvas);
+    return canvas;
+}
+
+
+function resizeCanvas(canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+
+function drawArrow(context, fromx, fromy, tox, toy){
+    let headlen = 10; // longueur de la tête en pixels
+    let dx = tox - fromx;
+    let dy = toy - fromy;
+    let angle = Math.atan2(dy, dx);
+    context.beginPath();
+    context.moveTo(fromx, fromy);
+    context.lineTo(tox, toy);
+    context.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+    context.moveTo(tox, toy);
+    context.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+    context.stroke();
+}
+
+
+function positionArrow(element1, element2, context, canvas) {
+    resizeCanvas(canvas);
+    let rect1 = element1.getBoundingClientRect();
+    let rect2 = element2.getBoundingClientRect();
+    let x1 = rect1.right; // bord droit de l'élément 1
+    let y1 = rect1.top + rect1.height / 2; // centre vertical de l'élément 1
+    let x2 = rect2.left; // bord gauche de l'élément 2
+    let y2 = rect2.top + rect2.height / 2; // centre vertical de l'élément 2
+    context.strokeStyle = 'red';
+    context.lineWidth = 2;
+    drawArrow(context, x1, y1, x2, y2);
+}
+
+
+function main() {
+    let mama = document.getElementById('mama');
+    let member = document.getElementById('member');
+    let papa = document.getElementById('papa')
+    let gmama=document.getElementById('gmama')
+    let gmamabis = getElementById('gmamabis')
+
+    let canvas1 = createCanvas();
+    let context1 = canvas.getContext('2d');
+    let canvas2 = createCanvas();
+    let context2 = canvas.getContext('2d');
+    let canvas3 = createCanvas();
+    let context3 = canvas.getContext('2d');
+    let canvas4 = createCanvas();
+    let context4 = canvas.getContext('2d');
+    
+    positionArrow(mama, member, context1, canvas1);
+    window.addEventListener('resize', () => positionArrow(mama, member, context1, canvas1));
+    positionArrow(papa, member, context2, canvas2);
+    window.addEventListener('resize', () => positionArrow(papa, member, context2, canvas2));
+    positionArrow(gmama, mama, context3, canvas3);
+    window.addEventListener('resize', () => positionArrow(gmama, mama, context3, canvas3));
+    positionArrow(gmamabis, papa, context4, canvas4);
+    window.addEventListener('resize', () => positionArrow(gmamabis, papa, context4, canvas4));
+}
+
+main();
