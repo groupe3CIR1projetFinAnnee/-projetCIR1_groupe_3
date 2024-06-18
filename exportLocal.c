@@ -37,7 +37,7 @@
 
 // There is a max of info length because info is a predifined string
 #define MAX_INFO_LEN 64   // Info is the content of a template
-#define NUMBER_FILES 13
+#define NUMBER_FILES 14
 
 /**
  * Create local site with given data
@@ -55,6 +55,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../resource/img/man.png",
         "../resource/img/sun.png",
         "../resource/img/tree.jpg",
+        "../resource/img/logo_gigatree.png",
         "../resource/pages.js",
         "../resource/infos.js",
         "../resource/pages.css",
@@ -70,6 +71,7 @@ int exportLocalSite(struct GigaTree* gigaTree) {
         "../export/img/man.png",
         "../export/img/sun.png",
         "../export/img/tree.jpg",
+        "../export/img/logo_gigatree.png",
         "../export/pages.js",
         "../export/infos.js",
         "../export/pages.css",
