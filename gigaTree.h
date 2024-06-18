@@ -89,12 +89,6 @@ unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int 
 void setMostBirths(struct GigaTree* gigaTree, unsigned int births);
 
 /**
- * Free the most birth region
- * @param gigaTree The GigaTree to get from
- */
-void freeMostBirthRegion(struct GigaTree* gigaTree);
-
-/**
  * Get the most number of births in a region. Can be used to initiate the tree
  * @param gigaTree The GigaTree to get from
  * @return The number of births as an u.int

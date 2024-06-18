@@ -250,13 +250,6 @@ unsigned int mostBirths(struct GigaTree* gigaTree){
 void setMostBirths(struct GigaTree* gigaTree, unsigned int births){
     gigaTree->mostBirths = births;
 }
-/**
- * Free the most birth region
- * @param gigaTree The GigaTree to get from
- */
-void freeMostBirthRegion(struct GigaTree* gigaTree){
-    free(gigaTree->mostBirthsRegion);
-}
 
 /**
  * Calculate number of dinstinct families in the given GigaTree.
