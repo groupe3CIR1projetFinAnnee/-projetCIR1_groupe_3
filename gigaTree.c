@@ -43,6 +43,17 @@ struct GigaTree* createEmptyGigaTree(){
 //TODO Implementer avec regions
 //void setupGigaTree(struct GigaTree* gigaTree,struct Person** people, struct Region* regionsTrie);
 
+
+/**
+ * Add Birthday, to respect encapsulation
+ * @param gigaTree The GigaTree to put in.
+ * @param region the region to add in
+ */
+void addRegionBirthday(struct GigaTree* gigaTree,char* region){
+    addBirth(&(gigaTree->regionsTrie), region);
+}
+
+
 /**
  * Get the youngest person the GigaTree contains. O(1)
  * @param gigaTree The GigaTree to search in.

@@ -87,7 +87,7 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
                         return NULL;
                     strtok(token, "\n");
                     strcpy(region, newToken);
-                    addBirth(&(gigaTree->regionsTrie), newToken);
+                    addRegionBirthday(gigaTree,newToken);
                     regionBirths = getBirths(getRegionTrie(gigaTree), newToken);
                     if (regionBirths > mostBirths(gigaTree)) {
                         setMostBirths(gigaTree,regionBirths); //will update the number of birth of the max region

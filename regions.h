@@ -19,7 +19,7 @@ struct Region* createEmptyRegion();
 struct Region* createRegion();
 
 // Access
-void insertRegion(struct Region** regions, char* regionName); //WARNING : NO CAPS ALLOWED !!
+void insertRegion(struct Region** regions, char* regionName);
 unsigned int getBirths(struct Region* regionsTrie, char* regionName); //Recupere l'anniversaire du région a partir du gigaTree
 struct Region* getChild(struct Region* regionsTrie, char letter);
 bool isRegionEmpty(struct Region* regionsTrie);

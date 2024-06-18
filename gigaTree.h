@@ -28,6 +28,12 @@ struct GigaTree* createEmptyGigaTree();
 
 // Access & requests
 
+/**
+ * Add Birthday, to respect encapsulation
+ * @param gigaTree The GigaTree to put in.
+ * @param region the region to add in
+ */
+void addRegionBirthday(struct GigaTree* gigaTree,char* region);
 
 
 
