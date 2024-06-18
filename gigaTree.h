@@ -28,6 +28,9 @@ struct GigaTree* createEmptyGigaTree();
 
 // Access & requests
 
+
+
+
 /**
  * Get the youngest person the GigaTree contains. O(1)
  * @param gigaTree The GigaTree to search in.
@@ -138,9 +141,13 @@ struct Region* getRegionTrie(struct GigaTree* gigaTree);
 struct Person** getPeople(struct GigaTree* gigaTree);
 
 /**
- * Delete the given GigaTree
- * @param gigaTree The GigaTree to delete
+ * Set the array containing people within the given GigaTree.
+ * /!\ The array is not copied. Any changes to this array should be done knowing the way GigaTree works.
+ * @param gigaTree The GigaTree containing requested people.
+ * @param Peoples the array of struct People
  */
+void setPeople(struct GigaTree* gigaTree, struct Person** Peoples);
+
 
 unsigned int numberMale(struct GigaTree* gigaTree);
 unsigned int numberFemale(struct GigaTree* gigaTree);

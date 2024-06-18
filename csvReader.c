@@ -119,8 +119,8 @@ struct GigaTree* readCSV(char* filePath){ //The file path should look like this 
 
     fclose(file);
     //printf("%d",people[0]->birthDay); //Warning : the array goes from 0 to 40 if the number of ppl is 40 !! The person 0 is the unknow one
-    gigaTree->people = people; //Setting up the array into the tree
-    gigaTree->numberPersons = numberOfPerson; //Remember here !! the unknown person is counted, at the position 0, everytime.
+    setPeople(gigaTree,people); //Setting up the array into the tree
+    setNumberPersons(gigaTree,numberOfPerson); //Remember here !! the unknown person is counted, at the position 0, everytime.
     addParents(gigaTree); //the final boss
     //gigaTree->numFamilies = calculateNumberFamilies(gigaTree);
     return gigaTree;
