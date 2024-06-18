@@ -110,6 +110,23 @@ void setMostBirthsRegion(struct GigaTree* gigaTree,char* region){
 unsigned int births(struct GigaTree* gigaTree, unsigned int month, unsigned int day){
     return gigaTree->birthday[month-1][day-1];
 }
+/**
+ * Add one to the give birthday
+ * @param gigaTree The GigaTree to add in
+ * @param month Birthday month
+ * @param day Birthday day
+ */
+void addBirths(struct GigaTree* gigaTree, unsigned int month, unsigned int day){
+    gigaTree->birthday[month-1][day-1]++;
+}
+bool copyMostBirthsRegion(struct GigaTree* gigaTree, char* region){
+    char* regionToCopy = malloc((strlen(region)+1)*sizeof(char));
+    if(regionToCopy == NULL)
+        return false;
+    gigaTree->mostBirthsRegion = regionToCopy;
+    strcpy(gigaTree->mostBirthsRegion,region);
+    return true;
+}
 
 /**
  * Get a person using the given index. Can be used to loop within all the persons.
