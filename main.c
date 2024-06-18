@@ -222,12 +222,13 @@ void queryMenu(struct GigaTree* gigaTree) {
                 break;
 
             case '4':
-                if (mostBirthsRegion(gigaTree) == NULL) {
+                char* mostBirthReg = mostBirthsRegion(gigaTree);
+                if (mostBirthReg == NULL) {
                     printf("Error happened while fetching for region containing most births.\n");
                 }
                 else {
                     printf("The following region has the most births:\n");
-                    printf("%s\n", mostBirthsRegion(gigaTree));
+                    printf("%s\n", mostBirthReg);
                 }
                 break;
 
