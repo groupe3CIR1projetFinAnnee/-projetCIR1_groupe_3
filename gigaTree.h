@@ -58,6 +58,13 @@ unsigned int getNumberOfBirths(struct GigaTree* gigaTree, char* region);
 char* mostBirthsRegion(struct GigaTree* gigaTree);
 
 /**
+ * Set the region for you. will NOT make the malloc
+ * @param gigaTree The GigaTree to get from
+ * @param region Name of the region
+ */
+void setMostBirthsRegion(struct GigaTree* gigaTree, char* region);
+
+/**
  * Get the number of people having a specific birthday. O(1)
  * @param gigaTree The GigaTree to search in.
  * @param month Birthday month 
@@ -85,6 +92,8 @@ void freeMostBirthRegion(struct GigaTree* gigaTree);
  * @return The number of births as an u.int
  */
 unsigned int mostBirths(struct GigaTree* gigaTree);
+
+
 
 /**
  * Get a person using the given index. Can be used to loop within all the persons.

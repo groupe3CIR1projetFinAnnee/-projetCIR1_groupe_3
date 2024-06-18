@@ -82,6 +82,16 @@ char* mostBirthsRegion(struct GigaTree* gigaTree){
 }
 
 /**
+ * Set the region for you. will NOT make the malloc
+ * @param gigaTree The GigaTree to get from
+ * @param region Name of the region
+ */
+void setMostBirthsRegion(struct GigaTree* gigaTree,char* region){
+    gigaTree->mostBirthsRegion = region;
+}
+
+
+/**
  * Get the number of people having a specific birthday. O(1)
  * @param gigaTree The GigaTree to search in.
  * @param month Birthday month 
