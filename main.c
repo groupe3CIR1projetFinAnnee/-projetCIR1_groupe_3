@@ -12,6 +12,7 @@ char* path = "../db_temp/mini_db.csv";
 
 void csvMenu();
 void csvNameMenu();
+void askCalculateFamilies(struct GigaTree* gigaTree);
 void mainMenu(struct GigaTree* gigatree);
 void queryMenu(struct GigaTree* gigatree);
 void printPeopleRegion(struct GigaTree* gigatree);
@@ -77,8 +78,31 @@ void csvNameMenu() {
     }
     else {
         printf("File loaded!\n");
-        mainMenu(gigatree);
+        askCalculateFamilies(gigatree);
     }
+}
+
+void askCalculateFamilies(struct GigaTree* gigaTree) {
+    bool exit = false;
+    char skip[200];     // Buffer to skip some characters
+    printf("\n");
+
+    // Ask for choice
+    char c = 'y';
+    do {
+        if (c != 'y' && c != 'Y' && c != 'n' && c != 'N') {
+            printf("Invalid number. Please enter a valid number.\n");
+        }
+        printf("\n");
+        printf("Do you want to calculate number of families? y/n: \n");
+        c = getc(stdin);
+        fgets(skip, sizeof(skip), stdin);   // Skip end-line
+    } while (c != 'y' && c != 'Y' && c != 'n' && c != 'N');
+
+    if (c == 'y' || c == 'Y') {
+        calculateNumberFamilies(gigaTree);
+    }
+    mainMenu(gigaTree);
 }
 
 void mainMenu(struct GigaTree* gigatree) {

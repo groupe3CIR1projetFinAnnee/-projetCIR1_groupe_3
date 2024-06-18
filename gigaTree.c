@@ -306,6 +306,7 @@ unsigned int calculateNumberFamilies(struct GigaTree* gigaTree) {
         }
     }
     free(oldests);
+    gigaTree->numFamilies = numFamilies;
     return numFamilies;
 }
 
