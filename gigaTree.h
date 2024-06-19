@@ -22,9 +22,6 @@ struct GigaTree{
  */
 struct GigaTree* createEmptyGigaTree();
 
-// TODO : code en commentaire qui traine.
-//void setupGigaTree(struct GigaTree* gigaTree,struct Person** people, struct Region* regionsTrie); //Will edit the tree using the array of people. Will set all anniversary, youngest/oldest, the regions, etc...
-
 
 // Access & requests
 

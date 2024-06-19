@@ -11,8 +11,6 @@
 #include "gigaTree.h"
 #include "person.h"
 
-#define DEBUG
-
 // Templates definition
 #define ID_TEMPLATE "id"
 #define LASTNAME_TEMPLATE "lastname"

@@ -25,8 +25,6 @@ struct Person{
 #define UNKNOWN (-1)
 
 // Creation & setup
-// TODO: delete useless commented code
-//struct Person* createEmptyPerson(); //Return the "unknown person" with id of 0 //Never used, and useless
 
 /**
  * Create a new person, using the given parameters.
@@ -66,11 +64,10 @@ char* getFirstName(struct Person* person);
  */
 char* getLastName(struct Person* person);
 
-// TODO: we can simplify return type from unsigned int* to unsigned int[3]
 /**
  * Get the birth date of the given person.
  * @param person A person
- * @return Birth date of the given person in an array. Miust be freed. Format: [DD,MM,YYYY]
+ * @return Birth date of the given person in an array. Must be freed. Format: [DD,MM,YYYY]
  */
 unsigned int* getBirthday(struct Person* person);
 
@@ -125,7 +122,6 @@ unsigned int getMadreID(struct Person* person);
  */
 char* getRegion(struct Person* person);
 
-// TODO change return type bool to an enum, or use MALE/FEMALE (int)
 /**
  * Get gender of the given person
  * Use MALE and FEMALE constants to compare the gender
@@ -149,7 +145,6 @@ struct Person* getOldestParent(struct Person* person);
  */
 struct Person* compareOldest(struct Person* person1, struct Person* person2);
 
-// TODO change bool to int, or use an enum
 /**
  * Set gender of the given person
  * @param person A person
@@ -168,7 +163,6 @@ void deletePerson(struct Person** person);
 
 // Others
 
-// TODO: use return type unsigned int[3] instead. Or even use 3 fonctions: getBirthDay, getBirthMonth, getBirthYear
 /**
  * Split the given date string into a formatted array.
  * @param birthday Birth date. Format: "DD/MM/YYYY"
